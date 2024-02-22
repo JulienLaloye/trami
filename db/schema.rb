@@ -10,8 +10,119 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 0) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_22_194924) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "activities", force: :cascade do |t|
+    t.string "title"
+    t.bigint "mood_id", null: false
+    t.string "category"
+    t.text "interests", default: [], array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["mood_id"], name: "index_activities_on_mood_id"
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.integer "status"
+    t.boolean "ownership"
+    t.bigint "user_id", null: false
+    t.bigint "room_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_appointments_on_room_id"
+    t.index ["user_id"], name: "index_appointments_on_user_id"
+  end
+
+  create_table "avatars", force: :cascade do |t|
+    t.string "personality"
+    t.string "picture"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "moods", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "type"
+    t.string "picture"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rankings", force: :cascade do |t|
+    t.string "name"
+    t.integer "treshold"
+    t.string "picture"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.bigint "appointment_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rating"
+    t.string "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["appointment_id"], name: "index_reviews_on_appointment_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "rooms", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.string "gender"
+    t.datetime "date"
+    t.integer "max_part"
+    t.integer "min_part"
+    t.string "location"
+    t.string "langage"
+    t.datetime "creation_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "activity_id", null: false
+    t.bigint "user_id", null: false
+    t.boolean "finished"
+    t.index ["activity_id"], name: "index_rooms_on_activity_id"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "nationality"
+    t.string "gender"
+    t.date "birthdate"
+    t.string "description"
+    t.string "current_location"
+    t.text "interests", default: [], array: true
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "mood_id", null: false
+    t.bigint "ranking_id", null: false
+    t.bigint "avatar_id", null: false
+    t.index ["avatar_id"], name: "index_users_on_avatar_id"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["mood_id"], name: "index_users_on_mood_id"
+    t.index ["ranking_id"], name: "index_users_on_ranking_id"
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "activities", "moods"
+  add_foreign_key "appointments", "rooms"
+  add_foreign_key "appointments", "users"
+  add_foreign_key "reviews", "appointments"
+  add_foreign_key "reviews", "users"
+  add_foreign_key "rooms", "activities"
+  add_foreign_key "rooms", "users"
+  add_foreign_key "users", "avatars"
+  add_foreign_key "users", "moods"
+  add_foreign_key "users", "rankings"
 end
