@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_22_194924) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_24_133045) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -79,7 +79,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_194924) do
     t.datetime "date"
     t.integer "max_part"
     t.integer "min_part"
-    t.string "location"
+    t.string "adress"
     t.string "langage"
     t.datetime "creation_date"
     t.datetime "created_at", null: false
@@ -87,6 +87,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_194924) do
     t.bigint "activity_id", null: false
     t.bigint "user_id", null: false
     t.boolean "finished"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["activity_id"], name: "index_rooms_on_activity_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
@@ -96,7 +98,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_194924) do
     t.string "gender"
     t.date "birthdate"
     t.string "description"
-    t.string "current_location"
+    t.string "adress"
     t.text "interests", default: [], array: true
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -108,6 +110,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_22_194924) do
     t.bigint "mood_id", null: false
     t.bigint "ranking_id", null: false
     t.bigint "avatar_id", null: false
+    t.float "latitude"
+    t.float "longitude"
     t.index ["avatar_id"], name: "index_users_on_avatar_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["mood_id"], name: "index_users_on_mood_id"
