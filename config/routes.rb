@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :rooms, except: %i[edit destroy]
 
   resources :users, only: :show do
-    resources :appointments, only: %i[index update]
+    resources :appointments, only: %i[update]
   end
 
   resources :appointments, only: :create
