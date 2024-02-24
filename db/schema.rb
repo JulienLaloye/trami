@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_24_133045) do
+ActiveRecord::Schema[7.1].define(version: 2024_02_24_160707) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +25,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_133045) do
   end
 
   create_table "appointments", force: :cascade do |t|
-    t.integer "status"
+    t.integer "status", default: 0
     t.boolean "ownership"
     t.bigint "user_id", null: false
     t.bigint "room_id", null: false
@@ -86,9 +86,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_133045) do
     t.datetime "updated_at", null: false
     t.bigint "activity_id", null: false
     t.bigint "user_id", null: false
-    t.boolean "finished"
+    t.boolean "finished", default: false
     t.float "latitude"
     t.float "longitude"
+    t.integer "min_age"
+    t.integer "max_age"
     t.index ["activity_id"], name: "index_rooms_on_activity_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
@@ -112,6 +114,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_24_133045) do
     t.bigint "avatar_id", null: false
     t.float "latitude"
     t.float "longitude"
+    t.string "username"
     t.index ["avatar_id"], name: "index_users_on_avatar_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["mood_id"], name: "index_users_on_mood_id"
