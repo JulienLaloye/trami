@@ -7,3 +7,23 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+require 'date'
+
+User.destroy_all
+
+city = ["Berlin", "London", "Amsterdam", "Paris", "Tokyo"]
+gender = ["male", "female", "non-binary", "other"]
+
+6.times do
+  user = User.new(
+    username: Faker::Name.first_name,
+    email: Faker::Internet.email,
+    adress: city.sample,
+    password: "1234567",
+    description: "blablablabalbalbalablabalbalabla",
+    gender: gender.sample,
+    birthdate: "17/01/2007"
+  )
+  user.save!
+end
