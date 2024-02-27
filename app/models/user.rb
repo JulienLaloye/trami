@@ -6,7 +6,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :description, :username, :gender, :birthdate, :nationality, :adress, presence: true
+  validates :description, :username, :gender, :birthdate, :nationality, :address, presence: true
   validate :validate_age
 
   private

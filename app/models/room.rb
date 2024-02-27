@@ -3,7 +3,7 @@ class Room < ApplicationRecord
   # after_validation :geocode, if: :will_save_change_to_address?
 
   gender_options = ["men", "women", "no preference"]
-  validates :title, :description, :gender, :date, :max_part, :min_part, :langage, presence: true
+  validates :title, :description, :gender, :date, :max_part, :min_part, :language, presence: true
   validates :description, length: { in: (50...400) }
   validates :min_age, numericality: { greater_than_or_equal_to: 18, message: "must be at least 18" }
   validates :max_age, numericality: { less_than: 99, message: "must be bellow 99" }
