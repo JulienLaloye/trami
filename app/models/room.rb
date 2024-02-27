@@ -6,7 +6,7 @@ class Room < ApplicationRecord
   validates :title, :description, :gender, :date, :max_part, :min_part, :langage, presence: true
   validates :description, length: { in: (50...400) }
   validates :min_age, numericality: { greater_than_or_equal_to: 18, message: "must be at least 18" }
-  validates :max_age, numericality: { less_than: 99, message: "must be at bellow 99" }
+  validates :max_age, numericality: { less_than: 99, message: "must be bellow 99" }
   validates :gender, inclusion: { in: gender_options }
   validate :date_must_be_in_the_future
   validates :min_part, numericality: { greater_than_or_equal_to: 2, message: "must be at least 2" }
