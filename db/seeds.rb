@@ -12,6 +12,7 @@ require 'date'
 
 print "seeding..."
 
+Room.destroy_all
 User.destroy_all
 Activity.destroy_all
 Mood.destroy_all
@@ -19,6 +20,7 @@ Avatar.destroy_all
 Ranking.destroy_all
 
 city = ["Berlin", "London", "Amsterdam", "Paris", "Tokyo"]
+languages = ["fr", "en", "ger"]
 gender = ["male", "female", "non-binary", "other"]
 
 #seed the moods:
@@ -181,7 +183,7 @@ end
 
 #seed the users:
 
-10.times do
+100.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: Faker::Internet.email,
@@ -199,8 +201,66 @@ end
   print "."
 end
 
-#seed the rooms:
+#seeding the rooms:
+titles = [
+  { activity: 'Outdoor movie night with a projector', titles: ['Cinema Under the Stars', 'Al Fresco Film Experience', 'Open-Air Movie Night', 'Moonlit Movie Magic', 'Starry Screen Soiree'] },
+  { activity: 'Dream journaling and doodling', titles: ['Imagination Unleashed Workshop', 'Creative Dreamscapes Session', 'Fantasy Art Expression', 'Dream Diary Artistry', 'Doodle Dreamworld Workshop'] },
 
+  { activity: 'High-intensity interval training (HIIT) session', titles: ['Power Boost Workout', 'Intense Fitness Challenge', 'Extreme Cardio Blast', 'HIIT Havoc Session', 'Adrenaline Pumping Exercise'] },
+  { activity: 'Salsa dance class', titles: ['Latin Dance Fiesta', 'Rhythmic Salsa Workshop', 'Passionate Dance Moves Class', 'Salsa Sensation Choreography', 'Dance Floor Heatwave Class'] },
 
+  { activity: 'Guided nature meditation', titles: ['Serene Nature Connection', 'Mindfulness in the Wilderness', 'Tranquil Forest Meditation', 'Guided Eco-Mindfulness', "Nature's Calm Embrace Session"] },
+  { activity: 'Reading a book in a hammock', titles: ['Hammock Reading Retreat', 'Literary Escape Lounge', 'Relaxing Book Nook', 'Hammock Haven Reading', 'Bookish Bliss in the Breeze'] },
+
+  { activity: 'Exploring a new cozy cafe with a book', titles: ['Cafe Discovery and Book Delight', 'Literary Cafe Tour', "Bookworm's Hidden Gems", 'Culinary Reading Adventure', 'Cozy Cafe Book Excursion'] },
+  { activity: 'Day trip to a nearby historical town', titles: ['Historical Town Excursion', 'Local Heritage Adventure', 'Time Travel Day Trip', 'Historic Hamlet Exploration', 'Quaint Town Time Capsule'] },
+
+  { activity: 'Empowerment workshop for women', titles: ["Women's Empowerment Symposium", 'Sisterhood Strength Workshop', 'Fierce Females Forum', 'EmpowerHer Collective Session', 'Women Rising Workshop'] },
+  { activity: 'Cultural exchange potluck', titles: ['Global Tastes Gathering', 'International Cuisine Exchange', 'Potluck Cultural Fusion', 'Culinary Diversity Banquet', 'Multicultural Dish Exchange'] },
+
+  { activity: 'Virtual reality gaming night', titles: ['VR Gaming Extravaganza', 'Immersive Gaming Experience', 'Digital Reality Battle Night', 'Virtual Adventure Showdown', 'Gaming Galaxy Quest'] },
+  { activity: 'Group karaoke battle', titles: ['Karaoke Showdown Spectacle', 'Sing-Off Championship', 'Harmony War: Battle of the Voices', 'Group Vocal Clash', 'Melodic Showdown Extravaganza'] },
+
+  { activity: 'Nighttime forest hike with lanterns', titles: ['Enchanted Forest Night Trek', 'Moonlit Woods Expedition', 'Lantern-lit Nature Quest', 'Nocturnal Nature Excursion', 'Guided Moonlight Hike'] },
+  { activity: 'Snorkeling adventure in a coral reef', titles: ['Underwater Wonderland Expedition', 'Coral Paradise Snorkel', 'Tropical Reef Exploration', 'Oceanic Oasis Discovery', 'Aquatic Adventure Snorkel'] },
+
+  { activity: 'Chill acoustic live music at a lounge', titles: ['Acoustic Serenade Soiree', 'Soothing Lounge Melodies', 'Mellow Music Vibes Night', 'Live Acoustic Harmony', 'Lounge Concert Atmosphere'] },
+  { activity: 'Wine and tapas tasting evening', titles: ['Wine & Tapas Delight Night', 'Gourmet Pairing Extravaganza', 'Epicurean Tasting Affair', 'Culinary Elegance Showcase', 'Vineyard & Tapas Culmination'] },
+
+  { activity: 'Pottery and sculpting workshop', titles: ['Artistic Clay Creations Class', 'Sculpture Craftsmanship Workshop', 'Hands-on Pottery Mastery', 'Creative Ceramics Session', 'Clay Sculpture Artistry'] },
+  { activity: 'Storytelling and creative writing class', titles: ['Narrative Craftsmanship Workshop', 'Creative Writing Odyssey', 'Tale Weaving Seminar', 'Fiction Writing Mastery', 'Storytelling Creativity Intensive'] },
+
+  { activity: 'Science fiction book discussion group', titles: ['Sci-Fi Chronicles Symposium', 'Futuristic Fiction Forum', 'Interstellar Imagination Circle', 'Galactic Book Exploration', 'Sci-Fi Literary Universe'] },
+  { activity: 'Modern art exhibition visit', titles: ['Contemporary Art Exploration', 'Avant-Garde Gallery Tour', 'Abstract Expressionism Showcase', 'Modern Art Appreciation', 'Gallery Immersion Experience'] },
+
+  { activity: 'Exploring hidden gems in the city', titles: ['Urban Adventure Quest', 'City Secrets Discovery Tour', 'Metropolis Marvels Exploration', 'Hidden Gem City Safari', 'Secret Spots Urban Expedition'] },
+  { activity: 'Solo backpacking adventure in Asia', titles: ['Independent Explorer Expedition', 'Solo Asian Odyssey', "Backpacker's Solo Journey", 'Asia Exploration Solo Trek', 'Adventure Solo Backpacking Quest'] },
+
+  { activity: 'Mindful walking meditation in a botanical garden', titles: ['Botanical Bliss Meditation Walk', 'Nature Mindfulness Stroll', 'Zen Garden Walking Session', 'Mindful Botanic Meditation', 'Guided Nature Awareness Walk'] },
+  { activity: 'Mindful breathing workshop', titles: ['Breath of Serenity Seminar', 'Mindful Respiratory Retreat', 'Conscious Breathing Workshop', 'Zen Breath Awareness Session', 'Mindful Breathing Mastery Class'] },
+]
+
+Activity.all.each do |activity|
+  (0...5).to_a.sample.times do
+    min = (2...5).to_a.sample
+    user = User.all.sample
+    date = Faker::Date.between(from: 1.years.ago, to: 1.years.since),
+    Room.new(
+      title: titles.find_by(activity: activity.title).sample,
+      description: activity.category,
+      gender: gender.sample,
+      date: date,
+      min_part: min,
+      max_part: min + (0...10).to_a.sample,
+      address: city.sample,
+      language: languages.sample,
+      activity_id: activity.id,
+      user_id: user.id,
+      finished: date > today ? false : true
+    ) 
+  end
+end
+
+#seed the appointments
 
 #seed the reviews:
