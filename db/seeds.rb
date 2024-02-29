@@ -12,6 +12,7 @@ require 'date'
 
 print "seeding..."
 
+Appointment.destroy_all
 Room.destroy_all
 User.destroy_all
 Activity.destroy_all
@@ -52,42 +53,6 @@ end
 
 #seed the activities:
 activities = [
-  { mood: 'dreamy', category: 'films', activity: 'Movie night under the stars' },
-  { mood: 'dreamy', category: 'creativity', activity: 'Painting and wine evening' },
-
-  { mood: 'energetic', category: 'sports & fitness', activity: 'Group jogging in the park' },
-  { mood: 'energetic', category: 'dancing', activity: 'Dance-off competition' },
-
-  { mood: 'relax', category: 'mindful activities', activity: 'Guided meditation session' },
-  { mood: 'relax', category: 'weekend activities', activity: 'Lazy Sunday brunch' },
-
-  { mood: 'neutral', category: 'cafes', activity: 'Coffee and reading at a local cafe' },
-  { mood: 'neutral', category: 'local travel', activity: 'Exploring nearby neighborhoods' },
-
-  { mood: 'social', category: "women's social", activity: 'Girls night out' },
-  { mood: 'social', category: 'international meetups', activity: 'Language exchange meetup' },
-
-  { mood: 'competitive', category: 'games', activity: 'Board game tournament' },
-  { mood: 'competitive', category: 'karaoke', activity: 'Karaoke singing contest' },
-
-  { mood: 'adventurous', category: 'hiking', activity: 'Mountain hiking adventure' },
-  { mood: 'adventurous', category: 'water activities', activity: 'Kayaking in the river' },
-
-  { mood: 'chillin', category: 'nightlife', activity: 'Chill-out lounge with live music' },
-  { mood: 'chillin', category: 'food & drinks', activity: 'Wine and cheese tasting' },
-
-  { mood: 'creative', category: 'creativity', activity: 'DIY craft workshop' },
-  { mood: 'creative', category: 'workshop activities', activity: 'Photography masterclass' },
-
-  { mood: 'intellectual', category: 'book club', activity: 'Literary discussion group' },
-  { mood: 'intellectual', category: 'museum & galleries', activity: 'Art gallery tour' },
-
-  { mood: 'exploratory', category: 'local travel', activity: 'City exploration on foot' },
-  { mood: 'exploratory', category: 'global travel', activity: 'Backpacking through Europe' },
-
-  { mood: 'mindful', category: 'yoga', activity: 'Sunset yoga by the beach' },
-  { mood: 'mindful', category: 'mindful activities', activity: 'Mindfulness retreat' },
-
   { mood: 'dreamy', category: 'films', activity: 'Outdoor movie night with a projector' },
   { mood: 'dreamy', category: 'creativity', activity: 'Dream journaling and doodling' },
 
@@ -124,6 +89,7 @@ activities = [
   { mood: 'mindful', category: 'yoga', activity: 'Mindful walking meditation in a botanical garden' },
   { mood: 'mindful', category: 'mindful activities', activity: 'Mindful breathing workshop' }
 ]
+
 
 activities.each do |a|
   activity = Activity.new(
@@ -240,15 +206,23 @@ titles = [
   { activity: 'Mindful breathing workshop', titles: ['Breath of Serenity Seminar', 'Mindful Respiratory Retreat', 'Conscious Breathing Workshop', 'Zen Breath Awareness Session', 'Mindful Breathing Mastery Class'] },
 ]
 
+gender_options = ["men", "women", "no preference"]
 Activity.all.each do |activity|
-  (0...5).to_a.sample.times do
-    min = (2...5).to_a.sample
+  (0..5).to_a.sample.times do
+    activity_title = activity.title
+    title_array = []
+    titles.each do |t|
+      title_array = t[:titles] if t[:activity] == activity_title
+    end
+    title = title_array.sample
+    min = (2..5).to_a.sample
     user = User.all.sample
-    date = Faker::Date.between(from: 1.years.ago, to: 1.years.since),
-    Room.new(
-      title: titles.find_by(activity: activity.title).sample,
+    date = Faker::Date.between(from: 1.years.ago, to: 1.years.since)
+    min_age = (18..50).to_a.sample
+    room = Room.new(
+      title: title,
       description: activity.category,
-      gender: gender.sample,
+      gender: gender_options.sample,
       date: date,
       min_part: min,
       max_part: min + (0...10).to_a.sample,
@@ -256,11 +230,36 @@ Activity.all.each do |activity|
       language: languages.sample,
       activity_id: activity.id,
       user_id: user.id,
-      finished: date > today ? false : true
-    ) 
+      finished: date > Date.today ? false : true,
+      min_age: min_age,
+      max_age: min_age + (1..15).to_a.sample,
+      participants: 1
+    )
+    room.save!
   end
 end
 
 #seed the appointments
+
+Room.all.each do |room|
+  id = room.id
+  creator = room.user_id
+  counter = 0
+  age_rank = (room.min_age..room.max_age).to_a
+  user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i) }
+  user_total.delete_if { |user| user.id == creator }
+  Appointment.create(user_id: creator, room_id: id, ownership: true, status: 1)
+  if user_total.size.positive?
+    (1..(room.max_part - 1)).to_a.sample.times do
+      participant = user_total.sample.id
+      status = [0, 1].sample
+      Appointment.create(user_id: participant, room_id: id, ownership: false, status: status)
+      user_total.delete_if { |user| user.id == participant }
+      counter += 1 if status == 1
+    end
+  end
+  room.participants += counter
+  room.save!
+end
 
 #seed the reviews:
