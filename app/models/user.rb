@@ -7,6 +7,11 @@ class User < ApplicationRecord
   has_many :rooms, through: :appointments
   has_many :reviews
   has_many :reviews, through: :appointments
+  belongs_to :mood
+  belongs_to :avatar
+
+  has_many :reportings, class_name: 'Report', foreign_key: 'reporter_id'
+  has_many :received_reports, class_name: 'Report', foreign_key: 'reportee_id'
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
