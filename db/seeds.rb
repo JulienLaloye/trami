@@ -240,33 +240,32 @@ Activity.all.each do |activity|
     room.save!
   end
 end
-
+puts "Rooms seeded"
 #seed the appointments
-
+puts "_______________________"
 Room.all.each do |room|
-  puts "_______________________"
+  puts User.all.size
   creator = room.user
   counter = 0
   age_rank = (room.min_age..room.max_age).to_a
   user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i / 365) }
-  user_total.delete_if { |user| user == creator }
+  user_total.reject { |user| user == creator }
   Appointment.create(user: creator, room: room, ownership: true, status: 1)
-  if user_total.size.positive?
+  if user_total.size > 1
     (1..(room.max_part - 1)).to_a.sample.times do
       participant = user_total.sample
       status = [0, 1].sample
       appointment = Appointment.new(user: participant, room: room, ownership: false, status: status)
-      puts appointment
       appointment.save!
-      user_total.delete_if { |user| user == participant }
+      user_total = user_total.reject { |user| user == participant } if user_total.size > 1
       counter += 1 if status == 1
     end
   end
-  puts room.appointments.size
   room.participants += counter
   room.save!
 end
-
+puts "Appointments seeded"
+puts "_______________________"
 #seed the reviews:
 adjectives = [
   'kind',
@@ -314,30 +313,23 @@ adjectives = [
 ]
 
 Room.all.select { |room| room.finished == true }.each do |room|
-  # puts "_______________"
-  # puts room.participants
-  # puts room.appointments.size
   users = []
   room.appointments.each do |appointment|
-    puts appointment.user.email
     users << appointment.user
   end
-  # puts users
-  # room.appointments.each do |appointment|
-  #   puts users.size
-  #   (0..1).to_a.sample.times do
-  #     reject = users.reject { |user| user == appointment.user }
-  #     puts reject.size
-  #     user = reject.sample
-  #     feedbacks = []
-  #     list = adjectives
-  #     (3..6).to_a.sample.times do
-  #       feedback = adjectives.sample
-  #       feedbacks << feedback
-  #       list = list.reject { |w| w == feedback }
-  #     end
-  #     Review.create(appointment: appointment, user: user, feedbacks: feedbacks )
-  #     users = users.reject { |u| u == user }
-  #   end
-  # end
+  room.appointments.each do |appointment|
+    (0..1).to_a.sample.times do
+      reject = users.reject { |user| user == appointment.user }
+      user = reject.sample
+      feedbacks = []
+      list = adjectives
+      (3..6).to_a.sample.times do
+        feedback = list.sample
+        feedbacks << feedback
+        list = list.reject { |w| w == feedback }
+      end
+      Review.create(appointment: appointment, user: user, feedbacks: feedbacks )
+      users = users.reject { |u| u == user }
+    end
+  end
 end
