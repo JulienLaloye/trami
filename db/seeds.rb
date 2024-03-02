@@ -12,6 +12,8 @@ require 'date'
 
 print "seeding..."
 
+Report.destroy_all
+Review.destroy_all
 Appointment.destroy_all
 Room.destroy_all
 User.destroy_all
@@ -130,10 +132,10 @@ end
 
 #seed the rankings:
 rankings = [
-  { ranking: 'Trami Wanderer', threshold: 10 },
-  { ranking: 'Trami Insider', threshold: 20 },
-  { ranking: 'Trami Ace', threshold: 30 },
-  { ranking: 'Trami Expert', threshold: 40 }
+  { ranking: 'Trami Wanderer', threshold: 10, level: 1 },
+  { ranking: 'Trami Insider', threshold: 20, level: 2 },
+  { ranking: 'Trami Ace', threshold: 30, level: 3 },
+  { ranking: 'Trami Expert', threshold: 40, level: 4 }
 ]
 
 rankings.each do |r|
@@ -141,7 +143,8 @@ rankings.each do |r|
     name: r[:ranking],
     threshold: r[:threshold],
     picture: "ok",
-    description: "ok"
+    description: "ok",
+    level: r[:level]
   )
   ranking.save!
   print "."
@@ -149,7 +152,7 @@ end
 
 #seed the users:
 
-100.times do
+200.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: Faker::Internet.email,
@@ -158,7 +161,7 @@ end
     password: "1234567",
     description: "blablablabalbalbalablabalbalabla",
     gender: gender.sample,
-    birthdate: Faker::Date.between(from: '1940-01-01', to: 18.years.ago),
+    birthdate: Faker::Date.between(from: '1945-01-01', to: 18.years.ago),
     ranking_id: Ranking.all.sample.id,
     mood_id: Mood.all.sample.id,
     avatar_id: Avatar.all.sample.id
@@ -238,29 +241,113 @@ Activity.all.each do |activity|
     room.save!
   end
 end
-
+puts "Rooms seeded"
 #seed the appointments
-
+puts "_______________________"
 Room.all.each do |room|
-  id = room.id
-  creator = room.user_id
+  creator = room.user
   counter = 0
   age_rank = (room.min_age..room.max_age).to_a
-  user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i) }
-  user_total.delete_if { |user| user.id == creator }
-  Appointment.create(user_id: creator, room_id: id, ownership: true, status: 1)
-  if user_total.size.positive?
+  user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i / 365) }
+  user_total.reject { |user| user == creator }
+  Appointment.create(user: creator, room: room, ownership: true, status: 1)
+  if user_total.size > 1
     (1..(room.max_part - 1)).to_a.sample.times do
-      participant = user_total.sample.id
+      participant = user_total.sample
       status = [0, 1].sample
-      Appointment.create(user_id: participant, room_id: id, ownership: false, status: status)
-      user_total.delete_if { |user| user.id == participant }
+      appointment = Appointment.new(user: participant, room: room, ownership: false, status: status)
+      appointment.save!
+      user_total = user_total.reject { |user| user == participant } if user_total.size > 1
       counter += 1 if status == 1
     end
   end
   room.participants += counter
   room.save!
 end
-
+puts "Appointments seeded"
+puts "_______________________"
 #seed the reviews:
+adjectives = [
+  'kind',
+  'compassionate',
+  'empathetic',
+  'friendly',
+  'enthusiastic',
+  'creative',
+  'intelligent',
+  'helpful',
+  'positive',
+  'adaptable',
+  'courteous',
+  'resilient',
+  'patient',
+  'considerate',
+  'thoughtful',
+  'inspiring',
+  'motivated',
+  'collaborative',
+  'generous',
+  'uplifting',
+  'reliable',
+  'trustworthy',
+  'respectful',
+  'honest',
+  'optimistic',
+  'hardworking',
+  'dedicated',
+  'sincere',
+  'insightful',
+  'supportive',
+  'communicative',
+  'resourceful',
+  'innovative',
+  'perseverant',
+  'friendly',
+  'joyful',
+  'polite',
+  'grateful',
+  'enthusiastic',
+  'energetic',
+  'fun-loving',
+  'open-minded'
+]
 
+Room.all.select { |room| room.finished == true }.each do |room|
+  users = []
+  room.appointments.each do |appointment|
+    users << appointment.user
+  end
+  room.appointments.each do |appointment|
+    (0..1).to_a.sample.times do
+      reject = users.reject { |user| user == appointment.user }
+      user = reject.sample
+      feedbacks = []
+      list = adjectives
+      (3..6).to_a.sample.times do
+        feedback = list.sample
+        feedbacks << feedback
+        list = list.reject { |w| w == feedback }
+      end
+      Review.create(appointment: appointment, user: user, feedbacks: feedbacks )
+      users = users.reject { |u| u == user }
+    end
+  end
+end
+
+
+puts "Reviews seeded"
+puts "Updating the users'rank"
+
+User.all.each do |user|
+  reviews = user.appointments.size
+  if reviews < Ranking.where(level: 1).last.threshold
+    user.ranking = Ranking.where(level: 1).last
+  elsif reviews >= Ranking.where(level: 1).last.threshold && reviews < Ranking.where(level: 2).last.threshold
+    user.ranking = Ranking.where(level: 2).last
+  elsif reviews >= Ranking.where(level: 2).last.threshold && reviews < Ranking.where(level: 3).last.threshold
+    user.ranking = Ranking.where(level: 3).last
+  elsif reviews >= Ranking.where(level: 3).last.threshold
+    user.ranking = Ranking.where(level: 4).last
+  end
+  user.save!
+end

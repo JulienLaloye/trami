@@ -2,7 +2,8 @@ class Room < ApplicationRecord
   # geocoded_by :adress
   # after_validation :geocode, if: :will_save_change_to_address?
   has_many :appointments
-  has_many :users, through: :appointments, source: :user
+  has_many :users, through: :appointments
+  belongs_to :user
 
   gender_options = ["men", "women", "no preference"]
   validates :title, :description, :gender, :date, :max_part, :min_part, :language, presence: true
