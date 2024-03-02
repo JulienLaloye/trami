@@ -8,3 +8,77 @@ $orange: #E67E22;
 $green: #1EDD88;
 $gray: #0E0000;
 $light-gray: #F4F4F4;
+
+// Defining trami variable -- background for landing page (gradient with $trami-white)
+$trami-blue: #b2f0ff;
+$trami-purple: #f7d9ff;
+$trami-yellow: #f4ffa1;
+$trami-orange: #FFCF96;
+$trami-pink: #F0BCB6;
+$trami-beige: #F5EEE6;
+$trami-green: #CDFAD5;
+$trami-white: #FFFFFF;
+
+// Defining trami buttons color
+$button-light-brown: #B0A08E;
+$button-dark-brown: #726356;
+$button-placeholder: #CCB59A;
+
+
+// Defining trami inputs color
+$input-light-gray: #F8F8F8;
+$input-placeholder: #CEBBA5;
+
+// Defining trami element's borders color
+$border-light-brown: #C1B9B0;
+$border-light-gray: #F8F8F8;
+$border-light-beige: #F5EEE6;
+$border-medium-gray: #E2E2E2;
+$border-medium-dark-gray: #DDDDDD;
+$border-black: #000000;
+$border-brown: #726356;
+$border-black-grey: #3E3E3E;
+
+// Defining trami element's background color
+$bg-white: #FFFFFF;
+$bg-light-gray: #F8F8F8;
+$bg-beige-gray: #FDF9F9;
+$bg-medium-gray: #E2E2E2;
+$bg-dark-beige: #CEBBA5; // should work with opacity
+$bg-medium-beige: #D8C5AE;
+
+//Defining trami text colors
+$text-black-gray: #3E3E3E;
+$text-black: #000000;
+$text-brown: #726356;
+$text-gray: #787878;
+$text-pink: #EB7474;
+$text-orange: #FF8A00;
+$text-blue: #3EB2D7;
+$text-alert: #D7AC3E;
+$text-white: #FFFFFF;
+
+
+//Defining trami avatar background
+$avatar-bg-yellow: #F9E996;
+$avatar-bg-redgrape: #C25B80;
+$avatar-bg-green: #9BC88B;
+$avatar-bg-purple: #9EA0CE;
+$avatar-bg-skyblue: #A9DFD5;
+$avatar-bg-orange: #F0C7B0;
+
+
+//Defining trami mood's colors -- background for index (gradient with $mood-trami-gradient)
+$mood-trami-gradient: #FFFCFA;
+$mood-dreamy: #EEE1FF;
+$mood-energetic: #FFF5BF;
+$mood-relax: #E7FFC0;
+$mood-neutral: #F7F1E6;
+$mood-social: #FFE6C1;
+$mood-competitive: #FFD4D4;
+$mood-adventurous: #CDFFF0;
+$mood-chllin: #CDFBFF;
+$mood-creative: #FFE2EF;
+$mood-intellectual: #E3DEEF;
+$mood-exploratory: #C9FFC0;
+$mood-mindful: #FEFFDA;

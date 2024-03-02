@@ -14,10 +14,10 @@ class Room < ApplicationRecord
   validates :min_part, numericality: { greater_than_or_equal_to: 2, message: "must be at least 2" }
   # validates :max_part, numericality: { less_than: 10, message: "must be bellow 10 " }
   # max_part must be > min part
-  validates_comparison_of :max_part, greater_or_equal_than: :min_part
+  validates_comparison_of :max_part, greater_than_or_equal_to: :min_part
   # participants < max_part
-  validates_comparison_of :max_part, greater_or_equal_than: :participants
-  
+  validates_comparison_of :max_part, greater_than_or_equal_to: :participants
+
   private
 
   def date_must_be_in_the_future
