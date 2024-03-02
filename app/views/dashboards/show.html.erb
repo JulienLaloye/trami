@@ -1,0 +1,41 @@
+<div class="container">
+
+  <div class="upcoming-rooms my-5">
+    <h3 class="mb-3">Upcoming rooms</h3>
+    <% if !@rooms.empty? %>
+    <ul>
+      <% @rooms.each do |room| %>
+      <li> <%= room.title %> - <%= room.date %> </li>
+      <% end %>
+    </ul>
+    <% else %>
+      <p>No upcoming rooms to attend.</p>
+    <% end %>
+
+  </div>
+
+  <div class="my-reviews-and-rooms d-flex justify-content-between">
+
+    <div class="reviews">
+      <h5 class="mb-3">My reviews</h5>
+    </div>
+
+    <div class="my-rooms">
+      <h5 class="mb-3">My rooms</h5>
+      <% if !@my_rooms.empty? %>
+      <ul>
+        <% @my_rooms.each do |myroom| %>
+        <li> <%= myroom.title %> </li>
+        <% end %>
+      </ul>
+      <% else %>
+      <p>You have no rooms created yet.</p>
+      <button class="start-button ">
+        <span class="button-content">Create a room</span>
+      </button>
+      <% end %>
+    </div>
+
+  </div>
+
+</div>
