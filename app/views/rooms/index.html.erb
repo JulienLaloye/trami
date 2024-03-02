@@ -1,0 +1,8 @@
+ <div class="container">
+  <h3> Rooms </h3>
+  <div>
+    <% @rooms.each do |room| %>
+        <%= render "roomcard", room: room %>
+    <% end %>
+  </div>
+</div>

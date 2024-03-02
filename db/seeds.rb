@@ -132,10 +132,10 @@ end
 
 #seed the rankings:
 rankings = [
-  { ranking: 'Trami Wanderer', threshold: 10 },
-  { ranking: 'Trami Insider', threshold: 20 },
-  { ranking: 'Trami Ace', threshold: 30 },
-  { ranking: 'Trami Expert', threshold: 40 }
+  { ranking: 'Trami Wanderer', threshold: 10, level: 1 },
+  { ranking: 'Trami Insider', threshold: 20, level: 2 },
+  { ranking: 'Trami Ace', threshold: 30, level: 3 },
+  { ranking: 'Trami Expert', threshold: 40, level: 4 }
 ]
 
 rankings.each do |r|
@@ -143,7 +143,8 @@ rankings.each do |r|
     name: r[:ranking],
     threshold: r[:threshold],
     picture: "ok",
-    description: "ok"
+    description: "ok",
+    level: r[:level]
   )
   ranking.save!
   print "."
@@ -240,33 +241,31 @@ Activity.all.each do |activity|
     room.save!
   end
 end
-
+puts "Rooms seeded"
 #seed the appointments
-
+puts "_______________________"
 Room.all.each do |room|
-  puts "_______________________"
   creator = room.user
   counter = 0
   age_rank = (room.min_age..room.max_age).to_a
   user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i / 365) }
-  user_total.delete_if { |user| user == creator }
+  user_total.reject { |user| user == creator }
   Appointment.create(user: creator, room: room, ownership: true, status: 1)
-  if user_total.size.positive?
+  if user_total.size > 1
     (1..(room.max_part - 1)).to_a.sample.times do
       participant = user_total.sample
       status = [0, 1].sample
       appointment = Appointment.new(user: participant, room: room, ownership: false, status: status)
-      puts appointment
       appointment.save!
-      user_total.delete_if { |user| user == participant }
+      user_total = user_total.reject { |user| user == participant } if user_total.size > 1
       counter += 1 if status == 1
     end
   end
-  puts room.appointments.size
   room.participants += counter
   room.save!
 end
-
+puts "Appointments seeded"
+puts "_______________________"
 #seed the reviews:
 adjectives = [
   'kind',
@@ -314,30 +313,41 @@ adjectives = [
 ]
 
 Room.all.select { |room| room.finished == true }.each do |room|
-  # puts "_______________"
-  # puts room.participants
-  # puts room.appointments.size
   users = []
   room.appointments.each do |appointment|
-    puts appointment.user.email
     users << appointment.user
   end
-  # puts users
-  # room.appointments.each do |appointment|
-  #   puts users.size
-  #   (0..1).to_a.sample.times do
-  #     reject = users.reject { |user| user == appointment.user }
-  #     puts reject.size
-  #     user = reject.sample
-  #     feedbacks = []
-  #     list = adjectives
-  #     (3..6).to_a.sample.times do
-  #       feedback = adjectives.sample
-  #       feedbacks << feedback
-  #       list = list.reject { |w| w == feedback }
-  #     end
-  #     Review.create(appointment: appointment, user: user, feedbacks: feedbacks )
-  #     users = users.reject { |u| u == user }
-  #   end
-  # end
+  room.appointments.each do |appointment|
+    (0..1).to_a.sample.times do
+      reject = users.reject { |user| user == appointment.user }
+      user = reject.sample
+      feedbacks = []
+      list = adjectives
+      (3..6).to_a.sample.times do
+        feedback = list.sample
+        feedbacks << feedback
+        list = list.reject { |w| w == feedback }
+      end
+      Review.create(appointment: appointment, user: user, feedbacks: feedbacks )
+      users = users.reject { |u| u == user }
+    end
+  end
+end
+
+
+puts "Reviews seeded"
+puts "Updating the users'rank"
+
+User.all.each do |user|
+  reviews = user.appointments.size
+  if reviews < Ranking.where(level: 1).last.threshold
+    user.ranking = Ranking.where(level: 1).last
+  elsif reviews >= Ranking.where(level: 1).last.threshold && reviews < Ranking.where(level: 2).last.threshold
+    user.ranking = Ranking.where(level: 2).last
+  elsif reviews >= Ranking.where(level: 2).last.threshold && reviews < Ranking.where(level: 3).last.threshold
+    user.ranking = Ranking.where(level: 3).last
+  elsif reviews >= Ranking.where(level: 3).last.threshold
+    user.ranking = Ranking.where(level: 4).last
+  end
+  user.save!
 end
