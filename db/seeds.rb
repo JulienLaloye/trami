@@ -132,10 +132,10 @@ end
 
 #seed the rankings:
 rankings = [
-  { ranking: 'Trami Wanderer', threshold: 10 },
-  { ranking: 'Trami Insider', threshold: 20 },
-  { ranking: 'Trami Ace', threshold: 30 },
-  { ranking: 'Trami Expert', threshold: 40 }
+  { ranking: 'Trami Wanderer', threshold: 10, level: 1 },
+  { ranking: 'Trami Insider', threshold: 20, level: 2 },
+  { ranking: 'Trami Ace', threshold: 30, level: 3 },
+  { ranking: 'Trami Expert', threshold: 40, level: 4 }
 ]
 
 rankings.each do |r|
@@ -143,7 +143,8 @@ rankings.each do |r|
     name: r[:ranking],
     threshold: r[:threshold],
     picture: "ok",
-    description: "ok"
+    description: "ok",
+    level: r[:level]
   )
   ranking.save!
   print "."
@@ -244,7 +245,6 @@ puts "Rooms seeded"
 #seed the appointments
 puts "_______________________"
 Room.all.each do |room|
-  puts User.all.size
   creator = room.user
   counter = 0
   age_rank = (room.min_age..room.max_age).to_a
@@ -332,4 +332,22 @@ Room.all.select { |room| room.finished == true }.each do |room|
       users = users.reject { |u| u == user }
     end
   end
+end
+
+
+puts "Reviews seeded"
+puts "Updating the users'rank"
+
+User.all.each do |user|
+  reviews = user.appointments.size
+  if reviews < Ranking.where(level: 1).last.threshold
+    user.ranking = Ranking.where(level: 1).last
+  elsif reviews >= Ranking.where(level: 1).last.threshold && reviews < Ranking.where(level: 2).last.threshold
+    user.ranking = Ranking.where(level: 2).last
+  elsif reviews >= Ranking.where(level: 2).last.threshold && reviews < Ranking.where(level: 3).last.threshold
+    user.ranking = Ranking.where(level: 3).last
+  elsif reviews >= Ranking.where(level: 3).last.threshold
+    user.ranking = Ranking.where(level: 4).last
+  end
+  user.save!
 end

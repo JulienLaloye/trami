@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :reviews, through: :appointments
   belongs_to :mood
   belongs_to :avatar
+  belongs_to :ranking
 
   has_many :reportings, class_name: 'Report', foreign_key: 'reporter_id'
   has_many :received_reports, class_name: 'Report', foreign_key: 'reportee_id'
