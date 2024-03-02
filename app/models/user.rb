@@ -3,6 +3,16 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   # geocoded_by :adress
   # after_validation :geocode, if: :will_save_change_to_address?
+  has_many :appointments
+  has_many :rooms, through: :appointments
+  has_many :reviews
+  has_many :reviews, through: :appointments
+  belongs_to :mood
+  belongs_to :avatar
+
+  has_many :reportings, class_name: 'Report', foreign_key: 'reporter_id'
+  has_many :received_reports, class_name: 'Report', foreign_key: 'reportee_id'
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

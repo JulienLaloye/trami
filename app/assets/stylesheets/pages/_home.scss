@@ -127,4 +127,53 @@ input::placeholder {
 
 .input-search {
   margin-top: 5px;
+
+
+
+// * {
+//  border: solid 1px red;
+// }
+
+// 3rd Homepage
+
+#header-font {
+  margin-top: 40px;
+  font-size: 70px;
+}
+
+.container h5 {
+  opacity: 50%;
+}
+
+.city-info {
+  padding-right: 50px;
+  padding-left: 50px;
+  margin-bottom: 70px;
+  margin-top: 80px;
+}
+
+.swiper {
+  height: 250px;
+  margin-top: 40px;
+}
+
+.swiper-wrapper {
+  width: 500px;
+  align-items: center;
+}
+
+.swiper-slide {
+  width: 200px;
+  height: 200px;
+}
+
+.swiper-slide img {
+  width: 200px;
+  height: 200px;
+}
+
+.create-room {
+  border-bottom-style: solid;
+  padding-bottom: 20px;
+  margin-top: 60px;
 }

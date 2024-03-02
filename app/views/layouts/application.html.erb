@@ -9,12 +9,23 @@
     <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-white">
-    <div class="navbar-container"><%= render "shared/navbar" %></div>
-    <div class="content-container"><%= yield %></div>
-    <div class="footer-container"><%= render "shared/footer" %></div>
+  <body>
+    <div class="page-container bg-white">
+      <div class="navbar-container"><%= render "shared/navbar" %></div>
+      <div class="content-container"><%= yield %></div>
+      <div class="footer-container"><%= render "shared/footer" %></div>
+    </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   </body>
 </html>
