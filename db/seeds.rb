@@ -264,6 +264,3 @@ end
 
 #seed the reviews:
 
-User.all.each do |user|
-  user.rooms
-end
