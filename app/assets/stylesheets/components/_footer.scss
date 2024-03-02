@@ -1,0 +1,54 @@
+img {
+  width: 50px;
+}
+
+
+.footer-logo-container {
+  display: flex;
+  justify-content: end;
+  width: 126px;
+}
+
+.footer-logo-container .footer-logo-img {
+  height: auto;
+
+}
+
+.footer-links a {
+  color: black;
+  font-size: 25px;
+  padding: 0 10px;
+  transition: 0.3s;
+}
+
+.footer-links a:hover {
+  color: #B08C8C;
+}
+
+p {
+  margin: 0px;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.footer {
+  background: white;
+  width: 100%;
+}
+
+.footer .container {
+  border-top: solid 0.5px black;
+
+}
+
+.page-container {
+  display: grid;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+ }
+
+ .footer-container {
+  position: static;
+  bottom: 0;
+  z-index: 1;
+ }
