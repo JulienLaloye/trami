@@ -7,6 +7,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
+
     <%= javascript_importmap_tags %>
   </head>
 
@@ -16,5 +22,8 @@
       <div class="content-container"><%= yield %></div>
       <div class="footer-container"><%= render "shared/footer" %></div>
     </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
   </body>
 </html>
