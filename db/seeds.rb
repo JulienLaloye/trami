@@ -263,4 +263,3 @@ Room.all.each do |room|
 end
 
 #seed the reviews:
-
