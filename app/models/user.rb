@@ -5,6 +5,8 @@ class User < ApplicationRecord
   # after_validation :geocode, if: :will_save_change_to_address?
   has_many :appointments
   has_many :rooms, through: :appointments
+  has_many :reviews
+  has_many :reviews, through: :appointments
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
