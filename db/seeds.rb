@@ -230,7 +230,7 @@ Activity.all.each do |activity|
       language: languages.sample,
       activity_id: activity.id,
       user_id: user.id,
-      finished: date > Date.today ? false : true,
+      finished: date > Date.today ? false : true, #how to do it constantly in the code?
       min_age: min_age,
       max_age: min_age + (1..15).to_a.sample,
       participants: 1
@@ -263,3 +263,7 @@ Room.all.each do |room|
 end
 
 #seed the reviews:
+
+User.all.each do |user|
+  user.rooms
+end
