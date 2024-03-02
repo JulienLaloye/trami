@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_02_111738) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_02_133332) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_111738) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.integer "reporter_id"
+    t.integer "reportee_id"
+    t.string "reason"
+    t.boolean "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.bigint "appointment_id", null: false
     t.bigint "user_id", null: false
@@ -94,7 +103,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_111738) do
     t.index ["activity_id"], name: "index_rooms_on_activity_id"
     t.index ["user_id"], name: "index_rooms_on_user_id"
   end
- 
+
   create_table "users", force: :cascade do |t|
     t.string "nationality"
     t.string "gender"
@@ -125,6 +134,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_02_111738) do
   add_foreign_key "activities", "moods"
   add_foreign_key "appointments", "rooms"
   add_foreign_key "appointments", "users"
+  add_foreign_key "reports", "users", column: "reportee_id"
+  add_foreign_key "reports", "users", column: "reportee_id"
+  add_foreign_key "reports", "users", column: "reporter_id"
+  add_foreign_key "reports", "users", column: "reporter_id"
   add_foreign_key "reviews", "appointments"
   add_foreign_key "reviews", "users"
   add_foreign_key "rooms", "activities"
