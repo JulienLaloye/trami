@@ -1,6 +1,133 @@
 // Specific CSS for your home-page
+.bg-main {
+  background: radial-gradient(800px circle at 1550px 800px,
+                              $trami-blue,
+                              transparent),
+              radial-gradient(800px circle at 40px 1850px,
+                              $trami-purple,
+                              transparent),
+              radial-gradient(800px circle at 1500px 3000px,
+                              $trami-yellow,
+                              transparent);
+  background-color: $trami-white;
+  margin: auto;
+  height: 3000px;
+}
+.main-container {
+  padding-top: 70px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border-brown;
+  margin-top: 0px;
+  margin-left: 40px;
+  margin-right: 40px;
+  padding-bottom: 90px;
+}
 
+.tag-line {
+  padding-top: 80px;
+}
 
+.orange {
+  color: $text-orange;
+}
+
+.trami-img {
+  width: 420px;
+  height: 420px;
+}
+
+.search-bar {
+  padding-top: 5px;
+  padding-left: 20px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: $border-brown;
+  border-radius: 15px;
+  width: 745px;
+}
+
+.location {
+  width: 350px;
+  height: 40px;
+  border-color: $border-brown;
+  border-style: solid;
+  border-width: 1px;
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+input[type=text] {
+  outline: none;
+  color: $text-brown;
+  font-weight: 300;
+}
+
+.date {
+  width: 250px;
+  height: 40px;
+  border-color: $border-brown;
+  border-style: solid;
+  border-width: 1px;
+  background-color: transparent;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+
+.search-btn {
+  margin-top: 5px;
+  margin-left: 20px;
+  padding: 5px 10px;
+  margin-bottom: 10px;
+  border-color: transparent;
+  background-color: transparent;
+  font-weight: 300;
+  color: $text-brown;
+}
+
+.search-btn:hover{
+  background-color: $bg-medium-beige;
+  border-radius: 15px;
+  transition-duration: 0.3s;
+  color: #837467;
+}
+
+input::placeholder {
+  color: $input-placeholder;
+}
+
+.search-wrap {
+  margin-left: 155px;
+  margin-top: 20px;
+}
+
+.text-brown {
+  color: $text-brown;
+}
+
+.text-black-gray {
+  color: $text-black-gray;
+}
+
+.image {
+  position: relative;
+}
+
+.trami-img-2 {
+  position: absolute;
+  left: 0px;
+}
+
+.location-search {
+  padding-right: 8px;
+}
+
+.input-search {
+  margin-top: 5px;
+}
 
 // * {
 //  border: solid 1px red;
