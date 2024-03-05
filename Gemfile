@@ -80,3 +80,4 @@ end
 
 gem 'faker'
 gem "dotenv-rails"
+gem 'country_select'

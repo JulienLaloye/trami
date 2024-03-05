@@ -4,13 +4,13 @@
     <div class="d-flex justify-content-between">
       <div class="room-card-heading" >
         <h4 class="main-font"><%=room.title %></h4>
-        <h6 class="font"> Description : <%=room.description%></h6>
-        <p class="font weight-300 font-small"> Activity ID :<%= room.activity_id%></p>
-        <p class="font weight-300 font-small"> Age : <%=room.min_age %>-<%=room.max_age %></p>
+        <h6 class="font"> Description : <%=room.description.capitalize%></h6>
+        <p class="font weight-300 font-small"> Mood :<%= room.activity.mood.name.capitalize%></p>
+        <p class="font weight-300 font-small"> Age : <%=room.min_age %> to <%=room.max_age %></p>
         <p class="font weight-300 font-small"> Address : <%= room.address%></p>
-        <p class="font weight-300 font-small"> Date : <%= room.date%></p>
-        <p class="font weight-300 font-smaller">Gender : <%= room.gender %></p>
-        <p class="font weight-300 font-smaller">People : <%=room.min_part %>-<%=room.max_part %></p>
+        <p class="font weight-300 font-small"> Date : <%= room.date.strftime('%d %b. %y')%></p>
+        <p class="font weight-300 font-smaller">Gender : <%= room.gender.capitalize %></p>
+        <p class="font weight-300 font-smaller">People : <%=room.participants %>-<%=room.max_part %></p>
       </div>
     </div>
     <div class="room-card-price align-items-baseline" ></div>
