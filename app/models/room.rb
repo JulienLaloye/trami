@@ -4,6 +4,8 @@ class Room < ApplicationRecord
   has_many :appointments
   has_many :users, through: :appointments
   belongs_to :user
+  belongs_to :activity
+  belongs_to :mood
 
   gender_options = ["men", "women", "no preference"]
   validates :title, :description, :gender, :date, :max_part, :min_part, :language, presence: true
@@ -19,7 +21,7 @@ class Room < ApplicationRecord
   # max_part must be > min part
   # validates_comparison_of :max_part, greater_or_equal_than: :min_part
   # participants < max_part
-  # validates_comparison_of :max_part, greater_or_equal_than: :participants
+  # TODO: validates_comparison_of :max_part, greater_or_equal_than: :participants
 
   private
 
