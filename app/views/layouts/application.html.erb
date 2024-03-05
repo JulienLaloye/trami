@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Trami</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Trami</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
 
     <link
@@ -17,7 +19,7 @@
   </head>
 
   <body>
-    <div class="page-container">
+    <div class="page-container bg-white">
       <div class="navbar-container"><%= render "shared/navbar" %></div>
       <div class="content-container"><%= yield %></div>
       <div class="footer-container"><%= render "shared/footer" %></div>

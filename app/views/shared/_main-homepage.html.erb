@@ -1,0 +1,25 @@
+<div class="main-container">
+  <div class="wrap d-flex justify-content-around">
+    <div class="tag-line">
+      <h1 class="trami-font font-65 text-black-gray">When every Journey</h1>
+      <div class="d-flex">
+        <h1 class="trami-font font-65 orange">sparks</h1>&nbsp&nbsp<h1 class="trami-font font-65 text-black-gray">a Friendship</h1>
+      </div>
+      <h5 class="main-font weight-300 text-black-gray pt-2">Know more about Trami Community →</h5>
+    </div>
+    <div class="image">
+      <%= image_tag("trami-img.png", alt: "trami-img", class: "trami-img") %>
+      <%= image_tag("trami-img.png", alt: "trami-img", class: "trami-img trami-img-2") %>
+    </div>
+  </div>
+  <div class="search-wrap">
+    <h5 class="main-font weight-300 text-brown pb-2">Your Weekend or Holiday activites are just a search away</h5>
+    <div class="search-bar mt-2">
+      <%= form_with(url: rooms_path, data: { controller: "flatpickr" }) do |f| %>
+        <%= f.text_field :adress, placeholder: "location", class: "location main-font" %>
+        <%= f.text_field :date, placeholder: "from - to", class: "date main-font"%>
+        <%= f.submit "search", class: "search-btn main-font" %>
+      <% end %>
+    </div>
+  </div>
+</div>
