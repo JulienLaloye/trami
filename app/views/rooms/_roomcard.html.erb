@@ -1,19 +1,22 @@
-<div class="room-card">
-  <%= link_to room_path(room), class: "text-decoration-none" do %>
-  <div class="room-card-content d-flex flex-column">
-    <div class="d-flex justify-content-between">
-      <div class="room-card-heading" >
-        <h4 class="main-font"><%=room.title %></h4>
-        <h6 class="font"> Description : <%=room.description.capitalize%></h6>
-        <p class="font weight-300 font-small"> Mood :<%= room.activity.mood.name.capitalize%></p>
-        <p class="font weight-300 font-small"> Age : <%=room.min_age %> to <%=room.max_age %></p>
-        <p class="font weight-300 font-small"> Address : <%= room.address%></p>
-        <p class="font weight-300 font-small"> Date : <%= room.date.strftime('%d %b. %y')%></p>
-        <p class="font weight-300 font-smaller">Gender : <%= room.gender.capitalize %></p>
-        <p class="font weight-300 font-smaller">People : <%=room.participants %>-<%=room.max_part %></p>
-      </div>
+<div class="card text-center container">
+  <div class="row d-flex justify-content">
+    <div class="col-8">
+    <%= link_to room_path(room), class: "text-decoration-none" do %>
+    <div class="card-header">
+    <%=room.title %>
     </div>
-    <div class="room-card-price align-items-baseline" ></div>
+    <div class="card-body">
+      <h6 class="font"> Description : <%=room.description.capitalize%></h6>
+      <p class="font weight-300 font-small"> <i class="fa-solid fa-location-dot"></i> <%= room.address%></p>
+      <p class="font weight-300 font-small"> Mood :<%= room.activity.mood.name.capitalize%></p>
+    </div>
+    <div class="card-footer text-body-secondary">
+      <p class="font weight-300 font-small"> Age : <%=room.min_age %> to <%=room.max_age %></p>
+      <p class="font weight-300 font-small"> Date : <%= room.date.strftime('%d %b. %y')%></p>
+      <p class="font weight-300 font-smaller">Gender : <%= room.gender.capitalize %></p>
+      <p class="font weight-300 font-smaller">People : <%=room.participants %>-<%=room.max_part %></p>
+    </div>
+    <% end %>
     </div>
   </div>
-<% end  %>
+</div>

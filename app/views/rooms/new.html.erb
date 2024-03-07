@@ -1,10 +1,12 @@
-<div class="container">
-  <h3 class="d-flex justify-content-center"> Create a new room! </h3>
-<%= simple_form_for @room do |f| %>
-  <%= f.input :title, placeholder: "How do you want to call this event?"%>
-  <%= f.input :description, placeholder: "Please describe it so other Tramiers get interested", as: :text %>
-  <%= f.input :date, as: :datetime, html5: true %>
-  <%= f.select :mood, @all_moods %>
-  <%= f.button :submit %>
-<% end %>
+<div class="main-container">
+  <h2 class="d-flex justify-content-center"> Create a new room! </h2>
+  <div class = "container" data-controller = "toggle-new">
+    <h4 class="d-flex justify-content-center"> How do you feel for this event?</h4>
+        <% Mood.all.each do |mood| %>
+          <div data-action="click->toggle-new#fire" class = "search-btn"><%= mood.name.capitalize %></div>
+        <% end %>
+      <div data-toggle-new-target="togglableElement" class="d-none">
+        <%= render "newdescriptionform", room: @room %>
+      </div>
+  </div>
 </div>
