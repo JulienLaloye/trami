@@ -5,9 +5,9 @@ class RoomsController < ApplicationController
 
   def new
     @room = Room.new
-    @all_moods = []
-    Mood.all.each do |mood|
-      @all_moods << mood.name.capitalize
+    @all_activities = []
+    Activity.all.each do |activity|
+      @all_activities << activity.title.capitalize
     end
     @gender_options = ["Men", "Women", "No Preference", "other"]
     @languages_options = ["en", "de", "fr", "sp", "it", "other"]
