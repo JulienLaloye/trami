@@ -10,7 +10,7 @@
   color: #ffffff;
 }
 
-.start-button:hover::before {
+.start-button:hover::before, .round-button:hover::before {
   transform: scaleX(1)
 }
 
@@ -18,9 +18,10 @@
   color: #ffffff;
   position: relative;
   z-index: 1;
+  text-decoration: none;
 }
 
-.start-button::before {
+.start-button::before, .round-button::before {
   content: "";
   position: absolute;
   top: 0;
@@ -36,4 +37,16 @@
     rgba(99, 88, 238, 1) 94.3%
   );
   transition: all 0.475s;
+}
+
+.round-button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  border: none;
+  background: #3d384e;
+  background-size: 400%;
+  color: #ffffff;
 }
