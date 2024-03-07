@@ -1,8 +1,12 @@
  <div class="container">
   <h3> Rooms </h3>
-  <div>
+  <div class="col-8">
     <% @rooms.each do |room| %>
         <%= render "roomcard", room: room %>
     <% end %>
+    <div class="col-4">
+      <h1>Map here</h1>
+    </div>
   </div>
+
 </div>
