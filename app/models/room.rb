@@ -5,7 +5,6 @@ class Room < ApplicationRecord
   has_many :users, through: :appointments
   belongs_to :user
   belongs_to :activity
-  belongs_to :mood
 
   gender_options = ["men", "women", "no preference"]
   validates :title, :description, :gender, :date, :max_part, :min_part, :language, presence: true
