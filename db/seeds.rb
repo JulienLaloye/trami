@@ -42,6 +42,7 @@ moods = [
   { name: 'mindful', type: 'Mindfulness', description: 'Activities focused on being present and aware.' }
 ]
 
+puts "Seeding moods"
 moods.each do |mood|
   m = Mood.new(
     name: mood[:name],
@@ -92,11 +93,11 @@ activities = [
   { mood: 'mindful', category: 'mindful activities', activity: 'Mindful breathing workshop' }
 ]
 
-
+puts "Seeding activities "
 activities.each do |a|
   activity = Activity.new(
     title: a[:activity],
-    mood_id: Mood.find_by(name: a[:mood]).id,
+    mood: Mood.find_by(name: a[:mood]),
     category: a[:category],
     interests: []
   )
@@ -151,7 +152,7 @@ rankings.each do |r|
 end
 
 #seed the users:
-
+c = 0
 200.times do
   user = User.new(
     username: Faker::Name.first_name,
@@ -162,12 +163,11 @@ end
     description: "blablablabalbalbalablabalbalabla",
     gender: gender.sample,
     birthdate: Faker::Date.between(from: '1945-01-01', to: 18.years.ago),
-    ranking_id: Ranking.all.sample.id,
-    mood_id: Mood.all.sample.id,
-    avatar_id: Avatar.all.sample.id
+    ranking: Ranking.all.sample,
+    mood: Mood.all.sample,
+    avatar: Avatar.all.sample
   )
   user.save!
-  print "."
 end
 
 #seeding the rooms:
@@ -231,8 +231,8 @@ Activity.all.each do |activity|
       max_part: min + (0...10).to_a.sample,
       address: city.sample,
       language: languages.sample,
-      activity_id: activity.id,
-      user_id: user.id,
+      activity: activity,
+      user: user,
       finished: date > Date.today ? false : true, #how to do it constantly in the code?
       min_age: min_age,
       max_age: min_age + (1..15).to_a.sample,
