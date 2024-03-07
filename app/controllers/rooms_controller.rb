@@ -9,6 +9,8 @@ class RoomsController < ApplicationController
     Mood.all.each do |mood|
       @all_moods << mood.name.capitalize
     end
+    @gender_options = ["Men", "Women", "No Preference", "other"]
+    @languages_options = ["en", "de", "fr", "sp", "it", "other"]
   end
 
   def create
