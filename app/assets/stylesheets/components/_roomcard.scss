@@ -3,5 +3,25 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: transform 0.5s ease-in-out;
   background-color: rgb(166, 139, 139);
-  
 }
+
+.room-card:hover {
+  transform: scale(1.05);
+}
+
+.room-card img {
+  border-radius: 15px 15px 0 0;
+  width: 100%;
+  height: 200px;
+}
+
+.room-card .room-info {
+  padding: 20px;
+}
+
+.room-card .room-info h3 {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}
+
