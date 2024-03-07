@@ -1,11 +1,14 @@
-<div class="container">
+<div class="main-container">
   <h3 class="d-flex justify-content-center"> Create a new room! </h3>
-<%= simple_form_for @room do |f| %>
-  <%= f.input :title, placeholder: "How do you want to call this event?"%>
-  <%= f.input :description, placeholder: "Please describe it so other Tramiers get interested", as: :text %>
-  <%= f.select :gender, @gender_options %>
-  <%= f.input :date, as: :datetime, html5: true %>
-  <%= f.select :mood, @all_moods %>
-  <%= f.button :submit %>
-<% end %>
+  <div class = "d-flex justify-content-center">
+    <%= simple_form_for @room do |f| %>
+      <%= f.input :title, placeholder: "How do you want to call this event?"%>
+      <%= f.input :description, placeholder: "Please describe it so other Tramiers get interested", as: :text %>
+      <%= f.select :language, @languages_options %>
+      <%= f.select :gender, @gender_options %>
+      <%= f.input :date, as: :datetime, html5: true %>
+      <%= f.select :mood, @all_moods %>
+      <%= f.button :submit %>
+    <% end %>
+  </div>
 </div>
