@@ -22,6 +22,11 @@ class RoomsController < ApplicationController
   def update
   end
 
+  def show
+    @room = Room.find(params[:id])
+    @user_type = @room.appointments
+  end
+
   private
 
   def room_params
