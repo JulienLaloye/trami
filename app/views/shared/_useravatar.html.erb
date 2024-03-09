@@ -1,3 +1,23 @@
-<div class = "avatar-container">
-  <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class: "avatar")%>
+<div class="avatar-container">
+  <div class="row">
+    <div class="col-sm-6">
+      <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class: "avatar h-100 w-100")%>
+    </div>
+    <div class="col-sm-6">
+      <div class="row align-items-center">
+        <div class="col-8 col-sm-6">
+          <h3><%= user.email[0..3].capitalize %>.</h3>
+        </div>
+        <div class="col-4 col-sm-6">
+          <%= image_tag("#{user.gender}.png", alt: user.avatar.personality, class: "avatar h-100 w-30")%>
+        </div>
+      </div>
+      <div class="row">
+        <p> <%= user.ranking.name %></p>
+      </div>
+      <div class="row">
+        <p><%= (Date.today - user.birthdate).to_i / 365 %> years old</p>
+      </div>
+    </div>
+  </div>
 </div>
