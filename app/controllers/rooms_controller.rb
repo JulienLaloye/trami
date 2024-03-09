@@ -14,7 +14,7 @@ class RoomsController < ApplicationController
   end
 
   def create
-    @room = Restaurant.new(room_params)
+    @room = Room.new(room_params)
     @room.save
     redirect_to room_path(@room)
   end
