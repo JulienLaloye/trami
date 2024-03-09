@@ -7,7 +7,7 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-brand img {
   width: 40px;
 }
 
@@ -28,4 +28,54 @@
 .navbar-btn-ghost:hover {
   opacity: 1;
   color: #CCB59A;
+}
+
+.font-logo {
+  color: $text-black-gray;
+  text-decoration: none;
+}
+
+.navbar-header-text > p {
+  margin-bottom: 0;
+  font-size: 15px;
+}
+
+.navbar-container {
+  margin: 0;
+  width: 90vw;
+}
+
+.navbar {
+  width: 100vw;
+}
+
+.trami-div > h1 {
+  margin-bottom: 0;
+}
+
+.signup-btn {
+  text-decoration: none;
+  color: #FF8A00;
+}
+
+.signup-btn:hover {
+  color: #b5782e;
+}
+
+.login-btn {
+  border: 1px solid $border-brown;
+  padding: 8px 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: $text-brown;
+}
+
+.login-btn:hover{
+  background-color: $bg-medium-beige;
+  transition-duration: 0.3s;
+  border: transparent;
+}
+
+.navbar-login-text {
+  color: $text-blue;
 }

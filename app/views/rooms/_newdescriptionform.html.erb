@@ -1,0 +1,10 @@
+    <%= simple_form_for @room do |f| %>
+      <%= f.input :title, placeholder: "How do you want to call this event?"%>
+      <%= f.input :description, placeholder: "Please describe it so other Tramiers get interested", as: :text %>
+      <%= f.select :language, @languages_options %>
+      <%= f.select :gender, @gender_options %>
+      <%= f.input :date, as: :datetime, html5: true %>
+
+      <%= f.select :activity, @all_activities %>
+      <%= f.button :submit %>
+    <% end %>

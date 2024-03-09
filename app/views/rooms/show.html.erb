@@ -1,0 +1,20 @@
+<div class="container ">
+  <div class ="row">
+    <div class = "col-9">
+      <h3> <%= @room.title %></h3>
+      <p> <%= @room.description.capitalize %></p>
+      <p>&#128204; <%= @room.address %></p>
+      </div>
+      <div class = "col-3">
+        <%= render "shared/useravatar", user: @room.user %>
+      </div>
+      <div class = "informations-banner">
+        <div class="row justify-content-between w-100" style="background-color: <%= @room.activity.mood.color%>;">
+          <div class= "col"><%= @room.gender %></div>
+          <div class= "col">Age: <%= @room.min_age %> - <%= @room.max_age %></div>
+          <div class= "col">&#128100; <%= @room.min_part %> - <%= @room.max_part %></div>
+          <div class= "col"> Room created:  </div>
+        </div>
+      </div>
+  </div>
+</div>
