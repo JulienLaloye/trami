@@ -1,0 +1,16 @@
+<div class="detailed-room">
+  <div class ="details">
+    <div class = "basic-infos">
+      <h3> <%= @room.title %></h3>
+      <p>&#128204; <%= @room.address %></p>
+      <%= render "shared/useravatar", user: @room.user %>
+    </div>
+    <p> <%= @room.description.capitalize %></p>
+    <div class = "overview">
+    </div>
+  </div>
+  <div class="participants">
+  </div>
+  <div class="chat">
+  </div>
+</div>

@@ -107,18 +107,18 @@ end
 
 #seed the avatars:
 avatars = [
-  { personality: 'Friendly', picture: '😊', description: 'Always ready to make new friends and create a warm atmosphere.' },
-  { personality: 'Energetic', picture: '🌟', description: 'Full of vitality and enthusiasm, bringing energy to any situation.' },
-  { personality: 'Calm', picture: '🧘‍♂️', description: 'Maintains a serene and composed demeanor, even in challenging moments.' },
-  { personality: 'Optimistic', picture: '🌞', description: 'Sees the bright side of life and remains positive in all situations.' },
-  { personality: 'Social', picture: '👫', description: 'Enjoys connecting with others and being part of social gatherings.' },
-  { personality: 'Ambitious', picture: '💼', description: 'Sets high goals and works hard to achieve success and growth.' },
-  { personality: 'Adventurous', picture: '🚀', description: 'Thrives on exploring new territories and taking risks.' },
-  { personality: 'Easygoing', picture: '😎', description: 'Laid-back and relaxed, going with the flow of life.' },
-  { personality: 'Creative', picture: '🎨', description: 'Expressive and imaginative, finding inspiration in every moment.' },
-  { personality: 'Intellectual', picture: '📚', description: 'Loves to engage in deep thoughts and intellectual discussions.' },
-  { personality: 'Curious', picture: '🔍', description: 'Constantly seeking knowledge and curious about the world.' },
-  { personality: 'Mindful', picture: '🌿', description: 'Practices mindfulness and stays present in the moment.' },
+  { personality: 'Friendly', picture: 'friendly.jpeg', description: 'Always ready to make new friends and create a warm atmosphere.' },
+  { personality: 'Energetic', picture: 'energetic.jpeg', description: 'Full of vitality and enthusiasm, bringing energy to any situation.' },
+  { personality: 'Calm', picture: 'calm.jpeg', description: 'Maintains a serene and composed demeanor, even in challenging moments.' },
+  { personality: 'Optimistic', picture: 'optimistic.jpeg', description: 'Sees the bright side of life and remains positive in all situations.' },
+  { personality: 'Social', picture: 'social.jpeg', description: 'Enjoys connecting with others and being part of social gatherings.' },
+  { personality: 'Ambitious', picture: 'ambitious.jpeg', description: 'Sets high goals and works hard to achieve success and growth.' },
+  { personality: 'Adventurous', picture: 'adventurous.jpeg', description: 'Thrives on exploring new territories and taking risks.' },
+  { personality: 'Easygoing', picture: 'easygoing.jpeg', description: 'Laid-back and relaxed, going with the flow of life.' },
+  { personality: 'Creative', picture: 'creative.jpeg', description: 'Expressive and imaginative, finding inspiration in every moment.' },
+  { personality: 'Intellectual', picture: 'intellectual.jpeg', description: 'Loves to engage in deep thoughts and intellectual discussions.' },
+  { personality: 'Curious', picture: 'curious.jpeg', description: 'Constantly seeking knowledge and curious about the world.' },
+  { personality: 'Mindful', picture: 'mindful.jpeg', description: 'Practices mindfulness and stays present in the moment.' },
 ]
 
 avatars.each do |a|
