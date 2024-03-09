@@ -1,24 +1,29 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
-  <div class="container pb-2">
-    <div>
-      <h1 class="trami-font">Trami</h1>
+<div class="navbar navbar-expand-sm navbar-light d-flex justify-content-center">
+  <div class="navbar-container d-flex justify-content-between">
+    <div class="d-flex align-items-center trami-div">
+      <h1 class="font-48"><%= link_to "Trami", root_path, class: "trami-font font-logo" %></h1>
     </div>
-    <ul class="navbar-nav nav-style" style = "width:60%" >
+    <div class="navbar-nav nav-style d-flex justify-content-between" style = "width:60%" >
       <% if user_signed_in? %>
-          <li class="nav-item" id="log-out">
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
-          </li>
-      <% else %>
-        <div class ="d-flex align-items:center justify-content-center navbar-header-text">
-            <h6 >sign up with us and ready to board ✈️</h6>
+        <div class="nav-item" id="log-out">
+          <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "nav-link" %>
         </div>
-        <li class="nav-item d-flex" style = "width:60%">
+        <div class ="navbar-login-text d-flex align-items-center">
+            <p class="main-font weight-300">Welcome back <%= current_user.username %>!</p>
+        </div>
+      <% else %>
+        <div class ="navbar-header-text d-flex align-items-center">
+            <p class="main-font weight-300">Sign up with us and ready to board ✈️</p>
+        </div>
+        <div class="nav-item d-flex align-items-center">
           <div class="d-flex ms-auto align-items:end justify-content-end">
-            <%= link_to "Sign up",new_user_registration_path, class: "nav-link" %>
-            <%= link_to "Login", new_user_session_path, class: "btn navbar-btn-ghost" %>
+            <div class="d-flex align-items-center">
+              <%= link_to "Sign up",new_user_registration_path, class: "signup-btn px-3 weight-300" %>
+            </div>
+            <%= link_to "Login", new_user_session_path, class: "login-btn weight-300" %>
           </div>
-        </li>
+        </div>
       <% end %>
-    </ul>
+    </div>
   </div>
 </div>
