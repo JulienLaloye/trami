@@ -31,6 +31,20 @@ class RoomsController < ApplicationController
   def show
     @room = Room.find(params[:id])
     @user_type = @room.appointments
+    creation_instant = (Time.now - @room.created_at)
+    if creation_instant < 60
+      @creation_date = creation_instant.to_i
+      @unit = "seconds"
+    elsif creation_instant >= 60 && creation_instant < (60 * 60)
+      @creation_date = (creation_instant / 60).to_i
+      @unit = "minutes"
+    elsif creation_instant >= (60 * 60) && creation_instant < (60 * 60 * 24)
+      @creation_date = (creation_instant / (60 * 24)).to_i
+      @unit = "hours"
+    else
+      @creation_date = (creation_instant / (60 * 60 * 24)).to_i
+      @unit = "days"
+    end
   end
 
   private
