@@ -25,12 +25,6 @@ img {
   color: #B08C8C;
 }
 
-p {
-  margin: 0px;
-  font-size: 10px;
-  font-weight: 300;
-}
-
 .footer {
   background: white;
   width: 100%;
@@ -44,7 +38,6 @@ p {
 .page-container {
   display: grid;
   min-height: 100vh;
-  grid-template-rows: auto 1fr auto;
  }
 
  .footer-container {

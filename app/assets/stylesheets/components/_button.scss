@@ -38,3 +38,12 @@
   );
   transition: all 0.475s;
 }
+
+.dashboard-btn {
+  color: $text-orange;
+  text-decoration: none;
+}
+
+.dashboard-btn:hover {
+  color: #b5782e;
+}

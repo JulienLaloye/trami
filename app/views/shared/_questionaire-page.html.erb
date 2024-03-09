@@ -1,0 +1,27 @@
+<div class="questionaire-container d-flex flex-column align-items-center">
+  <h1>Hi Friend,</h1>
+  <div class="div-transparent">
+    <div>
+      <h1>What's your mood today?</h1>
+      <% @moods.each do |mood| %>
+        <div>
+          <div style="background: radial-gradient(<%= mood.color %>, #ffffff);"></div>
+          <h5><%= mood.name %></h5>
+        </div>
+      <% end %>
+    </div>
+    <div>
+      <h1>Where's your current location?</h1>
+    </div>
+    <div>
+      <h5>Last step...</h5>
+      <div>
+        <h1>Please select who you are?</h1>
+        <div>
+        <h5>I'm a local⛺️</h5>
+        <h5>I'm a traveller🚀</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
