@@ -28,18 +28,18 @@ gender = ["male", "female", "non-binary", "other"]
 
 #seed the moods:
 moods = [
-  { name: 'dreamy', type: 'Imagination', description: 'Activities that spark creativity and fantasy.' },
-  { name: 'energetic', type: 'Physical', description: 'Activities that involve movement and high energy.' },
-  { name: 'relax', type: 'Calmness', description: 'Activities focused on relaxation and tranquility.' },
-  { name: 'neutral', type: 'Balanced', description: 'Activities with a neutral and calm atmosphere.' },
-  { name: 'social', type: 'Interaction', description: 'Activities involving social gatherings and connections.' },
-  { name: 'competitive', type: 'Challenge', description: 'Competitive activities that engage and excite.' },
-  { name: 'adventurous', type: 'Exploration', description: 'Activities that push boundaries and explore new things.' },
-  { name: 'chillin', type: 'Laid-back', description: 'Easygoing activities for a relaxed mood.' },
-  { name: 'creative', type: 'Artistic', description: 'Creative activities to express and inspire.' },
-  { name: 'intellectual', type: 'Thoughtful', description: 'Activities that stimulate the mind and intellect.' },
-  { name: 'exploratory', type: 'Discovery', description: 'Exploratory activities to learn and experience.' },
-  { name: 'mindful', type: 'Mindfulness', description: 'Activities focused on being present and aware.' }
+  { name: 'dreamy', type: 'Imagination', description: 'Activities that spark creativity and fantasy.', color: "#EEE1FF" },
+  { name: 'energetic', type: 'Physical', description: 'Activities that involve movement and high energy.', color:  "#FFF5BF"},
+  { name: 'relax', type: 'Calmness', description: 'Activities focused on relaxation and tranquility.', color: "#E7FFC0" },
+  { name: 'neutral', type: 'Balanced', description: 'Activities with a neutral and calm atmosphere.', color: "#F7F1E6" },
+  { name: 'social', type: 'Interaction', description: 'Activities involving social gatherings and connections.', color: "#FFE6C1" },
+  { name: 'competitive', type: 'Challenge', description: 'Competitive activities that engage and excite.', color: "#FFD4D4" },
+  { name: 'adventurous', type: 'Exploration', description: 'Activities that push boundaries and explore new things.', color: "#CDFFF0" },
+  { name: 'chillin', type: 'Laid-back', description: 'Easygoing activities for a relaxed mood.', color: "#CDFBFF" },
+  { name: 'creative', type: 'Artistic', description: 'Creative activities to express and inspire.', color: "#FFE2EF" },
+  { name: 'intellectual', type: 'Thoughtful', description: 'Activities that stimulate the mind and intellect.', color: "#E3DEEF" },
+  { name: 'exploratory', type: 'Discovery', description: 'Exploratory activities to learn and experience.', color: "#C9FFC0" },
+  { name: 'mindful', type: 'Mindfulness', description: 'Activities focused on being present and aware.', color: "#FEFFDA" }
 ]
 
 puts "Seeding moods"
@@ -48,7 +48,8 @@ moods.each do |mood|
     name: mood[:name],
     category: mood[:type],
     description: mood[:description],
-    picture: "empty"
+    picture: "empty",
+    color: mood[:color]
   )
   m.save!
   print "."
