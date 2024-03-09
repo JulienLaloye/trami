@@ -7,5 +7,6 @@ class AppointmentsController < ApplicationController
   end
 
   def update
+    
   end
 end

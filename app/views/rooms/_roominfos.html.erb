@@ -1,0 +1,6 @@
+<div class="row justify-content-between w-100 align-items-center" style="background-color: <%= @room.activity.mood.color%>;">
+            <%= image_tag("#{@room.gender}.png", alt: @room.gender, class: "image-show")%>
+            <div class= "col">Age: <%= @room.min_age %> - <%= @room.max_age %></div>
+            <div class= "col">&#128100; <%= @room.min_part %> - <%= @room.max_part %></div>
+            <div class= "col"> Created <strong><%= @creation_date %> <%= @unit %></strong> ago </div>
+</div>
