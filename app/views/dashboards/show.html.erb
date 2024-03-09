@@ -30,9 +30,9 @@
       </ul>
       <% else %>
       <p>You have no rooms created yet.</p>
-      <button class="start-button ">
+      <%= link_to new_room_path, class:"start-button" do %>
         <span class="button-content">Create a room</span>
-      </button>
+      <% end %>
       <% end %>
     </div>
 

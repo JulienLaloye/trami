@@ -352,3 +352,37 @@ User.all.each do |user|
   end
   user.save!
 end
+
+test_user = User.create(
+  email: "thu@thu.com",
+  password: "1234567",
+  username: "Snorlax",
+  nationality: "German",
+  gender: "other",
+  birthdate: Date.new(2004, 3, 9),
+  description: "This is a test user named Thu.",
+  address: "123 Test Address, Test City",
+  interests: ["gaming", "reading", "coding"],
+  mood_id: Mood.all.sample.id,
+  ranking_id: Ranking.all.sample.id, # Assuming at least one Ranking exists
+  avatar_id: Avatar.first.id, # Assuming at least one Avatar exists
+  latitude: 50.1109,
+  longitude: 8.6821
+)
+
+puts "The Coolest Test User of the World, #{test_user.username} is successfully created"
+
+random_rooms = Room.all.sample(4)
+
+random_rooms.each do |room|
+  # Create an appointment for each of the selected rooms and the user
+  Appointment.create(
+    user: test_user,
+    room: room,
+    ownership: false,
+    status: [0,1].sample,
+    presence: false
+  )
+end
+
+puts "Everything is working!"
