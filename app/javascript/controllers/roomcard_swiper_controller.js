@@ -4,7 +4,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="roomcard-swiper"
 export default class extends Controller {
   connect() {var swiper = new Swiper(".roomcardSwiper", {
-    slidesPerView: 3,
+    slidesPerView: 4,
     spaceBetween: 40,
     centeredSlides: true,
     grabCursor: true,
