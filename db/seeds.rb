@@ -152,7 +152,6 @@ rankings.each do |r|
 end
 
 #seed the users:
-c = 0
 200.times do
   user = User.new(
     username: Faker::Name.first_name,
@@ -210,6 +209,7 @@ titles = [
 ]
 
 gender_options = ["men", "women", "no preference"]
+
 Activity.all.each do |activity|
   (0..5).to_a.sample.times do
     activity_title = activity.title
