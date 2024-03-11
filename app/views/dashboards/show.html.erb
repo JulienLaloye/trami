@@ -1,38 +1,67 @@
-<div class="container">
+<div class="dashboard container" style="background-image: linear-gradient(rgba(0, 0, 0, .1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, .1) .1em, transparent .1em);
+  background-size: 2em 2em;">
 
-  <div class="upcoming-rooms my-5">
-    <h3 class="mb-3">Upcoming rooms</h3>
-    <% if !@rooms.empty? %>
-    <ul>
-      <% @rooms.each do |room| %>
-      <li> <%= room.title %> - <%= room.date %> </li>
+  <div class="row upcoming-rooms my-5">
+    <h1 class="mb-3">Upcoming rooms</h1>
+
+    <% if @rooms.present? %>
+      <ul>
+        <% @rooms.each do |room| %>
+        <%= link_to room_path(room), class: "text-decoration-none" do %>
+          <li class="event-room" style="background-color: <%= room.activity.mood.color%>"> <%= room.title %> - <%= room.date.strftime("%b %d, %Y") %> </li>
+        <% end %>
+        <% end %>
+
+      <% if @rooms.count < 5 %>
+        <% (5 - @rooms.count).times do %>
+          <div class="event-room add-room">
+            <%= link_to "Add room +", rooms_path, class:"plus" %>
+          </div>
+        <% end %>
       <% end %>
-    </ul>
+      </ul>
     <% else %>
       <p>No upcoming rooms to attend.</p>
+      <%= link_to rooms_path, class:"text-decoration-none" do %>
+      <div class="add-room">
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+      </div>
     <% end %>
-
   </div>
 
-  <div class="my-reviews-and-rooms d-flex justify-content-between mb-5">
+  <div class="row my-reviews-and-rooms d-flex justify-content-between mb-5">
 
-    <div class="reviews">
-      <h5 class="mb-3">My reviews</h5>
+    <div class="col-6 reviews mb-2">
+      <h2 class="my-3">My reviews</h2>
+      <p>You have no reviews yet.</p>
     </div>
 
-    <div class="my-rooms">
-      <h5 class="mb-3">My rooms</h5>
+    <div class="col-6 my-rooms">
       <% if !@my_rooms.empty? %>
+      <div class="d-flex justify-content-between mb-3">
+        <h2 class="my-3">My rooms</h2>
+        <button class="round-button my-2">
+          <%= link_to "+", new_room_path, class: "button-content" %>
+        </button>
+      </div>
       <ul>
         <% @my_rooms.each do |myroom| %>
-        <li> <%= myroom.title %> </li>
+        <li> <%= myroom.title %> - <%= myroom.date.strftime("%b %d, %Y") %>
+             <i class="fa-regular fa-trash-can ms-2"></i>
+             <i class="fa-solid fa-pencil ms-2"></i>
+             <div class="participation">
+              <p>Participants: <%= myroom.participants.count  %> </p>
+             </div></li>
         <% end %>
       </ul>
+
       <% else %>
+      <h2 class="my-3">My rooms</h2>
       <p>You have no rooms created yet.</p>
-      <%= link_to new_room_path, class:"start-button" do %>
-        <span class="button-content">Create a room</span>
-      <% end %>
+      <button class="start-button my-3">
+        <%= link_to "Create a room", new_room_path, class: "button-content" %>
+      </button>
       <% end %>
     </div>
 

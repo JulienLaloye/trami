@@ -1,0 +1,17 @@
+.dashboard html {
+  scroll-behavior: smooth;
+}
+
+.event-room {
+  height: 200px;
+  width: 200px;
+  border-style: solid;
+}
+
+ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 0;
+  padding: 0 0;
+}

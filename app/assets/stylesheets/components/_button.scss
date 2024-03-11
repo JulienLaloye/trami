@@ -10,7 +10,19 @@
   color: #ffffff;
 }
 
-.start-button:hover::before {
+.round-button {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+  border: none;
+  background: $border-black-grey;
+  background-size: 400%;
+  color: #ffffff;
+}
+
+.start-button:hover::before, .round-button:hover::before {
   transform: scaleX(1)
 }
 
@@ -21,7 +33,7 @@
   text-decoration: none;
 }
 
-.start-button::before {
+.start-button::before, .round-button::before {
   content: "";
   position: absolute;
   top: 0;
