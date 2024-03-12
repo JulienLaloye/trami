@@ -6,7 +6,8 @@
           <%= link_to room_path(room), class: "text-decoration-none" do %>
             <div class="swiper-slide" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>">
               <li class="event-room" >
-                <%= room.title %> <br>
+                <%= room.title %>
+                <br>
                 <%= room.date.strftime("%b %d, %Y") %>
               </li>
             <% end %>
