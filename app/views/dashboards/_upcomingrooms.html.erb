@@ -1,0 +1,40 @@
+<div class="swiper upcomingroomsSwiper" data-controller="upcomingrooms-swiper">
+  <div class="swiper-wrapper-two">
+    <% if @rooms.present? %>
+      <ul>
+      <% @rooms.each do |room| %>
+      <div class="swiper-slide-two">
+      <%= link_to room_path(room), class: "text-decoration-none" do %>
+        <li class="event-room" style="background-color: <%= room.activity.mood.color%>">
+        <%= room.title %>
+        <%= room.date.strftime("%b %d, %Y") %>
+        </li>
+      <% end %>
+      <% end %>
+
+      <% if @rooms.count < 5 %>
+        <% (5 - @rooms.count).times do %>
+          <div class="swiper-slide-two">
+            <div class="event-room add-room">
+              <%= link_to "Add room +", rooms_path, class:"plus" %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+      </div>
+      </ul>
+
+    <% else %>
+      <p>No upcoming rooms to attend.</p>
+      <%= link_to rooms_path, class:"text-decoration-none" do %>
+      <div class="add-room">
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+      </div>
+    <% end %>
+
+  </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+  <div class="swiper-pagination"></div>
+</div>
