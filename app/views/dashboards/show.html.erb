@@ -2,7 +2,7 @@
   background-size: 2em 2em;">
   <%# Upcoming-Rooms-Swiper %>
   <div class="row upcoming-rooms my-5">
-    <h1 class="mb-3">Upcoming rooms</h1>
+    <h1 class="mb-2">Upcoming rooms</h1>
 
     <%= render 'upcomingrooms' %>
 
@@ -17,7 +17,7 @@
 
     <div class="col-6 my-rooms">
       <% if !@my_rooms.empty? %>
-      <div class="d-flex justify-content-between mb-3">
+      <div class="d-flex justify-content-between mb-2">
         <h2 class="my-3">My rooms</h2>
         <button class="round-button my-2">
           <%= link_to "+", new_room_path, class: "button-content" %>

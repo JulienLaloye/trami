@@ -3,22 +3,23 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="roomcard-swiper"
 export default class extends Controller {
-  connect() {var swiper = new Swiper(".roomcardSwiper", {
-    slidesPerView: 4,
-    spaceBetween: 40,
-    centeredSlides: true,
-    grabCursor: true,
-    loop: true,
+  connect() {
+    var swiper = new Swiper(".roomcardSwiper", {
+      slidesPerView: 4,
+      spaceBetween: 40,
+      centeredSlides: true,
+      grabCursor: true,
+      loop: true,
 
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
 
-    navigation: {
-      nextEl: ".swiper-button-next",
-      prevEl: ".swiper-button-prev",
-    },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
   });
   }
 }
