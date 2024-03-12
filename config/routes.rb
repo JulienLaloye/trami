@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :appointments, only: %i[update]
   end
 
-  resources :appointments, only: :create
+  resources :appointments, only: %i[create update]
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
