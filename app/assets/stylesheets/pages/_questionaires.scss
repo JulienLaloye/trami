@@ -65,3 +65,31 @@
 .mood-card-mindful {
   background-image: radial-gradient(circle, $mood-mindful 45%, transparent, transparent);
 }
+
+.div-transparent {
+  margin-top: 50px;
+}
+
+.carousel {
+  width: 1200px;
+  height: 600px;
+}
+
+.carousel-control-next-icon {
+  background-image: none;
+  color: red;
+  font-size: 38px;
+}
+
+.questionaire-container {
+  padding-top: 50px;
+}
+
+.ques-welcome {
+  font-family: $headers-font;
+  font-size: 65px;
+}
+
+.question-1 {
+  margin-bottom: 50px;
+}
