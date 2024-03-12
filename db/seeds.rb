@@ -372,7 +372,7 @@ test_user = User.create(
 
 puts "The Coolest Test User of the World, #{test_user.username} is successfully created"
 
-random_rooms = Room.all.sample(4)
+random_rooms = Room.all.sample(6)
 
 random_rooms.each do |room|
   # Create an appointment for each of the selected rooms and the user

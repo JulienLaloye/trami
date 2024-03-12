@@ -1,11 +1,15 @@
 class RoomsController < ApplicationController
   def index
-    dates = params[:date].split(" to ", 2)
-    date_from = DateTime.parse(dates[0])
-    date_to = DateTime.parse(dates[1])
-    rooms = Room.where(address: params[:address])
-    @rooms = rooms.select do |room|
-      room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
+    if params[:query].present?
+      dates = params[:date].split(" to ", 2)
+      date_from = DateTime.parse(dates[0])
+      date_to = DateTime.parse(dates[1])
+      rooms = Room.where(address: params[:address])
+      @rooms = rooms.select do |room|
+        room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
+      end
+    else
+      @rooms = Room.all
     end
   end
 

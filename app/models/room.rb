@@ -2,7 +2,7 @@ class Room < ApplicationRecord
   # geocoded_by :adress
   # after_validation :geocode, if: :will_save_change_to_address?
   has_many :appointments
-  has_many :users, through: :appointments
+  has_many :participants, class_name: 'User', through: :appointments, source: :user, foreign_key: 'user_id'
   belongs_to :user
   belongs_to :activity
 
