@@ -47,6 +47,12 @@ class RoomsController < ApplicationController
       @creation_date = (creation_instant / (60 * 60 * 24)).to_i
       @unit = "days"
     end
+    if current_user
+      @currentuser_rooms = []
+      current_user.appointments.each do |appointment|
+        @currentuser_rooms << appointment.room
+      end
+    end
   end
 
   private

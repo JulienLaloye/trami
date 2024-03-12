@@ -1,3 +1,11 @@
 <div class="participant-container" style= "border-color: <%= appointment.user.mood.color %>">
   <%= render "shared/useravatar", user: appointment.user %>
+<%= form_with(url: appointment_path(@appointment), method: :patch) do |f| %>
+  <%= f.hidden_field :status, value: 1 %>
+  <%= f.submit "Decline", class: "search-btn main-font" %>
+<% end %>
+<%= form_with(url: appointment_path(@appointment), method: :patch) do |f| %>
+  <%= f.hidden_field :status, value: 3 %>
+  <%= f.submit "Decline", class: "search-btn main-font" %>
+<% end %>
 </div>
