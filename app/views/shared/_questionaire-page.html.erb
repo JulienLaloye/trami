@@ -1,23 +1,61 @@
 <div class="questionaire-container d-flex flex-column align-items-center">
   <h1>Hi Friend,</h1>
-  <div class="div-transparent">
+  <div class="div-transparent d-flex flex-column align-items-center">
     <div>
-      <h1>What's your mood today?</h1>
-      <% @moods.each do |mood| %>
-        <div>
-          <div style="background: radial-gradient(<%= mood.color %>, #ffffff);"></div>
-          <h5><%= mood.name %></h5>
+      <div class="text-center">
+        <h1>What's your mood today?</h1>
+      </div>
+      <div class="mood-card-wrap d-flex flex-column align-items-center">
+        <div class="mood-card-1 d-flex">
+          <div class="mood-card-dreamy mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">dreamy</p>
+          </div>
+          <div class="mood-card-energetic mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">energetic</p>
+          </div>
+          <div class="mood-card-relax mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">relax</p>
+          </div>
+          <div class="mood-card-neutral mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">neutral</p>
+          </div>
+          <div class="mood-card-social mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">social</p>
+          </div>
+          <div class="mood-card-competitive mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">competitive</p>
+          </div>
         </div>
-      <% end %>
+        <div class="mood-card-2 d-flex">
+          <div class="mood-card-adventurous mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">adventurous</p>
+          </div>
+          <div class="mood-card-chllin mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">chillin</p>
+          </div>
+          <div class="mood-card-creative mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">creative</p>
+          </div>
+          <div class="mood-card-intellectual mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">intellectual</p>
+          </div>
+          <div class="mood-card-exploratory mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">exploratory</p>
+          </div>
+          <div class="mood-card-mindful mood-card d-flex justify-content-center flex-column align-items-center">
+            <p class="main-font">mindful</p>
+          </div>
+        </div>
+      </div>
     </div>
     <div>
       <h1>Where's your current location?</h1>
     </div>
-    <div>
+    <div class="d-flex flex-column align-items-center">
       <h5>Last step...</h5>
       <div>
         <h1>Please select who you are?</h1>
-        <div>
+        <div class="d-flex justify-content-around">
         <h5>I'm a local⛺️</h5>
         <h5>I'm a traveller🚀</h5>
         </div>

@@ -1,18 +1,67 @@
 .questionaire-container {
-	background: linear-gradient(-45deg, $mood-social, $mood-dreamy, $mood-chllin, $mood-relax, $mood-energetic, $mood-mindful);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+  --gradOneXPos: 20%;
+  --gradOneYPos: 20%;
+  --gradTwoXPos: 80%;
+  --gradTwoYPos: 20%;
+  --gradThreeXPos: 20%;
+  --gradThreeYPos: 80%;
+  --gradFourXPos: 80%;
+  --gradFourYPos: 80%;
+  background-color: floralwhite;
+  background-image: radial-gradient(at var(--gradOneXPos) var(--gradOneYPos), $mood-trami-gradient 0, transparent 50%), radial-gradient(at var(--gradTwoXPos) var(--gradTwoYPos), $mood-adventurous 0, transparent 50%), radial-gradient(at var(--gradThreeXPos) var(--gradThreeYPos), $mood-creative 0, transparent 50%), radial-gradient(at var(--gradFourXPos) var(--gradFourYPos), $mood-trami-gradient 0, transparent 50%);
 	height: 100vh;
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+.mood-card {
+  width: 150px;
+  height: 150px;
+  border: transparent;
+}
+
+.mood-card-dreamy {
+  background-image: radial-gradient(circle, $mood-dreamy 45%, transparent, transparent);
+}
+
+.mood-card-energetic {
+  background-image: radial-gradient(circle, $mood-energetic 45%, transparent, transparent);
+}
+
+.mood-card-relax {
+  background-image: radial-gradient(circle, $mood-relax 45%, transparent, transparent);
+}
+
+.mood-card-neutral {
+  background-image: radial-gradient(circle, $mood-neutral 45%, transparent, transparent);
+}
+
+.mood-card-social {
+  background-image: radial-gradient(circle, $mood-social 45%, transparent, transparent);
+}
+
+.mood-card-competitive {
+  background-image: radial-gradient(circle, $mood-competitive 45%, transparent, transparent);
+}
+
+.mood-card-adventurous {
+  background-image: radial-gradient(circle, $mood-adventurous 45%, transparent, transparent);
+}
+
+.mood-card-chllin {
+  background-image: radial-gradient(circle, $mood-chllin 45%, transparent, transparent);
+}
+
+.mood-card-creative {
+  background-image: radial-gradient(circle, $mood-creative 45%, transparent, transparent);
+}
+
+.mood-card-intellectual {
+  background-image: radial-gradient(circle, $mood-intellectual 45%, transparent, transparent);
+}
+
+.mood-card-exploratory {
+  background-image: radial-gradient(circle, $mood-exploratory 45%, transparent, transparent);
+}
+
+.mood-card-mindful {
+  background-image: radial-gradient(circle, $mood-mindful 45%, transparent, transparent);
 }
