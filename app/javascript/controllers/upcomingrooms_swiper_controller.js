@@ -5,7 +5,7 @@ export default class extends Controller {
   connect() {
     console.log("Hello, Stimulus!");
     var swiper = new Swiper(".upcomingroomsSwiper", {
-      slidesPerView: 6,
+      slidesPerView: 5,
       spaceBetween: 40,
       centeredSlides: true,
       grabCursor: true,

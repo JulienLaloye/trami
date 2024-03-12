@@ -37,11 +37,12 @@
         <li class="my-room" style="background-color: <%= myroom.activity.mood.color%>">
           <div>
             <%= myroom.title %> - <%= myroom.date.strftime("%b %d, %Y") %>
-            <i class="fa-regular fa-trash-can ms-2"></i>
-            <i class="fa-solid fa-pencil ms-2"></i>
+            <%= link_to room_path(myroom), class: "icon text-decoration-none" do %>
+              <i class="fa-solid fa-pencil ms-2"></i>
+            <% end %>
           </div>
           <div class="participation d-flex align-items-center">
-            <p class="mb-0">Participants: <%= myroom.participants.count  %> </p>
+            <p class="mb-0">Participants: <%= myroom.participants.count %> </p>
           </div></li>
         <% end %>
       </ul>
