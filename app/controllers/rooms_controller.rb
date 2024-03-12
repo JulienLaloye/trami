@@ -5,7 +5,7 @@ class RoomsController < ApplicationController
     date_to = DateTime.parse(dates[1])
     rooms = Room.where(address: params[:address])
     @rooms = rooms.select do |room|
-      room.date >= date_from && room.date <= date_to
+      room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
     end
   end
 
@@ -52,6 +52,6 @@ class RoomsController < ApplicationController
   private
 
   def room_params
-    params.require(:room).permit(:title, :description, :gender, :date, :max_part, :min_part, :adress, :language, :min_age, :max_age, :latitutde, :longitude)
+    params.require(:room).permit(:title, :description, :gender, :date, :max_part, :min_part, :address, :language, :min_age, :max_age, :latitutde, :longitude)
   end
 end

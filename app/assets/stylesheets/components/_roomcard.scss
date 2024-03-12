@@ -2,7 +2,7 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   transition: transform 0.5s ease-in-out;
-  background-color: rgb(255, 224, 224);
+  background-color: rgb(246, 235, 235);
   margin: 20px;
 }
 
@@ -14,7 +14,7 @@
   padding: 20px;
 }
 
-.room-card .room-info h3 {
+.room-card .room-info > h3 {
   color: white;
   font-size: 20px;
   font-weight: 600;
@@ -32,7 +32,6 @@
   background-color: rgb(227, 192, 192);
 }
 
-
 .swiper {
   height: 250px;
   margin-top: 40px;
@@ -46,4 +45,8 @@
 .swiper-slide {
   width: 200px;
   height: 200px;
+}
+
+.swiper-button-prev, .swiper-button-next {
+  color: rgb(222, 137, 137);
 }

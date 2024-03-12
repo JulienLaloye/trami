@@ -1,11 +1,17 @@
 <div class="container">
-  <h3> Rooms </h3>
+  <div class="search-wrap">
+    <h5 class="main-font weight-300 text-brown pb-2">Choose your Mood for an activity</h5>
+      <div class="search-bar mt-2" data-controller="search-bar">
+        <%= form_with url: rooms_path, method: :get, data: {search_bar_target: "select-mood"} do |f| %>
+        <%= f.select :moods, collection: Mood.all.pluck(:name) %>
+        <%= f.button :submit, data: {action: "click->search-bar#search"} %>
+        <% end %>
+      </div>
+  </div>
   <div class="row">
-    <div class="col-8">
       <%= render 'roomcard' %>
-    </div>
-    <div class="col-4">
+  </div>
+    <div class= "map">
       <h1>Map here</h1>
     </div>
-  </div>
 </div>
