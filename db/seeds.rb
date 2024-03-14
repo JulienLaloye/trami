@@ -152,9 +152,8 @@ rankings.each do |r|
   print "."
 end
 
-puts "Ranking seeded"
 #seed the users:
-20.times do
+200.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: Faker::Internet.email,
@@ -171,7 +170,6 @@ puts "Ranking seeded"
   user.save!
 end
 
-puts "User seeded"
 #seeding the rooms:
 titles = [
   { activity: 'Outdoor movie night with a projector', titles: ['Cinema Under the Stars', 'Al Fresco Film Experience', 'Open-Air Movie Night', 'Moonlit Movie Magic', 'Starry Screen Soiree'] },
@@ -211,8 +209,6 @@ titles = [
   { activity: 'Mindful breathing workshop', titles: ['Breath of Serenity Seminar', 'Mindful Respiratory Retreat', 'Conscious Breathing Workshop', 'Zen Breath Awareness Session', 'Mindful Breathing Mastery Class'] },
 ]
 
-gender_options = ["men", "women", "no preference"]
-
 Activity.all.each do |activity|
   (0..5).to_a.sample.times do
     activity_title = activity.title
@@ -228,7 +224,7 @@ Activity.all.each do |activity|
     room = Room.new(
       title: title,
       description: activity.category,
-      gender: gender_options.sample,
+      gender: Room::GENDER_OPTIONS.sample,
       date: date,
       min_part: min,
       max_part: min + (0...10).to_a.sample,
@@ -238,8 +234,7 @@ Activity.all.each do |activity|
       user: user,
       finished: date > Date.today ? false : true, #how to do it constantly in the code?
       min_age: min_age,
-      max_age: min_age + (1..15).to_a.sample,
-      participants: 1
+      max_age: min_age + (1..15).to_a.sample
     )
     room.save!
   end
@@ -268,6 +263,7 @@ Room.all.each do |room|
     possible_participants = possible_participants.where.not(id: participant.id)
   end
 end
+
 puts "Appointments seeded"
 puts "_______________________"
 #seed the reviews:
@@ -318,7 +314,6 @@ adjectives = [
 
 Room.all.select { |room| room.finished == true }.each do |room|
   users = []
-
   room.appointments.each do |appointment|
     users << appointment.user
   end
