@@ -12,15 +12,7 @@
 
     <div class="col-6 reviews mb-2">
       <h2 class="my-3">My reviews</h2>
-      <% if @reviews.present? %>
-        <ul class="list-group" >
-          <% @user.reviews.each do |review| %>
-          <li class="list-group-item"><%= review.feedbacks %></li>
-          <% end %>
-          </ul>
-      <% else %>
-        <p>You have no reviews yet.</p>
-      <% end %>
+      <p>You have no reviews yet.</p>
 
     </div>
 
@@ -42,7 +34,7 @@
             <% end %>
           </div>
           <div class="participation d-flex align-items-center">
-            <p class="mb-0">Participants: <%= myroom.participants.count %> </p>
+            <p class="mb-0">Participants: <%= myroom.participants %> </p>
           </div></li>
         <% end %>
       </ul>

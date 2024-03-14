@@ -209,34 +209,34 @@ titles = [
   { activity: 'Mindful breathing workshop', titles: ['Breath of Serenity Seminar', 'Mindful Respiratory Retreat', 'Conscious Breathing Workshop', 'Zen Breath Awareness Session', 'Mindful Breathing Mastery Class'] },
 ]
 
-gender_options = ["men", "women", "no preference"]
-
 Activity.all.each do |activity|
-  (0..5).to_a.sample.times do
+  rand(1..5).times do
     activity_title = activity.title
     title_array = []
     titles.each do |t|
       title_array = t[:titles] if t[:activity] == activity_title
     end
     title = title_array.sample
-    min = (2..5).to_a.sample
+    min = rand(2..5)
+    p min
     user = User.all.sample
     date = Faker::Date.between(from: 1.years.ago, to: 1.years.since)
-    min_age = (18..50).to_a.sample
+    min_age = rand(18..50)
+    p min_age
     room = Room.new(
       title: title,
       description: activity.category,
-      gender: gender_options.sample,
+      gender: Room::GENDER_OPTIONS.sample,
       date: date,
       min_part: min,
-      max_part: min + (0...10).to_a.sample,
+      max_part: min + rand(1..9),
       address: city.sample,
       language: languages.sample,
       activity: activity,
       user: user,
       finished: date > Date.today ? false : true, #how to do it constantly in the code?
       min_age: min_age,
-      max_age: min_age + (1..15).to_a.sample,
+      max_age: min_age + rand(1..15),
       participants: 1
     )
     room.save!
@@ -247,24 +247,30 @@ puts "Rooms seeded"
 puts "_______________________"
 Room.all.each do |room|
   creator = room.user
-  counter = 0
-  age_rank = (room.min_age..room.max_age).to_a
-  user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i / 365) }
-  user_total.reject { |user| user == creator }
-  Appointment.create(user: creator, room: room, ownership: true, status: 1)
-  if user_total.size > 1
-    (1..(room.max_part - 1)).to_a.sample.times do
-      participant = user_total.sample
-      status = [0, 1].sample
-      appointment = Appointment.new(user: participant, room: room, ownership: false, status: status)
-      appointment.save!
-      user_total = user_total.reject { |user| user == participant } if user_total.size > 1
-      counter += 1 if status == 1
+  participants = 0
+  Appointment.create!(user: creator, room: room, ownership: true, status: 1)
+
+  # Determine the number of additional participants to add
+  additional_participants_count = (1..(room.max_part - 1)).to_a.sample
+  possible_participants = User.where.not(id: creator.id) # Exclude the room creator
+
+  additional_participants_count.times do
+    participant = possible_participants.sample
+    status = [0, 1].sample
+    next unless participant # Skip if no participant is found
+    # Check if an appointment already exists for this participant and room
+    unless Appointment.exists?(user: participant, room: room)
+      Appointment.create!(user: participant, room: room, ownership: false, status: status)
+      participants += 1 if status == 1
     end
+
+    # Remove the selected participant from the pool to prevent duplicates
+    possible_participants = possible_participants.where.not(id: participant.id)
   end
-  room.participants += counter
-  room.save!
+room.participants += participants
+room.save!
 end
+
 puts "Appointments seeded"
 puts "_______________________"
 #seed the reviews:
