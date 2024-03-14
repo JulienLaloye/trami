@@ -10,6 +10,7 @@ class RoomsController < ApplicationController
       end
     else
       @rooms = Room.all
+      raise
     end
   end
 
