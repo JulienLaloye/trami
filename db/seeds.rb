@@ -210,31 +210,34 @@ titles = [
 ]
 
 Activity.all.each do |activity|
-  (0..5).to_a.sample.times do
+  rand(1..5).times do
     activity_title = activity.title
     title_array = []
     titles.each do |t|
       title_array = t[:titles] if t[:activity] == activity_title
     end
     title = title_array.sample
-    min = (2..5).to_a.sample
+    min = rand(2..5)
+    p min
     user = User.all.sample
     date = Faker::Date.between(from: 1.years.ago, to: 1.years.since)
-    min_age = (18..50).to_a.sample
+    min_age = rand(18..50)
+    p min_age
     room = Room.new(
       title: title,
       description: activity.category,
       gender: Room::GENDER_OPTIONS.sample,
       date: date,
       min_part: min,
-      max_part: min + (0...10).to_a.sample,
+      max_part: min + rand(1..9),
       address: city.sample,
       language: languages.sample,
       activity: activity,
       user: user,
       finished: date > Date.today ? false : true, #how to do it constantly in the code?
       min_age: min_age,
-      max_age: min_age + (1..15).to_a.sample
+      max_age: min_age + rand(1..15),
+      participants: 1
     )
     room.save!
   end
@@ -244,6 +247,7 @@ puts "Rooms seeded"
 puts "_______________________"
 Room.all.each do |room|
   creator = room.user
+  participants = 0
   Appointment.create!(user: creator, room: room, ownership: true, status: 1)
 
   # Determine the number of additional participants to add
@@ -252,16 +256,19 @@ Room.all.each do |room|
 
   additional_participants_count.times do
     participant = possible_participants.sample
+    status = [0, 1].sample
     next unless participant # Skip if no participant is found
-
     # Check if an appointment already exists for this participant and room
     unless Appointment.exists?(user: participant, room: room)
-      Appointment.create!(user: participant, room: room, ownership: false, status: [0, 1].sample)
+      Appointment.create!(user: participant, room: room, ownership: false, status: status)
+      participants += 1 if status == 1
     end
 
     # Remove the selected participant from the pool to prevent duplicates
     possible_participants = possible_participants.where.not(id: participant.id)
   end
+room.participants += participants
+room.save!
 end
 
 puts "Appointments seeded"
