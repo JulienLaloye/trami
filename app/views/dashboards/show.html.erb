@@ -10,13 +10,16 @@
   <%# Reviews & My-Rooms %>
   <div class="row my-reviews-and-rooms d-flex justify-content-between mb-5">
 
-    <div class="col-6 reviews mb-2">
+    <div class="col-4 reviews mb-2">
       <h2 class="my-3">My reviews</h2>
       <p>You have no reviews yet.</p>
+    </div>
+
+    <div class="col-4 avatar-profile">
 
     </div>
 
-    <div class="col-6 my-rooms">
+    <div class="col-4 my-rooms">
       <% if !@my_rooms.empty? %>
       <div class="d-flex justify-content-between mb-2">
         <h2 class="my-3">My rooms</h2>
@@ -26,16 +29,16 @@
       </div>
       <ul>
         <% @my_rooms.each do |myroom| %>
+        <%= link_to room_path(myroom), class: "text-decoration-none" do %>
         <li class="my-room" style="background-color: <%= myroom.activity.mood.color%>">
           <div>
             <%= myroom.title %> - <%= myroom.date.strftime("%b %d, %Y") %>
-            <%= link_to room_path(myroom), class: "icon text-decoration-none" do %>
-              <i class="fa-solid fa-pencil ms-2"></i>
-            <% end %>
+
           </div>
           <div class="participation d-flex align-items-center">
             <p class="mb-0">Participants: <%= myroom.participants %> </p>
           </div></li>
+          <% end %>
         <% end %>
       </ul>
 
