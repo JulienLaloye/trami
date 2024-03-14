@@ -152,8 +152,9 @@ rankings.each do |r|
   print "."
 end
 
+puts "Ranking seeded"
 #seed the users:
-200.times do
+20.times do
   user = User.new(
     username: Faker::Name.first_name,
     email: Faker::Internet.email,
@@ -170,6 +171,7 @@ end
   user.save!
 end
 
+puts "User seeded"
 #seeding the rooms:
 titles = [
   { activity: 'Outdoor movie night with a projector', titles: ['Cinema Under the Stars', 'Al Fresco Film Experience', 'Open-Air Movie Night', 'Moonlit Movie Magic', 'Starry Screen Soiree'] },
@@ -247,23 +249,24 @@ puts "Rooms seeded"
 puts "_______________________"
 Room.all.each do |room|
   creator = room.user
-  counter = 0
-  age_rank = (room.min_age..room.max_age).to_a
-  user_total = User.all.to_a.select { |user| age_rank.include?((Date.today - user.birthdate).to_i / 365) }
-  user_total.reject { |user| user == creator }
-  Appointment.create(user: creator, room: room, ownership: true, status: 1)
-  if user_total.size > 1
-    (1..(room.max_part - 1)).to_a.sample.times do
-      participant = user_total.sample
-      status = [0, 1].sample
-      appointment = Appointment.new(user: participant, room: room, ownership: false, status: status)
-      appointment.save!
-      user_total = user_total.reject { |user| user == participant } if user_total.size > 1
-      counter += 1 if status == 1
+  Appointment.create!(user: creator, room: room, ownership: true, status: 1)
+
+  # Determine the number of additional participants to add
+  additional_participants_count = (1..(room.max_part - 1)).to_a.sample
+  possible_participants = User.where.not(id: creator.id) # Exclude the room creator
+
+  additional_participants_count.times do
+    participant = possible_participants.sample
+    next unless participant # Skip if no participant is found
+
+    # Check if an appointment already exists for this participant and room
+    unless Appointment.exists?(user: participant, room: room)
+      Appointment.create!(user: participant, room: room, ownership: false, status: [0, 1].sample)
     end
+
+    # Remove the selected participant from the pool to prevent duplicates
+    possible_participants = possible_participants.where.not(id: participant.id)
   end
-  room.participants += counter
-  room.save!
 end
 puts "Appointments seeded"
 puts "_______________________"
@@ -315,6 +318,7 @@ adjectives = [
 
 Room.all.select { |room| room.finished == true }.each do |room|
   users = []
+
   room.appointments.each do |appointment|
     users << appointment.user
   end
