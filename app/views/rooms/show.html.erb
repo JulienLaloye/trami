@@ -1,6 +1,6 @@
 <div class="main-container d-flex justify-content-center" style="background-color: <%= @room.activity.mood.color%>;  background-image: linear-gradient(rgba(0, 0, 0, .1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, .1) .1em, transparent .1em);
   background-size: 2em 2em;">
-  <div class="room-show-container" style="background-color: white;">
+  <div class="room-show-container d-flex flex-column" style="background-color: white;">
     <div class ="row">
       <div class = "col-8">
         <h3> <%= @room.title %></h3>
@@ -11,13 +11,43 @@
           <%= render "shared/useravatar", user: @room.user %>
         </div>
         <div class = "informations-banner">
-          <div class="row justify-content-between w-100" style="background-color: <%= @room.activity.mood.color%>;">
-            <%= image_tag("#{@room.gender}.png", alt: @room.gender, class: "image-show")%>
-            <div class= "col">Age: <%= @room.min_age %> - <%= @room.max_age %></div>
-            <div class= "col">&#128100; <%= @room.min_part %> - <%= @room.max_part %></div>
-            <div class= "col"> Created <strong><%= @creation_date %> <%= @unit %></strong> ago </div>
-          </div>
+          <%= render "roominfos", room: @room %>
         </div>
+    </div>
+    <div>
+    <% if current_user &&  @currentuser_rooms.include?(@room)%>
+      <% if @room.appointments.find_by(user: current_user).status == 1%>
+        <h3 class = "text-center">They are participating!</h3>
+        <div class="row">
+          <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status == 0}.each do |appointment| %>
+            <%= render "participantcard", user: appointment.user %>
+          <% end %>
+        </div>
+        <% if @room.user == current_user %>
+          <h3 class = "text-center">These users want to participate!</h3>
+          <div class="row">
+            <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status == 1}.each do |appointment| %>
+              <%= render "requestcard", appointment: appointment %>
+            <% end %>
+            </div>
+        <% end %>
+      <% elsif @room.appointments.find_by(user: current_user).status == 0 %>
+          <h3 class="text-center"> You're participation is still <strong>pending</strong>... Wait a bit ....</h3>
+      <% end %>
+      <% elsif current_user && @room.participants < @room.max_part %>
+        <%= form_with url: appointments_path, method: :post do |f| %>
+            <%= f.hidden_field :status, value: 0 %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.hidden_field :presence, value: false%>
+            <%= f.hidden_field :ownership, value: false %>
+            <%= f.submit "Click here to join!", class: "search-btn main-font" %>
+        <% end %>
+      <% elsif  @room.participants >= @room.max_part %>
+        <h3 class="text-center" style="background-color = orange;"> This room is <strong>full</strong>!! Sorry ...</h3>
+      <% else %>
+      <h3 class="text-center"> You have to <strong>Sign Up or Login</strong> to access more details!! </h3>
+    <% end  %>
     </div>
   </div>
 </div>
