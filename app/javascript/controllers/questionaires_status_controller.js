@@ -20,8 +20,8 @@ export default class extends Controller {
     } else {
       this.element.classList.remove("ques-3-ans-orange")
       this.element.innerHTML = ''
-      this.element.insertAdjacentHTML("beforeend", `<span value="local"></span>
-      <h5 class="mb-0"><label class="mx-3 main-font weight-300 font-18 text-black-gray mb-0" for="mood">${this.statusValue}</label></h5>`)
+      console.log(event.params.margin)
+      this.element.insertAdjacentHTML("beforeend", `<h5 class="mb-0"><label class="mx-${event.params.margin} main-font weight-300 font-18 text-black-gray mb-0" for="mood">${this.statusValue}</label></h5>`)
     }
   }
 }
