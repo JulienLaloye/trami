@@ -4,13 +4,14 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["moodElement"]
 
-  static values = {dreamy: String}
-
   connect() {
-    console.log("questionaires controller connected")
+    console.log(this.moodElementTarget.innerText)
   }
 
   mood() {
-    console.log("connected")
+    this.element.classList.toggle("mood-card-select")
+    if (this.element.classList.contains("mood-card-select")) {
+      this.moodElementTarget.insertAdjacentHTML("beforeend", `<input type="hidden" name="mood" id="mood" value="${this.moodElementTarget.innerText}" />`)
+    }
   }
 }

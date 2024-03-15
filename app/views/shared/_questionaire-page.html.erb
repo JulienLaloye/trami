@@ -8,12 +8,8 @@
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="d-none" aria-label="Slide 2"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" class="d-none" aria-label="Slide 3"></button>
         </div>
-        <div class="carousel-inner">
-          <%= form_with url: rooms_path, method: :get do |f| %>
-            <%= f.label :mood, Mood.first.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
-            <%= f.hidden_field :mood, value: params[:mood] %>
-            <%= f.submit "search", class: "search-btn main-font" %>
-          <% end %>
+        <%= form_with url: rooms_path, method: :get do |f| %>
+          <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="ques-mood carousel-content">
                 <div class="question-1 text-center">
@@ -21,42 +17,43 @@
                 </div>
                 <div class="mood-card-wrap d-flex flex-column align-items-center">
                   <div class="mood-card-1 d-flex">
-                    <div data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="mood-card-dreamy mood-card d-flex justify-content-center flex-column align-items-center">
-
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="mood-card-dreamy mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.first.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="energetic" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="mood-card-energetic mood-card d-flex justify-content-center flex-column align-items-center">
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="mood-card-energetic mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.second.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="relax" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-relax mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.third.name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-relax mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.third.name.capitalize, for:"relax", value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="neutral" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-neutral mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.fourth.name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-neutral mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.fourth.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="social" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-social mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.fifth.name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-social mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.fifth.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="competitive" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-competitive mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[5].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-competitive mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[5].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
                   </div>
                   <div class="mood-card-2 d-flex">
-                    <div data-questionaires-value="adventurous" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-adventurous mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[6].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-adventurous mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[6].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="chillin" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-chllin mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[7].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-chllin mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[7].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="creative" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-creative mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[8].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-creative mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[8].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="intellectual" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-intellectual mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[9].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-intellectual mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[9].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="exploratory" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-exploratory mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[10].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-exploratory mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[10].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
-                    <div data-questionaires-value="mindful" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-mindful mood-card d-flex justify-content-center flex-column align-items-center">
-                      <p class="main-font text-black-gray"><%= Mood.all[11].name.capitalize %></p>
+                    <div data-controller="questionaires" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-mindful mood-card d-flex justify-content-center flex-column align-items-center">
+                      <%= f.label :mood, Mood.all[11].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                     </div>
                   </div>
                 </div>
@@ -69,6 +66,7 @@
                     <h1 class="main-font weight-300 font-30 text-black-gray">Where's your current location?</h1>
                   </div>
                   <div class="location-bar">
+                    <%= f.select :address, Room.all.pluck(:address), value: params[:address], class: "city-location main-font" %>
                   </div>
                 </div>
               </div>
@@ -84,8 +82,9 @@
                     <div class="ques-3-choice d-flex justify-content-around">
                       <div class="status-container d-flex flex-column align-items-center">
                         <h1 class="mb-3 ques-3-icon">⛺️</h1>
-                        <div class="ques-3-ans">
-                          <h5 class="mx-3 main-font weight-300 font-18 text-black-gray mb-0">I'm a local</h5>
+                        <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="local" data-questionaires-status-target="statusElement" data-action="click->questionaires-status#status" class="ques-3-ans">
+                          <span value="local"></span>
+                          <h5 class="mb-0"><%= f.label :mood, "I'm a local", class: "mx-3 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                         </div>
                       </div>
                       <div class="or-text d-flex justify-content-center pt-5">
@@ -93,8 +92,9 @@
                       </div>
                       <div class="status-container d-flex flex-column align-items-center">
                         <h1 class="mb-3 ques-3-icon">🚀</h1>
-                        <div class="ques-3-ans">
-                          <h5 class="mx-1 main-font weight-300 font-18 text-black-gray mb-0">I'm a traveller</h5>
+                        <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="traveller" data-questionaires-status-target="statusElement" data-action="click->questionaires-status#status" class="ques-3-ans">
+                          <span value="traveller"></span>
+                          <h5 class="mb-0"><%= f.label :mood, "I'm a traveller", class: "mx-1 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                         </div>
                       </div>
                     </div>
@@ -102,8 +102,9 @@
                 </div>
               </div>
             </div>
-
-        </div>
+          </div>
+          <%= f.submit "Explore", class: "explore-btn start-button main-font weight-300" %>
+        <% end %>
         <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
           <span class="carousel-control-next-icon round-button trami-font" aria-hidden="true">→</span>
           <span class="visually-hidden">Next</span>

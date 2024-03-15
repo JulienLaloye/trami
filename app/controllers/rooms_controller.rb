@@ -8,9 +8,11 @@ class RoomsController < ApplicationController
       @rooms = rooms.select do |room|
         room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
       end
+    elsif params[:mood].present?
+      mood_params = params[:mood].downcase!
+      @rooms = Room.where(address: params[:address])
     else
       @rooms = Room.all
-      raise
     end
   end
 
