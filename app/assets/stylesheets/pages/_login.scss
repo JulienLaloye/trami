@@ -1,0 +1,84 @@
+.login-box {
+  width: 75%;
+  margin-top: 20px;
+  padding-top: 70px;
+  border: transparent;
+  border-radius: 20px;
+  background-color: white;
+  box-shadow: 0px 0px 20px rgba(114, 99, 86, .35);
+}
+
+.trami-img-bg {
+  width: 50%;
+  background-image: url("trami-black-img.png");
+  background-size: 830px 830px;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-position-x: 160%;
+  background-position-y: 200%;
+}
+
+.div-orange-gradient {
+  padding-top: 50px;
+  background: white;
+  background: linear-gradient(317deg, #FFCF96 0%, white 70%);
+  height: 100vh;
+  padding-bottom: 60px;
+}
+
+.div-orange {
+  width: 50%;
+}
+
+.login-form {
+  margin-top: 50px;
+}
+
+.login-page-btn {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background-color: $button-dark-brown;
+  width: 350px;
+  border: transparent;
+  border-radius: 10px;
+  color: white;
+
+  &:hover {
+    background-color: $button-light-brown;
+    transition-duration: 0.3s;
+    color: white;
+  }
+}
+
+.email, .password {
+  border: 1px solid $border-brown;
+  border-radius: 10px;
+  background-color: $bg-light-gray;
+}
+
+.form-control {
+  border: transparent;
+}
+
+.form-control::placeholder { /* Edge 12 -18 */
+  color: $button-placeholder;
+  font-family: $body-font;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+.div-email, .div-password {
+  padding-bottom: 10px;
+}
+
+.div-remember {
+  padding-top: 30px;
+}
+
+.link-render {
+  text-decoration: none;
+  font-family: $body-font;
+  font-weight: 400;
+  color: $text-black-gray;
+  font-size: 16px;
+}
