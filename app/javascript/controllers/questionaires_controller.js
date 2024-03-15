@@ -9,9 +9,15 @@ export default class extends Controller {
   }
 
   mood() {
-    this.element.classList.toggle("mood-card-select")
-    if (this.element.classList.contains("mood-card-select")) {
-      this.moodElementTarget.insertAdjacentHTML("beforeend", `<input type="hidden" name="mood" id="mood" value="${this.moodElementTarget.innerText}" />`)
+    const toggle = this.element.toggleAttribute("mood-card-select")
+    console.log(toggle)
+    if (toggle === true) {
+      this.element.classList.add("mood-card-select")
+      this.element.insertAdjacentHTML("beforeend", `<input type="hidden" name="mood" id="mood" value="${this.moodElementTarget.innerText}" />`)
+    } else {
+      this.element.classList.remove("mood-card-select")
+      const child = console.log(this.element.innerHTML = '')
+      this.element.insertAdjacentHTML("beforeend", `<label class="main-font text-black-gray" for="mood">${this.element.id}</label>`)
     }
   }
 }
