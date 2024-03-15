@@ -146,22 +146,22 @@ input::placeholder {
   margin-top: 80px;
 }
 
-.swiper {
+.swiper-1 {
   height: 250px;
   margin-top: 40px;
 }
 
-.swiper-wrapper {
+.swiper-wrapper-1 {
   width: 500px;
   align-items: center;
 }
 
-.swiper-slide {
+.swiper-slide-1 {
   width: 200px;
   height: 200px;
 }
 
-.swiper-slide img {
+.swiper-slide-1 > img {
   width: 200px;
   height: 200px;
 }
@@ -243,7 +243,6 @@ input::placeholder {
 .swiper-container {
   padding-top: 20px;
   background: rgba(255, 255, 255, .7);
-  width: 100vw;
 }
 
 .swiper-box {

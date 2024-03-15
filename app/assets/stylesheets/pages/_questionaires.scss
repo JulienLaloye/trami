@@ -1,18 +1,191 @@
 .questionaire-container {
-	background: linear-gradient(-45deg, $mood-social, $mood-dreamy, $mood-chllin, $mood-relax, $mood-energetic, $mood-mindful);
-	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
-	height: 100vh;
+  --gradOneXPos: 20%;
+  --gradOneYPos: 20%;
+  --gradTwoXPos: 80%;
+  --gradTwoYPos: 20%;
+  --gradThreeXPos: 20%;
+  --gradThreeYPos: 80%;
+  --gradFourXPos: 80%;
+  --gradFourYPos: 80%;
+  background-color: floralwhite;
+  background-image: radial-gradient(at var(--gradOneXPos) var(--gradOneYPos), $mood-trami-gradient 0, transparent 50%), radial-gradient(at var(--gradTwoXPos) var(--gradTwoYPos), $mood-adventurous 0, transparent 50%), radial-gradient(at var(--gradThreeXPos) var(--gradThreeYPos), $mood-creative 0, transparent 50%), radial-gradient(at var(--gradFourXPos) var(--gradFourYPos), $mood-trami-gradient 0, transparent 50%);
 }
 
-@keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+.mood-card {
+  width: 150px;
+  height: 150px;
+  border: transparent;
+}
+
+.mood-card-dreamy {
+  background-image: radial-gradient(circle, $mood-dreamy 45%, transparent, transparent);
+}
+
+.mood-card-energetic {
+  background-image: radial-gradient(circle, $mood-energetic 45%, transparent, transparent);
+}
+
+.mood-card-relax {
+  background-image: radial-gradient(circle, $mood-relax 45%, transparent, transparent);
+}
+
+.mood-card-neutral {
+  background-image: radial-gradient(circle, $mood-neutral 45%, transparent, transparent);
+}
+
+.mood-card-social {
+  background-image: radial-gradient(circle, $mood-social 45%, transparent, transparent);
+}
+
+.mood-card-competitive {
+  background-image: radial-gradient(circle, $mood-competitive 45%, transparent, transparent);
+}
+
+.mood-card-adventurous {
+  background-image: radial-gradient(circle, $mood-adventurous 45%, transparent, transparent);
+}
+
+.mood-card-chllin {
+  background-image: radial-gradient(circle, $mood-chllin 45%, transparent, transparent);
+}
+
+.mood-card-creative {
+  background-image: radial-gradient(circle, $mood-creative 45%, transparent, transparent);
+}
+
+.mood-card-intellectual {
+  background-image: radial-gradient(circle, $mood-intellectual 45%, transparent, transparent);
+}
+
+.mood-card-exploratory {
+  background-image: radial-gradient(circle, $mood-exploratory 45%, transparent, transparent);
+}
+
+.mood-card-mindful {
+  background-image: radial-gradient(circle, $mood-mindful 45%, transparent, transparent);
+}
+
+.mood-card-select {
+  background-image: radial-gradient(circle, #ffd8ac 45%, transparent, transparent);
+}
+
+.div-transparent {
+  margin-top: 10px;
+}
+
+.carousel {
+  width: 1200px;
+  height: 500px;
+}
+
+.carousel-control-next-icon {
+  padding-top: 5px;
+  font-size: 30px;
+  margin-left: 15px;
+}
+
+.questionaire-container {
+  padding-top: 20px;
+}
+
+.ques-welcome {
+  font-family: $headers-font;
+  font-size: 65px;
+}
+
+.question-1 {
+  margin-bottom: 55px;
+}
+
+
+.carousel-inner {
+  margin-top: 10px;
+  background: rgba(255, 255, 255, .3);
+  padding-top: 50px;
+  border-radius: 20px;
+  padding-bottom: 100px;
+  border: 8px solid $border-light-gray;
+  box-shadow: 0px 0px 20px rgba(114, 99, 86, .35);
+}
+
+.carousel-control-next {
+  padding-top: 60px;
+}
+
+.trami-bg {
+  background-image: url("trami-black-img.png");
+  background-size: 700px 700px;
+  background-repeat: no-repeat;
+  background-position-x: -20%;
+  background-position-y: bottom;
+  height: 100vh;
+}
+
+.location-bar {
+  margin-top: 75px;
+  overflow:hidden;
+  width:300px;
+  background: transparent 319px 2px;
+  box-shadow: 0px 0px 20px rgba(114, 99, 86, .2);
+  border-radius: 15px;
+}
+
+.location-bar > select {
+  background: $bg-beige-gray;
+  height: 60px;
+  border-radius: 15px;
+  border-color: $border-brown;
+  border-style: solid;
+  border-width: 1px;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  width: 300px;
+  padding-left: 20px;
+  padding-bottom: 10px;
+  padding-top: 10px;
+  font-size: 30px;
+  font-weight: 300;
+  color: $text-black-gray;
+}
+
+.carousel-content {
+  width: 1200px;
+  height: 400px;
+}
+
+.question-2 {
+  padding-top: 30px;
+}
+
+.question-3 {
+  padding-top: 30px;
+}
+
+.ques-3-ans {
+  border-radius: 10px;
+  border: 3px solid #ede3d7;
+  padding: 10px 20px;
+  background-color: #f7f4f1;
+  margin-top: 20px;
+}
+
+.ques-3-choice {
+  margin-top: 75px;
+}
+
+.ques-3-icon {
+  -webkit-filter: drop-shadow(0px 0px 8px rgba(114, 99, 86, .4));
+  filter: drop-shadow(0px 0px 8px rgba(114, 99, 86, .4));
+  font-size: 80px;
+}
+
+.status-container {
+  margin-left: 35px;
+  margin-right: 35px;
+}
+
+.status-btn {
+  background-color: transparent;
+  border: transparent;
 }
