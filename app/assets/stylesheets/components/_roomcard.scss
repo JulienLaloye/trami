@@ -8,25 +8,29 @@
   box-shadow: 10px 5px 5px;
 }
 
+.card-body,.card-description ,.card-title, .card-activity, .card-timeline{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  color: black;
+}
+
 .room-info-banner {
   justify-content: space-between;
   padding: 5px;
   margin: 5px;
   width: 100%;
-
+  color: black;
 }
 
-.room-card .room-info > h3 {
-  color: white;
-  font-size: 20px;
-  font-weight: 600;
+.card-header,.card-footer{
+  background-color: transparent;
+  justify-content: space-between;
+  padding:0;
+  margin: 0;
+  width: 100%;
+  color: black;
 }
-
-.flex-container {
-  display: flex;
-  justify-content: space-around;
-}
-
 
 .room-image-show {
   width: 10px;
@@ -61,29 +65,7 @@
 }
 
 .swiper-button-prev, .swiper-button-next {
-  color: rgba(206, 187, 165, .35);
+  --swiper-navigation-size: 30px;
+  --swiper-navigation-color: var(--swiper-theme-color);
+  --swiper-navigation-color-opposite: var(--swiper-theme-color-opposite);
 }
-
-.swiper-button-next,
-          .swiper-button-prev {
-            background-position: center;
-            background-size: 40px;
-            background-repeat: no-repeat;
-            padding: 8px 16px;
-            border-radius: 100%;
-            border: 2px solid black;
-            color: red;
-          }
-
-          .swiper-button-prev {
-            background-image: url("/box-arrow-in-left.svg");
-          }
-
-          .swiper-button-next {
-            background-image: url("/box-arrow-in-right.svg");
-          }
-
-          .swiper-button-next::after,
-          .swiper-button-prev::after {
-            content: "";
-          }

@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    if params[:query].present?
+    if params[:query].present?       # Query needs to be fixed ,as currently displaying all the rooms *
       dates = params[:date].split(" to ", 2)
       date_from = DateTime.parse(dates[0])
       date_to = DateTime.parse(dates[1])
