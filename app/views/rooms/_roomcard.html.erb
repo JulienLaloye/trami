@@ -6,13 +6,13 @@
                 <div class="row d-flex">
                   <%= link_to room_path(room), class: "text-decoration-none" do %>
                     <div class="card-body room-slide-card d-flex " style="background-color: <%= room.activity.mood.color%>">
-                      <div><h3> <%= room.title %></h3></div>
-                      <h6 ><%= room.description.capitalize %></h6>
-                      <h6><%= room.activity.mood.name.capitalize %></h6>
+                      <div class ="row" ><h2> <%= room.title %></h2></div>
+                      <h4><%=room.description.capitalize %></h4>
+                      <h4><%= room.activity.mood.name.capitalize %></h4>
                       <div class="room-info-banner d-flex flex-container justify-content-around">
                         <div>Age:<%= room.min_age %> - <%= room.max_age %></div>
                         <br>
-                        <div> 🗓️ <%= room.date.strftime('%d %b. %y') %></div>
+                        <div> 🗓️  <%= room.date.strftime('%d %b. %y') %></div>
                       </div>
                     <% end %>
                   </div>
@@ -24,4 +24,4 @@
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
       </div>
-      <%# Map code  %>
+    

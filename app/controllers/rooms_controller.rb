@@ -11,6 +11,14 @@ class RoomsController < ApplicationController
     else
       @rooms = Room.all
     end
+    @markers = @rooms.geocoded.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
+        marker_html: render_to_string(partial: "marker",locals: {flat: flat}),
+      }
+    end
   end
 
   def new
