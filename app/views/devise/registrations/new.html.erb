@@ -44,22 +44,36 @@
           </div>
         </div>
         <div class="carousel-item carousel-item-1">
-          <div class="carousel-content">
-            <h1>Page 2 - username / avatar</h1>
+          <div class="carousel-content d-flex flex-column align-items-center">
+            <h1 class="main-font weight-300 font-30 text-black-gray">What's your personality?</h1>
+            <div class="personality-wrap mt-5">
+              <div class="personality-container">
+                <% Avatar.all.each do |a| %>
+                  <div class="personality-grid personality-card d-flex">
+                    <div><%= image_tag("#{a.picture}", alt: "#{a.picture}", class: "personality-img") %></div>
+                    <div class="d-flex flex-column align-items-start">
+                      <div><%= a.personality %></div>
+                      <div><%= a.description %></div>
+                    </div>
+                    <div data-controller="personality" data-personality-target="personalityCard" data-action="click->personality#click" data-personality-personality-param="<%= a.personality %>"><%= f.radio_button :avatar, a.personality, class: "personality-btn" %></div>
+                  </div>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
         <div class="carousel-item carousel-item-1">
           <div class="carousel-content">
             <div class="d-flex flex-column align-items-center">
               <h1 class="main-font weight-300 font-30 text-black-gray">Please select your gender</h1>
-              <div class="gender-select d-flex justify-content-around">
-                <div data-controller="gender-select" data-gender-select-target="female" data-action="click->gender-select#gender" data-gender-select-gender-param="female" class="icon-gender">
+              <div data-controller="gender-select-none gender-select" class="gender-select d-flex justify-content-around">
+                <div data-gender-select-none-target="icon" data-action="click->gender-select-none#gender click->gender-select#params" data-gender-select-gender-param="female" class="icon-gender">
                   <%= image_tag("female.png", alt: "female-img", class: "female-img") %>
                 </div>
-                <div data-controller="gender-select" data-gender-select-target="male" data-action="click->gender-select#gender" data-gender-select-gender-param="male" class="icon-gender">
+                <div data-gender-select-none-target="icon" data-action="click->gender-select-none#gender click->gender-select#params" data-gender-select-gender-param="male" class="icon-gender">
                   <%= image_tag("male.png", alt: "male-img", class: "male-img") %>
                 </div>
-                <div data-controller="gender-select" data-gender-select-target="nonBinary" data-action="click->gender-select#gender" data-gender-select-gender-param="non-binary" class="icon-gender">
+                <div data-gender-select-none-target="icon" data-action="click->gender-select-none#gender click->gender-select#params" data-gender-select-gender-param="non-binary" class="icon-gender">
                   <%= image_tag("non-binary.png", alt: "non-binary-img", class: "non-binary-img") %>
                 </div>
               </div>
@@ -78,7 +92,7 @@
           <div class="carousel-content d-flex flex-column align-items-center">
             <div class="div-ques-signup-1 d-flex justify-content-between align-items-center mt-5">
               <h4 class="main-font weight-300 text-black-gray">Where's your current location?</h4>
-              <%= f.select :address, User.all.pluck(:address), value: params[:address] %>
+              <%= f.select :address, Room.all.pluck(:address).uniq, value: params[:address] %>
             </div>
             <div class="div-ques-signup-1 d-flex flex-column align-items-start mt-5">
               <h4 class="main-font weight-300 text-black-gray mb-4">Tell me a bit about yourself</h4>
