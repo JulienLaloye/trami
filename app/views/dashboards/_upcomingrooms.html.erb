@@ -5,9 +5,15 @@
       <div class="swiper-slide" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>">
         <%= link_to room_path(room), class: "text-decoration-none" do %>
           <li class="event-room" >
-            <h4> <%= room.title %> </h4>
+            <h4 class="mb-0"> <%= room.title %> </h4>
             <br>
             <%= room.date.strftime("%b %d, %Y") %>
+            <br>
+            <% if room.appointments.find_by(user: current_user).status == 0 || room.appointments.find_by(user: current_user).status == 2 %>
+              <p class="mb-0"> Status: Pending </p>
+            <% else %>
+              <p class="mb-0"> Status: Confirmed </p>
+            <% end %>
           </li>
         <% end %>
       </div>

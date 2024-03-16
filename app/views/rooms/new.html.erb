@@ -2,36 +2,35 @@
   <h2 class="d-flex justify-content-center"> Create a new room! </h2>
   <div class = "container" data-controller = "toggle-new">
     <h4 class="d-flex justify-content-center"> How do you feel for this event?</h4>
-        <% Mood.all.each do |mood| %>
-          <div data-action="click->toggle-new#fire" class = "search-btn"><%= mood.name.capitalize %></div>
+      <% Mood.all.each do |mood| %>
+        <div data-action="click->toggle-new#fire" class = "search-btn"><%= mood.name.capitalize %></div>
+      <% end %>
+        <div data-toggle-new-target="togglableElement" class="d-none">
+        <%= simple_form_for @room do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :title, required: true %>
+        <%= f.input :description, required: true %>
+
+        <%= f.input :gender, collection: Room::GENDER_OPTIONS, prompt: "Select Gender", required: true %>
+
+        <%= f.input :date, as: :date, required: true,
+                    input_html: { min: Date.today.to_s } %>
+        <br>
+        <br>
+        <%= f.input :max_part, required: true, input_html: { min: 2 } %>
+        <%= f.input :min_part, required: true, input_html: { min: 2 } %>
+
+        <%= f.input :language, required: true %>
+
+        <%= f.input :min_age, required: true, input_html: { min: 18, max: 99 } %>
+        <%= f.input :max_age, required: true, input_html: { min: 18, max: 99 } %>
+
+        <%= f.input :activity_id, collection: Activity.all, label_method: :title, value_method: :id, prompt: "Select Activity", required: true %>
+        <button class="start-button">
+          <%= f.button :submit, "Create Room", class:"button-content" %>
+        </button>
         <% end %>
-      <div data-toggle-new-target="togglableElement" class="d-none">
-    <%= simple_form_for @room do |f| %>
-      <%= f.error_notification %>
-
-      <%= f.input :title, required: true %>
-      <%= f.input :description, required: true %>
-
-      <%= f.input :gender, collection: Room::GENDER_OPTIONS, prompt: "Select Gender", required: true %>
-
-      <%= f.input :date, as: :date, required: true,
-                  input_html: { min: Date.today.to_s } %>
-      <br>
-      <br>
-      <%= f.input :max_part, required: true, input_html: { min: 2 } %>
-      <%= f.input :min_part, required: true, input_html: { min: 2 } %>
-
-      <%= f.input :language, required: true %>
-
-      <%= f.input :min_age, required: true, input_html: { min: 18, max: 99 } %>
-      <%= f.input :max_age, required: true, input_html: { min: 18, max: 99 } %>
-
-      <%= f.input :activity_id, collection: Activity.all, label_method: :title, value_method: :id, prompt: "Select Activity", required: true %>
-
-      <%= f.button :submit, "Create Room" %>
-    <% end %>
-
-
       </div>
   </div>
 </div>

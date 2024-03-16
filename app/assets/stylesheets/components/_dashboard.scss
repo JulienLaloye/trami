@@ -38,7 +38,7 @@
   flex: 0 0 auto;
   display: flex;
   align-items: center;
-  margin: 0px 10px;
+  margin: 10px 10px;
   box-shadow: 5px 5px 5px;
   padding: 10px 10px;
 }
@@ -46,5 +46,8 @@
 #wrapper-room-2 {
   display: flex;
   height: 200px;
-  margin-top: 20px;
+}
+
+.review-height {
+  height: 48px;
 }
