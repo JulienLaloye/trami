@@ -18,10 +18,10 @@
               <div class="login-form">
                 <div class="form-inputs">
                   <div class="div-email div-email-1">
+                    <%= f.input :username, required: true, placeholder: "username" %>
                     <%= f.input :email,
                                 class: "email",
-                                label: false,
-                                required: false,
+                                required: true,
                                 autofocus: true,
                                 placeholder: "example@email.com",
                                 input_html: { autocomplete: "email" } %>
@@ -29,7 +29,6 @@
                   <div class="div-password div-password-1">
                     <%= f.input :password,
                                 class: "password",
-                                label: false,
                                 required: true,
                                 placeholder: ("#{@minimum_password_length} password characters minimum" if @minimum_password_length),
                                 input_html: { autocomplete: "new-password" } %>
@@ -51,25 +50,60 @@
         </div>
         <div class="carousel-item carousel-item-1">
           <div class="carousel-content">
-            <h1>Page 3 - gender / nationality / birthdate</h1>
-            <%= f.select :nationality, options_for_select(Nationality::Nationality.default_option("german"), :selected => f.object.nationality), {include_blank: "What's your nationality?"}, {:class => 'form-control' } %>
+            <div class="d-flex flex-column align-items-center">
+              <h1 class="main-font weight-300 font-30 text-black-gray">Please select your gender</h1>
+              <div class="gender-select d-flex justify-content-around">
+                <div data-controller="gender-select" data-gender-select-target="female" data-action="click->gender-select#gender" data-gender-select-gender-param="female" class="icon-gender">
+                  <%= image_tag("female.png", alt: "female-img", class: "female-img") %>
+                </div>
+                <div data-controller="gender-select" data-gender-select-target="male" data-action="click->gender-select#gender" data-gender-select-gender-param="male" class="icon-gender">
+                  <%= image_tag("male.png", alt: "male-img", class: "male-img") %>
+                </div>
+                <div data-controller="gender-select" data-gender-select-target="nonBinary" data-action="click->gender-select#gender" data-gender-select-gender-param="non-binary" class="icon-gender">
+                  <%= image_tag("non-binary.png", alt: "non-binary-img", class: "non-binary-img") %>
+                </div>
+              </div>
+              <div class="div-ques-signup d-flex justify-content-between align-items-center mt-5">
+                <h4 class="main-font weight-300 text-black-gray">Your date of birth</h4>
+                <div class="d-flex justify-content-center align-items-center"><%= f.text_field :birthdate, data: { controller: "birthdate-flatpickr" }, placeholder: "yyyy/mm/dd", class: "birthdate"%></div>
+              </div>
+              <div class="div-ques-signup d-flex justify-content-between align-items-center mt-5">
+                <h4 class="main-font weight-300 text-black-gray">What's your nationality?</h4>
+                <div class="d-flex justify-content-center align-items-center"><%= f.select :nationality, options_for_select(Nationality::Nationality.default_option("german"), :selected => f.object.nationality), {include_blank: ""}, {:class => 'nationality' } %></div>
+              </div>
+            </div>
           </div>
         </div>
         <div class="carousel-item carousel-item-1">
-          <div class="carousel-content">
-            <h1>Page 4 city / description</h1>
+          <div class="carousel-content d-flex flex-column align-items-center">
+            <div class="div-ques-signup-1 d-flex justify-content-between align-items-center mt-5">
+              <h4 class="main-font weight-300 text-black-gray">Where's your current location?</h4>
+              <%= f.select :address, User.all.pluck(:address), value: params[:address] %>
+            </div>
+            <div class="div-ques-signup-1 d-flex flex-column align-items-start mt-5">
+              <h4 class="main-font weight-300 text-black-gray mb-4">Tell me a bit about yourself</h4>
+              <%= f.text_area :description, value: params[:description], size: "66x7", placeholder: "..introduce yourself to our Trami friends" %>
+            </div>
           </div>
         </div>
         <div class="carousel-item carousel-item-1">
-          <div class="carousel-content">
-              <h1>Page 5</h1>
+          <div class="carousel-content d-flex flex-column align-items-center">
+              <h5 class="main-font weight-300 font-18 text-black-gray mt-2">Last step...</h5>
+              <div class="text-center">
+                <h1 class="main-font weight-300 font-30 text-black-gray">Are you sure to complete the profile?</h1>
+              </div>
+              <h5 class="main-font weight-300 font-16 text-black-gray">You cannot edit your details later once you complete</h5>
             <div class="form-actions">
               <%= f.button :submit, "Sign up", class: "signup-page-btn text-center" %>
             </div>
           </div>
         </div>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon round-button trami-font" aria-hidden="true">→</span>
+        <button class="carousel-control-prev round-button-prev prev-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+          <span class="b1 trami-font button-content" aria-hidden="true">←</span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next round-button-next next-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="b1 trami-font button-content" aria-hidden="true">→</span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>

@@ -61,7 +61,7 @@
           </div>
           <div class="carousel-item">
             <div class="ques-location carousel-content carousel-content-1">
-              <div class="text-center d-flex flex-column align-items-center">
+              <div class="mt-4 text-center d-flex flex-column align-items-center">
                 <div class="question-2">
                   <h1 class="main-font weight-300 font-30 text-black-gray">Where's your current location?</h1>
                 </div>
@@ -73,40 +73,40 @@
           </div>
           <div class="carousel-item">
             <div class="ques-status carousel-content carousel-content-1">
-              <div class="d-flex flex-column align-items-center">
+              <div class="mt-2 d-flex flex-column align-items-center">
                 <h5 class="main-font weight-300 font-18 text-black-gray mt-2">Last step...</h5>
-                <div>
-                  <div class="question-3 text-center">
-                    <h1 class="main-font weight-300 font-30 text-black-gray">Please select who you are?</h1>
-                  </div>
-                  <div class="ques-3-choice d-flex justify-content-around">
-                    <div class="status-container d-flex flex-column align-items-center">
-                      <h1 class="mb-3 ques-3-icon">⛺️</h1>
-                      <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="I'm a local" data-action="click->questionaires-status#status" data-questionaires-status-status-param="local" data-questionaires-status-margin-param="3" class="ques-3-ans">
-                        <h5 class="mb-0"><%= f.label :mood, "I'm a local", class: "mx-3 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
-                      </div>
-                    </div>
-                    <div class="or-text d-flex justify-content-center pt-5">
-                      <h5 class="weight-300 main-font text-black-gray font-18">or</h5>
-                    </div>
-                    <div class="status-container d-flex flex-column align-items-center">
-                      <h1 class="mb-3 ques-3-icon">🚀</h1>
-                      <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="I'm a traveller" data-action="click->questionaires-status#status" data-questionaires-status-status-param="traveller" data-questionaires-status-margin-param="1" class="ques-3-ans">
-                        <h5 class="mb-0"><%= f.label :mood, "I'm a traveller", class: "mx-1 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
-                      </div>
+                <div class="question-3 text-center">
+                  <h1 class="main-font weight-300 font-30 text-black-gray">Please select who you are?</h1>
+                </div>
+                <div class="ques-3-choice d-flex justify-content-around">
+                  <div class="status-container d-flex flex-column align-items-center">
+                    <h1 class="mb-3 ques-3-icon">⛺️</h1>
+                    <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="I'm a local" data-action="click->questionaires-status#status" data-questionaires-status-status-param="local" data-questionaires-status-margin-param="3" class="ques-3-ans">
+                      <h5 class="mb-0"><%= f.label :mood, "I'm a local", class: "mx-3 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                     </div>
                   </div>
+                  <div class="or-text d-flex justify-content-center pt-5">
+                    <h5 class="weight-300 main-font text-black-gray font-18">or</h5>
+                  </div>
+                  <div class="status-container d-flex flex-column align-items-center">
+                    <h1 class="mb-3 ques-3-icon">🚀</h1>
+                    <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="I'm a traveller" data-action="click->questionaires-status#status" data-questionaires-status-status-param="traveller" data-questionaires-status-margin-param="1" class="ques-3-ans">
+                      <h5 class="mb-0"><%= f.label :mood, "I'm a traveller", class: "mx-1 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
+                    </div>
+                  </div>
+                </div>
+                <div class="div-explore">
+                  <%= f.submit "Explore", class: "explore-btn main-font weight-400" %>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="carousel-control-next-icon round-button trami-font" aria-hidden="true">→</span>
+        <button class="carousel-control-next round-button-next ques-next-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span class="b1 trami-font button-content" aria-hidden="true">→</span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-      <%= f.submit "Explore", class: "explore-btn start-button main-font weight-300" %>
     <% end %>
     </div>
   </div>
