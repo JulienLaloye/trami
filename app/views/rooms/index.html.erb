@@ -1,17 +1,22 @@
-<div class="container">
-  <div class="search-wrap">
-    <h5 class="main-font weight-300 text-brown pb-2">Choose your Mood for an activity</h5>
-      <div class="search-bar mt-2" data-controller="search-bar">
-        <%= form_with url: rooms_path, method: :get, data: {search_bar_target: "select-mood"} do |f| %>
-        <%= f.select :moods, collection: Mood.all.pluck(:name) %>
-        <%= f.button :submit, data: {action: "click->search-bar#search"} %>
-        <% end %>
-      </div>
+<div class="container" style=" background-image: linear-gradient(rgba(0, 0, 0, .1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, .1) .1em, transparent .1em);
+  background-size: 2em 2em;" >
+
+  <%# Room card display %>
+  <div>
+    <h1>Avalibe Rooms for you.........</h1>
   </div>
-  <div class="row">
+  <div class="row" >
       <%= render 'roomcard' %>
   </div>
-    <div class= "map">
-      <h1>Map here</h1>
-    </div>
+  <br><br>
+   <div class= "map d-flex">
+  <div class="col-12">
+    <%# Map display code %>
+  <br><h1>Search yor place here.....</h1><br>
+  <div style="width: 100%; height: 600px; z-index: 100"
+    data-controller="map"
+    data-map-markers-value="<%= @markers.to_json %>"
+    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+ </div>
+</div>
 </div>

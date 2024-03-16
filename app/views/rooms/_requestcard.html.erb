@@ -1,11 +1,23 @@
-<div class="participant-container" style= "border-color: <%= appointment.user.mood.color %>">
-  <%= render "shared/useravatar", user: appointment.user %>
-<%= form_with(url: appointment_path(appointment), method: :patch) do |f| %>
-  <%= f.hidden_field :status, value: 1 %>
-  <%= f.submit "Accept", class: "search-btn main-font" %>
-<% end %>
-<%= form_with(url: appointment_path(appointment), method: :patch) do |f| %>
-  <%= f.hidden_field :status, value: 3 %>
-  <%= f.submit "Decline", class: "search-btn main-font" %>
-<% end %>
+<div class="avatar-decline-accept">
+    <div class="small-avatar-container">
+        <div class="avatar-image">
+          <%= image_tag(appointment.user.avatar.picture, alt: appointment.user.avatar.personality, class: "avatar w-100", style: "border:#{appointment.user.mood.color}  5px solid;filter: grayscale(100%); ")%>
+        </div>
+        <div class="avatar-text">
+          <h3 style="filter: grayscale(100%);"><%= appointment.user.username %></h3>
+        </div>
+        <div class="avatar-gender ">
+          <%= image_tag("#{appointment.user.gender}.png", alt: appointment.user.avatar.personality, class: "gender-avatar")%>
+        </div>
+    </div>
+    <div class="button-container">
+      <%= form_with(url: appointment_path(appointment), method: :patch) do |f| %>
+        <%= f.hidden_field :status, value: 1 %>
+        <%= f.submit "Accept", class: "accept-button" %>
+      <% end %>
+      <%= form_with(url: appointment_path(appointment), method: :patch) do |f| %>
+      <%= f.hidden_field :status, value: 3 %>
+      <%= f.submit "Decline", class: "decline-button" %>
+      <% end %>
+    </div>
 </div>

@@ -1,0 +1,56 @@
+.chatroom {
+  background: white;
+  margin-top: 9px;
+  height: calc(60vh - 75px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+
+  h1 {
+    border-bottom: 1px solid $gray-200;
+    margin-bottom: 0;
+    padding: 1rem;
+  }
+
+  .messages {
+    height: calc(100% - 2rem);
+    overflow: scroll;
+    padding: 1rem;
+    background-color: $input-light-gray;
+    border-radius: 10px;
+    display: flex; /* Display messages in a flex container */
+    flex-direction: row; /* Messages will be displayed in rows */
+    flex-wrap: wrap; /* Wrap messages to the next row if necessary */
+    justify-content: flex-start; /* Align messages to the start of the container */
+  }
+
+  .my-message,
+  .other-message {
+    width: 50%; /* Each message takes up 50% of the container */
+    box-sizing: border-box; /* Include padding and border in the width */
+    padding: 10px;
+    margin: 5px; /* Adjust margin as needed */
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px;
+  }
+
+  .my-message {
+    background-color: #DCF8C6; /* Example background color for your messages */
+    align-self: flex-end; /* Align your messages to the end of the container */
+  }
+
+  .other-message {
+    background-color: #EAEAEA; /* Example background color for other person's messages */
+    align-self: flex-start; /* Align other person's messages to the start of the container */
+  }
+
+  #new_message {
+    border-top: 1px solid $gray-200;
+    padding: 1rem;
+
+    .form-group {
+      margin-bottom: 0;
+    }
+  }
+}

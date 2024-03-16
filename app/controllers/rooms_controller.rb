@@ -20,6 +20,14 @@ class RoomsController < ApplicationController
         room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
       end
     end
+    @markers = @rooms.geocoded.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
+        marker_html: render_to_string(partial: "marker",locals: {room: room}),
+      }
+    end
   end
 
   def new
@@ -43,10 +51,16 @@ class RoomsController < ApplicationController
   end
 
   def update
+    @room = @room = Room.find(params[:id])
+    @room.update(room_params)
+    @room.save!
+    redirect_to room_path(@room)
   end
 
   def show
     @room = Room.find(params[:id])
+    @chatroom = Chatroom.find_by(room: @room)
+    @message = Message.new
     @user_type = @room.appointments
     creation_instant = (Time.now - @room.created_at)
     if creation_instant < 60

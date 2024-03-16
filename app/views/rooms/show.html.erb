@@ -6,6 +6,9 @@
         <h3> <%= @room.title %></h3>
         <p> <%= @room.description.capitalize %></p>
         <p>&#128204; <%= @room.address %></p>
+        <% if current_user == @room.user %>
+          <button  class="round-button"  style="height: auto; width: auto; background-color: rgb(62, 62, 62);" > change the address </button>
+        <% end %>
         </div>
         <div class = "col-4">
           <%= render "shared/useravatar", user: @room.user %>
@@ -17,26 +20,23 @@
     <div>
     <% if current_user &&  @currentuser_rooms.include?(@room)%>
       <% if @room.appointments.find_by(user: current_user).status == 1%>
-
         <div class="row" data-controller="show-page-button">
-          <p>This room has already <strong style="font-size: 20px"><%= @room.participants %></strong> <button class="round-button" data-action="click->show-page-button#toggleVisibility" data-show-page-button-target="toggleButton" style="height: auto; width: auto; background-color: rgb(62, 62, 62);">participants</button></p>
+          <p>This room has <strong style="font-size: 20px"><%= @room.participants - 1 %></strong> other <button class="round-button" data-action="click->show-page-button#toggleVisibility" data-show-page-button-target="toggleButton" style="height: auto; width: auto; background-color: rgb(62, 62, 62);">participants</button></p>
           <div class="d-none d-flex" data-show-page-button-target="allParticipants">
-            <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status != 1 }.each do |appointment| %>
-              <%= render "participantcardlight", user: appointment.user %>
-            <% end %>
+            <div data-controller="upcomingrooms-swiper">
+              <% @room.appointments.reject{ |appointment| appointment.user == current_user || appointment.status != 1 }.each do |appointment| %>
+                <%= render "participantcardlight", user: appointment.user %>
+              <% end %>
+              <% if @room.user == current_user %>
+                <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status != 0 || appointment.status == 3 }.each do |appointment| %>
+                <%= render "requestcard", appointment: appointment %>
+              <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
-        <% if @room.user == current_user %>
-          <% if @room.appointments.select { |appointment| appointment.status == 0 }.size != 0 %>
-            <h3 class = "text-center">These users want to participate!</h3>
-            <% end %>
-          <div class="row">
-            <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status == 1 || appointment.status == 3 }.each do |appointment| %>
-              <%= render "requestcard", appointment: appointment %>
-            <% end %>
-            </div>
-        <% end %>
-      <% elsif @room.appointments.find_by(user: current_user).status == 0 %>
+         <%= render "chatroom", room: @room, chatroom: @chatroom, messages: @messages %>
+    <% elsif @room.appointments.find_by(user: current_user).status == 0 %>
           <h3 class="text-center"> You're participation is still <strong>pending</strong>... Wait a bit ....</h3>
       <% end %>
       <% elsif current_user && @room.participants < @room.max_part %>
