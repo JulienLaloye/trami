@@ -1,0 +1,13 @@
+<div class="avatar-decline-accept">
+  <div class="small-avatar-container">
+      <div class="avatar-image">
+        <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class: "avatar w-100", style: "border:#{user.mood.color}  5px solid;")%>
+      </div>
+      <div class="avatar-text">
+        <h3><%= user.username %></h3>
+      </div>
+      <div class="avatar-gender ">
+        <%= image_tag("#{user.gender}.png", alt: user.avatar.personality, class: "gender-avatar")%>
+      </div>
+  </div>
+</div>

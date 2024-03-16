@@ -15,6 +15,8 @@ print "seeding..."
 Report.destroy_all
 Review.destroy_all
 Appointment.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
 Room.destroy_all
 User.destroy_all
 Activity.destroy_all
@@ -25,6 +27,7 @@ Ranking.destroy_all
 city = ["Berlin", "London", "Amsterdam", "Paris", "Tokyo"]
 languages = ["fr", "en", "ger"]
 gender = ["male", "female", "non-binary", "other"]
+local_traveller = ["local", "traveller"]
 
 #seed the moods:
 moods = [
@@ -152,21 +155,29 @@ rankings.each do |r|
   print "."
 end
 
+puts Faker::Date.between(from: '1945-01-01', to: 20.years.ago)
+usernames = []
+c = 0
 #seed the users:
 200.times do
+  username = Faker::Name.first_name
+  c += 1
+  username = "#{username}#{c}" if usernames.include?(username)
   user = User.new(
-    username: Faker::Name.first_name,
+    username: username,
     email: Faker::Internet.email,
     nationality: Faker::Nation.nationality,
     address: city.sample,
     password: "1234567",
     description: "blablablabalbalbalablabalbalabla",
     gender: gender.sample,
-    birthdate: Faker::Date.between(from: '1945-01-01', to: 18.years.ago),
+    birthdate: Faker::Date.between(from: '1945-01-01', to: 20.years.ago),
     ranking: Ranking.all.sample,
     mood: Mood.all.sample,
-    avatar: Avatar.all.sample
+    avatar: Avatar.all.sample,
+    status: local_traveller.sample
   )
+  usernames << username
   user.save!
 end
 
@@ -218,11 +229,9 @@ Activity.all.each do |activity|
     end
     title = title_array.sample
     min = rand(2..5)
-    p min
     user = User.all.sample
     date = Faker::Date.between(from: 1.years.ago, to: 1.years.since)
     min_age = rand(18..50)
-    p min_age
     room = Room.new(
       title: title,
       description: activity.category,
@@ -240,6 +249,10 @@ Activity.all.each do |activity|
       participants: 1
     )
     room.save!
+    chatroom = Chatroom.new(
+      room: room
+    )
+    chatroom.save!
   end
 end
 puts "Rooms seeded"

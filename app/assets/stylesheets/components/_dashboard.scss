@@ -1,55 +1,53 @@
-html {
-  scroll-behavior: smooth;
-}
-
 .dashboard {
   border-style: solid;
   border-width: 1px;
   border-color: $border-brown;
+  height: 85vh;
 }
 
-
-ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 0;
-  padding: 0 0;
-}
-
-.event-room, .add-room {
+.event-room, .add-room , .my-room {
   color: black;
 }
 
-.my-room {
-  height: 75px;
-  color: black;
-  border-radius: 10px;
-  flex-direction: column;
-  justify-content: center;
-  display: flex;
-  padding: 10px;
-  box-shadow: 2px 2px 2px;
+.add-room {
+  background-color: #b5782e;
 }
 
 #swiper-slide-room {
-  height: 200px;
-  width: 200px;
+  height: 180px;
+  width: 180px;
   border-radius: 10px;
   flex: 0 0 auto;
   display: flex;
   align-items: center;
   padding-left: 10px;
   box-shadow: 5px 5px 5px;
-  margin: 0px 10px;;
+  margin: 0px 10px;
 }
 
 #wrapper-room {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  height: 220px;
+  margin-top: 20px;
 }
 
-.icon {
-  color: black;
+#swiper-slide-myroom {
+  height: 150px;
+  width: 180px;
+  border-radius: 10px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  margin: 10px 10px;
+  box-shadow: 5px 5px 5px;
+  padding: 10px 10px;
+}
+
+#wrapper-room-2 {
+  display: flex;
+  height: 200px;
+}
+
+.review-height, .rooms {
+  height: 48px;
 }

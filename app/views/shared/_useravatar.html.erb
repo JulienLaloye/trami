@@ -6,17 +6,17 @@
     <div class="col">
       <div class="row d-flex justify-content-left">
         <div class="col p-0">
-          <h3><%= user.email[0..3].capitalize %>.</h3>
+          <h3><%= user.username %></h3>
         </div>
         <div class="col p-0">
           <%= image_tag("#{user.gender}.png", alt: user.avatar.personality, class: "gender-avatar")%>
         </div>
       </div>
       <div class="row">
-        <p style="font-size: 12px"> <%= user.ranking.name %></p>
+        <p class="mb-0 p-0" style="font-size: 12px"> <%= user.ranking.name %></p>
       </div>
       <div class="row">
-        <p style="font-size: 12px"><%= (Date.today - user.birthdate).to_i / 365 %> years old</p>
+        <p class="mb-0 p-0" style="font-size: 12px"><%= (Date.today - user.birthdate).to_i / 365 %> years old</p>
       </div>
     </div>
   </div>

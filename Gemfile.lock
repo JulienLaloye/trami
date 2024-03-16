@@ -167,6 +167,7 @@ GEM
     minitest (5.22.2)
     msgpack (1.7.2)
     mutex_m (0.2.0)
+    nationality (1.0.7)
     net-imap (0.4.10)
       date
       net-protocol
@@ -321,6 +322,7 @@ DEPENDENCIES
   geocoder
   importmap-rails (~> 1.2.3)
   jbuilder
+  nationality (~> 1.0.7)
   pg (~> 1.1)
   puma (>= 5.0)
   pundit

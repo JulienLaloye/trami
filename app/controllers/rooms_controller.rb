@@ -8,6 +8,9 @@ class RoomsController < ApplicationController
       @rooms = rooms.select do |room|
         room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
       end
+    elsif params[:mood].present?
+      mood_params = params[:mood].downcase!
+      @rooms = Room.where(address: params[:address])
     else
       @rooms = Room.all
     end
@@ -36,14 +39,22 @@ class RoomsController < ApplicationController
     @room.user = current_user
     @room.activity_id = params[:room][:activity_id]
     @room.save
+    @appointment = Appointment.new(user: current_user, room: @room, ownership: true, presence: true, status: 1)
+    @appointment.save
     redirect_to room_path(@room)
   end
 
   def update
+    @room = @room = Room.find(params[:id])
+    @room.update(room_params)
+    @room.save!
+    redirect_to room_path(@room)
   end
 
   def show
     @room = Room.find(params[:id])
+    @chatroom = Chatroom.find_by(room: @room)
+    @message = Message.new
     @user_type = @room.appointments
     creation_instant = (Time.now - @room.created_at)
     if creation_instant < 60
@@ -53,7 +64,7 @@ class RoomsController < ApplicationController
       @creation_date = (creation_instant / 60).to_i
       @unit = "minutes"
     elsif creation_instant >= (60 * 60) && creation_instant < (60 * 60 * 24)
-      @creation_date = (creation_instant / (60 * 24)).to_i
+      @creation_date = (creation_instant / (60 * 60)).to_i
       @unit = "hours"
     else
       @creation_date = (creation_instant / (60 * 60 * 24)).to_i

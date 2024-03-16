@@ -1,8 +1,3 @@
-img {
-  width: 50px;
-}
-
-
 .footer-logo-container {
   display: flex;
   justify-content: end;
@@ -11,7 +6,6 @@ img {
 
 .footer-logo-container .footer-logo-img {
   height: auto;
-
 }
 
 .footer-links a {
@@ -27,18 +21,11 @@ img {
 
 .footer {
   background: white;
-  width: 100%;
 }
 
-.footer .container {
+.footer .container-f {
   border-top: solid 0.5px black;
-
 }
-
-.page-container {
-  display: grid;
-  min-height: 100vh;
- }
 
  .footer-container {
   position: static;

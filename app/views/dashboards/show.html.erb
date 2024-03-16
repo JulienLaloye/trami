@@ -1,59 +1,49 @@
 <div class="dashboard container" style="background-image: linear-gradient(rgba(0, 0, 0, .1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, .1) .1em, transparent .1em);
   background-size: 2em 2em;">
   <%# Upcoming-Rooms-Swiper %>
-  <div class="row upcoming-rooms my-5">
-    <h1 class="mb-2">Upcoming rooms</h1>
+  <div class="row upcoming-rooms my-3">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>My Dashboard</h1>
+        <%= render "shared/useravatar", user: @user %>
+      </div>
 
-    <%= render 'upcomingrooms' %>
+      <div class="d-flex justify-content-start">
+        <div class="d-flex align-items-center px-0">
+          <h2 class="mb-0 me-4 weight-300"># My upcoming rooms</h2>
+          <%= link_to rooms_path, class: "button-content weight-300" do %>
+            <button class="round-button">+</button>
+          <% end %>
+        </div>
+      </div>
 
+      <%= render 'upcomingrooms' %>
+    </div>
   </div>
   <%# Reviews & My-Rooms %>
   <div class="row my-reviews-and-rooms d-flex justify-content-between mb-5">
 
-    <div class="col-6 reviews mb-2">
-      <h2 class="my-3">My reviews</h2>
-      <% if @reviews.present? %>
-        <ul class="list-group" >
-          <% @user.reviews.each do |review| %>
-          <li class="list-group-item"><%= review.feedbacks %></li>
-          <% end %>
-          </ul>
-      <% else %>
+    <div class="col-6 reviews">
+      <div>
+        <h2 class="my-2 review-height d-flex align-items-center"># My reviews</h2>
         <p>You have no reviews yet.</p>
-      <% end %>
-
+      </div>
     </div>
 
     <div class="col-6 my-rooms">
-      <% if !@my_rooms.empty? %>
-      <div class="d-flex justify-content-between mb-2">
-        <h2 class="my-3">My rooms</h2>
-        <button class="round-button my-2">
-          <%= link_to "+", new_room_path, class: "button-content" %>
-        </button>
-      </div>
-      <ul>
-        <% @my_rooms.each do |myroom| %>
-        <li class="my-room" style="background-color: <%= myroom.activity.mood.color%>">
-          <div>
-            <%= myroom.title %> - <%= myroom.date.strftime("%b %d, %Y") %>
-            <%= link_to room_path(myroom), class: "icon text-decoration-none" do %>
-              <i class="fa-solid fa-pencil ms-2"></i>
-            <% end %>
-          </div>
-          <div class="participation d-flex align-items-center">
-            <p class="mb-0">Participants: <%= myroom.participants.count %> </p>
-          </div></li>
-        <% end %>
-      </ul>
 
-      <% else %>
-      <h2 class="my-3">My rooms</h2>
-      <p>You have no rooms created yet.</p>
-      <button class="start-button my-3">
-        <%= link_to "Create a room", new_room_path, class: "button-content" %>
-      </button>
+      <% if @my_rooms.present? %>
+        <div class="d-flex justify-content-start">
+          <div class="d-flex align-items-center px-0 my-2">
+            <h2 class="mb-0 me-4 weight-300"># My rooms</h2>
+            <button class="round-button">
+              <%= link_to "+", new_room_path, class: "button-content" %>
+            </button>
+          </div>
+        </div>
       <% end %>
+
+      <%= render 'myrooms' %>
     </div>
 
   </div>

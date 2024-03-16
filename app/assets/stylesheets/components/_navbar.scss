@@ -1,33 +1,14 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background-color: rgba(0,0,0,0);
-}
-
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-brand img {
-  width: 40px;
 }
 
 .navbar-header-text {
   color: #FF8A00;
 }
 
-.navbar-btn-ghost {
-  color: #4A4A4A;
-  border: 1px solid #4A4A4A;
-  padding: 8px 24px;
-  border-radius: 50px;
-  font-weight: lighter;
-  opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.navbar-btn-ghost:hover {
-  opacity: 1;
-  color: #CCB59A;
+.navbar {
+  padding-left: 45px;
+  padding-right: 45px;
 }
 
 .font-logo {
@@ -38,16 +19,6 @@
 .navbar-header-text > p {
   margin-bottom: 0;
   font-size: 15px;
-}
-
-.navbar-container {
-  margin: 0;
-  width: 90vw;
-}
-
-.navbar {
-  width: 100vw;
-  transition: background-color 0.2s linear;
 }
 
 .trami-div > h1 {

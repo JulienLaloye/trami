@@ -86,3 +86,4 @@ end
 gem 'faker'
 gem "dotenv-rails"
 gem 'country_select'
+gem 'nationality', '~> 1.0.7'
