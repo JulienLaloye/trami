@@ -24,3 +24,30 @@
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
 }
+
+.small-avatar-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  margin: 5px;
+  padding: 5px;
+  width: 150px;
+  height: 200px;
+}
+
+.avatar-image {
+  grid-area: 2 / 1 / 3 / 3;
+
+}
+.avatar-text {
+  grid-area: 1 / 1 / 2 / 2;
+  text-align: center;
+}
+.avatar-gender {
+  grid-area: 1 / 2 / 2 / 3;
+}
+
+.avatar:hover {
+  border: solid 10px;
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.2);
+}

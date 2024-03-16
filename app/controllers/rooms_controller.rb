@@ -31,6 +31,8 @@ class RoomsController < ApplicationController
     @room.user = current_user
     @room.activity_id = params[:room][:activity_id]
     @room.save
+    @appointment = Appointment.new(user: current_user, room: @room, ownership: true, presence: true, status: 1)
+    @appointment.save
     redirect_to room_path(@room)
   end
 
@@ -48,7 +50,7 @@ class RoomsController < ApplicationController
       @creation_date = (creation_instant / 60).to_i
       @unit = "minutes"
     elsif creation_instant >= (60 * 60) && creation_instant < (60 * 60 * 24)
-      @creation_date = (creation_instant / (60 * 24)).to_i
+      @creation_date = (creation_instant / (60 * 60)).to_i
       @unit = "hours"
     else
       @creation_date = (creation_instant / (60 * 60 * 24)).to_i
