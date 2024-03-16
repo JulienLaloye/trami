@@ -1,0 +1,31 @@
+<div class="swiper myroomsSwiper" data-controller="myrooms">
+  <div class="swiper-wrapper" id="wrapper-room-2" style="transform: none;">
+
+    <% @my_rooms.each do |myroom| %>
+      <div class="swiper-slide" id="swiper-slide-myroom" style="background-color: <%= myroom.activity.mood.color%>">
+        <%= link_to room_path(myroom), class: "text-decoration-none" do %>
+          <li class="my-room" >
+            <h4> <%= myroom.title %> </h4>
+            <%= myroom.date.strftime("%b %d, %Y") %>
+            <br>
+            <div class="participation d-flex align-items-center">
+              <p class="mb-0">Participants: <%= myroom.participants %> </p>
+            </div>
+          </li>
+        <% end %>
+      </div>
+    <% end %>
+
+    <% if !@rooms.present? %>
+      <h2 class="my-3"># My rooms</h2>
+      <p>You have no rooms created yet.</p>
+      <button class="start-button my-3">
+        <%= link_to "Create a room", new_room_path, class: "button-content" %>
+      </button>
+    <% end %>
+
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+  <div class="swiper-pagination"></div>
+</div>

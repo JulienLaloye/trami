@@ -11,9 +11,9 @@
     <div class="d-flex justify-content-start">
       <div class="d-flex align-items-center px-0">
         <h2 class="mb-0 me-4 weight-300"># My upcoming rooms</h2>
-        <button class="round-button">
-          <%= link_to "+", rooms_path, class: "button-content weight-300" %>
-        </button>
+        <%= link_to rooms_path, class: "button-content weight-300" do %>
+          <button class="round-button">+</button>
+        <% end %>
       </div>
     </div>
 
@@ -28,33 +28,19 @@
     </div>
 
     <div class="col-6 my-rooms">
-      <% if !@my_rooms.empty? %>
-        <div class="d-flex justify-content-between mb-2">
-          <h2 class="my-3"># My rooms</h2>
-          <button class="round-button my-2">
-            <%= link_to "+", new_room_path, class: "button-content" %>
-          </button>
+
+      <% if @my_rooms.present? %>
+        <div class="d-flex justify-content-start">
+          <div class="d-flex align-items-center px-0">
+            <h2 class="mb-0 me-4 weight-300"># My rooms</h2>
+            <button class="round-button">
+              <%= link_to "+", new_room_path, class: "button-content" %>
+            </button>
+          </div>
         </div>
-          <% @my_rooms.each do |myroom| %>
-            <%= link_to room_path(myroom), class: "text-decoration-none" do %>
-            <li class="my-room" style="background-color: <%= myroom.activity.mood.color%>">
-              <div>
-                <%= myroom.title %>
-                <br>
-                <%= myroom.date.strftime("%b %d, %Y") %>
-              </div>
-              <div class="participation d-flex align-items-center">
-                <p class="mb-0">Participants: <%= myroom.participants %> </p>
-              </div></li>
-            <% end %>
-          <% end %>
-      <% else %>
-        <h2 class="my-3"># My rooms</h2>
-        <p>You have no rooms created yet.</p>
-        <button class="start-button my-3">
-          <%= link_to "Create a room", new_room_path, class: "button-content" %>
-        </button>
       <% end %>
+
+      <%= render 'myrooms' %>
     </div>
 
   </div>
