@@ -19,7 +19,7 @@ class User < ApplicationRecord
 
   validates :description, :username, :gender, :birthdate, :nationality, :address, presence: true
   validate :validate_age
-  validates :username, presence: true, uniqueness: true
+  validates :username, uniqueness: true
 
   private
 

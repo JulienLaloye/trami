@@ -15,6 +15,8 @@ print "seeding..."
 Report.destroy_all
 Review.destroy_all
 Appointment.destroy_all
+Message.destroy_all
+Chatroom.destroy_all
 Room.destroy_all
 User.destroy_all
 Activity.destroy_all
@@ -227,11 +229,9 @@ Activity.all.each do |activity|
     end
     title = title_array.sample
     min = rand(2..5)
-    p min
     user = User.all.sample
     date = Faker::Date.between(from: 1.years.ago, to: 1.years.since)
     min_age = rand(18..50)
-    p min_age
     room = Room.new(
       title: title,
       description: activity.category,
@@ -249,6 +249,10 @@ Activity.all.each do |activity|
       participants: 1
     )
     room.save!
+    chatroom = Chatroom.new(
+      room: room
+    )
+    chatroom.save!
   end
 end
 puts "Rooms seeded"

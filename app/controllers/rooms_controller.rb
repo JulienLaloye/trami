@@ -37,10 +37,16 @@ class RoomsController < ApplicationController
   end
 
   def update
+    @room = @room = Room.find(params[:id])
+    @room.update(room_params)
+    @room.save!
+    redirect_to room_path(@room)
   end
 
   def show
     @room = Room.find(params[:id])
+    @chatroom = Chatroom.find_by(room: @room)
+    @message = Message.new
     @user_type = @room.appointments
     creation_instant = (Time.now - @room.created_at)
     if creation_instant < 60

@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "dashboard", to: "dashboards#show"
-  resources :rooms, except: %i[edit destroy]
+  resources :rooms, except: %i[edit destroy] do
+    resources :messages, only: :create
+  end
 
   resources :users, only: :show do
     resources :appointments, only: %i[update]
