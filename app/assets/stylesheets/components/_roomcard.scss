@@ -8,9 +8,11 @@
   box-shadow: 10px 5px 5px;
 }
 
-.flex-container {
-  display: flex;
-  justify-content: space-around;
+.card-body,.card-description ,.card-title, .card-activity, .card-timeline{
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  color: black;
 }
 
 .room-info-banner {
@@ -21,14 +23,14 @@
   color: black;
 }
 
-.card-header{
+.card-header,.card-footer{
+  background-color: transparent;
   justify-content: space-between;
   padding:0;
   margin: 0;
   width: 100%;
   color: black;
 }
-
 
 .room-image-show {
   width: 10px;
