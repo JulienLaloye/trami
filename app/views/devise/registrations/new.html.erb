@@ -18,7 +18,7 @@
               <div class="login-form">
                 <div class="form-inputs">
                   <div class="div-email div-email-1">
-                    <%= f.input :username, required: true, placeholder: "username" %>
+                    <%= f.input :username, required: true, placeholder: "username", value: params[:username] %>
                     <%= f.input :email,
                                 class: "email",
                                 required: true,
@@ -82,7 +82,7 @@
             </div>
             <div class="div-ques-signup-1 d-flex flex-column align-items-start mt-5">
               <h4 class="main-font weight-300 text-black-gray mb-4">Tell me a bit about yourself</h4>
-              <%= f.text_area :description, value: params[:description], size: "66x7", placeholder: "..introduce yourself to our Trami friends" %>
+              <%= f.text_area :description, value: params[:description], size: "66x7", placeholder: "...introduce yourself to our Trami friends" %>
             </div>
           </div>
         </div>
