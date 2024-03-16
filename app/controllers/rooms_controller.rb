@@ -1,6 +1,17 @@
 class RoomsController < ApplicationController
   def index
-    if params[:query].present?
+    if current_user
+      @m = []
+      mood_array_params = [params[:Dreamy], params[:Energetic], params[:Relax], params[:Neutral], params[:Social], params[:Competitive], params[:Adventurous], params[:Chillin], params[:Creative], params[:Intellectual], params[:Exploratory], params[:Mindful]]
+      mood_array_params.select do | mood |
+        @m << mood
+        @raw_parameters = {
+          mood: { name: @m.compact }
+        }
+      end
+      @rooms = Room.where(address: params[:address])
+      @rooms = @rooms.joins(activity: :mood).where(@raw_parameters)
+    else
       dates = params[:date].split(" to ", 2)
       date_from = DateTime.parse(dates[0])
       date_to = DateTime.parse(dates[1])
@@ -8,11 +19,6 @@ class RoomsController < ApplicationController
       @rooms = rooms.select do |room|
         room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
       end
-    elsif params[:mood].present?
-      mood_params = params[:mood].downcase!
-      @rooms = Room.where(address: params[:address])
-    else
-      @rooms = Room.all
     end
   end
 

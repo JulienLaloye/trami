@@ -15,44 +15,44 @@
               <div class="question-1 text-center">
                 <h1 class="main-font weight-300 font-30 text-black-gray">What's your mood?</h1>
               </div>
-              <div class="mood-card-wrap d-flex flex-column align-items-center">
+              <div data-controller="questionaires questionaires-status" class="mood-card-wrap d-flex flex-column align-items-center">
                 <div class="mood-card-1 d-flex">
-                  <div data-controller="questionaires" id="Dreamy" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="mood-card-dreamy mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Dreamy" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="mood-card-dreamy mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.first.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Energetic" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="mood-card-energetic mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Energetic" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="mood-card-energetic mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.second.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Relax" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-relax mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Relax" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-relax mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.third.name.capitalize, for:"relax", value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Neutral" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-neutral mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Neutral" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-neutral mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.fourth.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Social" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-social mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Social" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-social mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.fifth.name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Competitive" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-competitive mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Competitive" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-competitive mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[5].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
                 </div>
                 <div class="mood-card-2 d-flex">
-                  <div data-controller="questionaires" id="Adventurous" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-adventurous mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Adventurous" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood"class="pt-2 mood-card-adventurous mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[6].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Chillin" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-chllin mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Chillin" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-chllin mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[7].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Creative" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-creative mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Creative" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-creative mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[8].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Intellectual" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-intellectual mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Intellectual" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-intellectual mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[9].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Exploratory" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-exploratory mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Exploratory" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-exploratory mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[10].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
-                  <div data-controller="questionaires" id="Mindful" data-questionaires-target="moodElement" data-action="click->questionaires#mood" class="pt-2 mood-card-mindful mood-card d-flex justify-content-center flex-column align-items-center">
+                  <div id="Mindful" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood" class="pt-2 mood-card-mindful mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[11].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
                 </div>
@@ -81,8 +81,8 @@
                 <div class="ques-3-choice d-flex justify-content-around">
                   <div class="status-container d-flex flex-column align-items-center">
                     <h1 class="mb-3 ques-3-icon">⛺️</h1>
-                    <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="I'm a local" data-action="click->questionaires-status#status" data-questionaires-status-status-param="local" data-questionaires-status-margin-param="3" class="ques-3-ans">
-                      <h5 class="mb-0"><%= f.label :mood, "I'm a local", class: "mx-3 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
+                    <div data-controller="questionaires-lotr" data-questionaires-lotr-status-value="I'm a local" data-action="click->questionaires-lotr#status" data-questionaires-lotr-status-param="local" class="ques-3-ans">
+                      <h5 class="mb-0"><%= f.label :status, "I'm a local", class: "mx-3 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                     </div>
                   </div>
                   <div class="or-text d-flex justify-content-center pt-5">
@@ -90,8 +90,8 @@
                   </div>
                   <div class="status-container d-flex flex-column align-items-center">
                     <h1 class="mb-3 ques-3-icon">🚀</h1>
-                    <div data-controller="questionaires-status" data-questionaires-status-click-value="false" data-questionaires-status-status-value="I'm a traveller" data-action="click->questionaires-status#status" data-questionaires-status-status-param="traveller" data-questionaires-status-margin-param="1" class="ques-3-ans">
-                      <h5 class="mb-0"><%= f.label :mood, "I'm a traveller", class: "mx-1 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
+                    <div data-controller="questionaires-lotr" data-questionaires-lotr-status-value="I'm a traveller" data-action="click->questionaires-lotr#status" data-questionaires-lotr-status-param="traveller" class="ques-3-ans">
+                      <h5 class="mb-0"><%= f.label :staus, "I'm a traveller", class: "mx-1 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                     </div>
                   </div>
                 </div>
