@@ -25,6 +25,7 @@ Ranking.destroy_all
 city = ["Berlin", "London", "Amsterdam", "Paris", "Tokyo"]
 languages = ["fr", "en", "ger"]
 gender = ["male", "female", "non-binary", "other"]
+local_traveller = ["local", "traveller"]
 
 #seed the moods:
 moods = [
@@ -152,21 +153,29 @@ rankings.each do |r|
   print "."
 end
 
+puts Faker::Date.between(from: '1945-01-01', to: 20.years.ago)
+usernames = []
+c = 0
 #seed the users:
 200.times do
+  username = Faker::Name.first_name
+  c += 1
+  username = "#{username}#{c}" if usernames.include?(username)
   user = User.new(
-    username: Faker::Name.first_name,
+    username: username,
     email: Faker::Internet.email,
     nationality: Faker::Nation.nationality,
     address: city.sample,
     password: "1234567",
     description: "blablablabalbalbalablabalbalabla",
     gender: gender.sample,
-    birthdate: Faker::Date.between(from: '1945-01-01', to: 18.years.ago),
+    birthdate: Faker::Date.between(from: '1945-01-01', to: 20.years.ago),
     ranking: Ranking.all.sample,
     mood: Mood.all.sample,
-    avatar: Avatar.all.sample
+    avatar: Avatar.all.sample,
+    status: local_traveller.sample
   )
+  usernames << username
   user.save!
 end
 
