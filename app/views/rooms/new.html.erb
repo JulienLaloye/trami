@@ -1,12 +1,14 @@
 <div class="main-container">
   <h2 class="d-flex justify-content-center"> Create a new room! </h2>
-  <div class = "container" data-controller = "toggle-new">
+  <div class ="container" data-controller="toggle-new">
     <h4 class="d-flex justify-content-center"> How do you feel for this event?</h4>
-        <% Mood.all.each do |mood| %>
-          <div data-action="click->toggle-new#fire" class = "search-btn"><%= mood.name.capitalize %></div>
-        <% end %>
-      <div data-toggle-new-target="togglableElement" class="d-none">
-    <%= simple_form_for @room do |f| %>
+    <div class="d-flex flex-column align-items-center">
+      <% Mood.all.each do |mood| %>
+        <div data-controller="mood-color" data-action="click->toggle-new#fire mouseover->mood-color#displayColor mouseout->mood-color#resetColor" data-mood-target="moodName" class="mood-button" data-color="<%= mood.color %>"> <%= mood.name.capitalize %> </div>
+      <% end %>
+    </div>
+    <div data-toggle-new-target="togglableElement" class="d-none mt-3">
+      <%= simple_form_for @room do |f| %>
       <%= f.error_notification %>
 
       <%= f.input :title, required: true %>
@@ -18,8 +20,8 @@
                   input_html: { min: Date.today.to_s } %>
       <br>
       <br>
-      <%= f.input :max_part, required: true, input_html: { min: 2 } %>
       <%= f.input :min_part, required: true, input_html: { min: 2 } %>
+      <%= f.input :max_part, required: true, input_html: { min: 2 } %>
 
       <%= f.input :language, required: true %>
 
@@ -27,11 +29,10 @@
       <%= f.input :max_age, required: true, input_html: { min: 18, max: 99 } %>
 
       <%= f.input :activity_id, collection: Activity.all, label_method: :title, value_method: :id, prompt: "Select Activity", required: true %>
-
-      <%= f.button :submit, "Create Room" %>
-    <% end %>
-
-
-      </div>
+      <button class="start-button">
+        <%= f.button :submit, "Create Room", class:"button-content" %>
+      </button>
+      <% end %>
+    </div>
   </div>
 </div>

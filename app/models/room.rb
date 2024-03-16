@@ -5,6 +5,7 @@ class Room < ApplicationRecord
   # has_many :participants, class_name: 'User', through: :appointments, source: :user, foreign_key: 'user_id'
   belongs_to :user
   belongs_to :activity
+  geocoded_by :address
 
   GENDER_OPTIONS = ["men", "women", "no preference"]
   validates :title, :description, :gender, :date, :max_part, :min_part, :language, presence: true
@@ -21,6 +22,8 @@ class Room < ApplicationRecord
   # validates_comparison_of :max_part, greater_or_equal_than: :min_part
   # participants < max_part
   # TODO: validates_comparison_of :max_part, greater_or_equal_than: :participants
+  after_validation :geocode, if: :will_save_change_to_address?
+
 
   private
 

@@ -1,6 +1,6 @@
 class RoomsController < ApplicationController
   def index
-    if params[:query].present?
+    if params[:query].present?       # Query needs to be fixed ,as currently displaying all the rooms *
       dates = params[:date].split(" to ", 2)
       date_from = DateTime.parse(dates[0])
       date_to = DateTime.parse(dates[1])
@@ -13,6 +13,14 @@ class RoomsController < ApplicationController
       @rooms = Room.where(address: params[:address])
     else
       @rooms = Room.all
+    end
+    @markers = @rooms.geocoded.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
+        marker_html: render_to_string(partial: "marker",locals: {room: room}),
+      }
     end
   end
 
