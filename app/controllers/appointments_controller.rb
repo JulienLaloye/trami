@@ -18,9 +18,15 @@ class AppointmentsController < ApplicationController
     @appointment = Appointment.find(params[:id])
     @appointment.status = params[:status]
     @room = @appointment.room
-    @room.participants += 1
-    @room.save
     @appointment.save
+    if @room.participants >= @room.max_part
+      @room.appointments.select { |appointment| appointment.status == 0 }.map { |appointment|
+        appointment.status = 3
+        appointment.save!
+      }
+    end
+    @room.participants = @room.appointments.select { |appointment| appointment.status == 1 }.size
+    @room.save!
     redirect_to room_path(@appointment.room_id)
   end
 
