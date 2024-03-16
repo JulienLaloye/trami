@@ -50,7 +50,13 @@
   }
 }
 
-.email, .password {
+.email > label, .password > label, .user_username > label {
+  font-family: $body-font;
+  font-weight: 400;
+  color: $text-black-gray;
+}
+
+.email > input, .password > input, .user_username > input {
   border: 1px solid $border-brown;
   border-radius: 10px;
   background-color: $bg-light-gray;

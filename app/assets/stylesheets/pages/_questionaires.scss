@@ -78,10 +78,9 @@
   height: 500px;
 }
 
-.carousel-control-next-icon {
+.b1 {
   padding-top: 5px;
   font-size: 30px;
-  margin-left: 15px;
 }
 
 .questionaire-container {
@@ -99,6 +98,7 @@
 
 
 .carousel-inner-1 {
+  height: 600px;
   margin-top: 10px;
   background: rgba(255, 255, 255, .3);
   padding-top: 50px;
@@ -108,8 +108,8 @@
   box-shadow: 0px 0px 20px rgba(114, 99, 86, .35);
 }
 
-.carousel-control-next {
-  padding-top: 60px;
+.carousel-control-next, .carousel-control-prev {
+  margin-top: 60px;
 }
 
 .trami-bg {
@@ -167,11 +167,11 @@
   border: 3px solid #ede3d7;
   padding: 10px 20px;
   background-color: #f7f4f1;
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .ques-3-choice {
-  margin-top: 75px;
+  margin-top: 50px;
 }
 
 .ques-3-icon {
@@ -193,4 +193,14 @@
 .ques-3-ans-orange {
   border: 3px solid #ff9419;
   box-shadow: 0px 0px 8px rgba(114, 99, 86, .2);
+}
+
+.ques-next-btn {
+  position: absolute;
+  top: 200px;
+  right: 50px;
+}
+
+.ques-mood {
+  padding-top: 30px;
 }
