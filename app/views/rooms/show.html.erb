@@ -19,14 +19,16 @@
       <% if @room.appointments.find_by(user: current_user).status == 1%>
         <h3 class = "text-center">They are participating!</h3>
         <div class="row">
-          <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status == 0}.each do |appointment| %>
+          <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status != 1 }.each do |appointment| %>
             <%= render "participantcard", user: appointment.user %>
           <% end %>
         </div>
         <% if @room.user == current_user %>
-          <h3 class = "text-center">These users want to participate!</h3>
+          <% if @room.appointments.select { |appointment| appointment.status == 0 }.size != 0 %>
+            <h3 class = "text-center">These users want to participate!</h3>
+            <% end %>
           <div class="row">
-            <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status == 1}.each do |appointment| %>
+            <% @room.appointments.reject{ |appointment| appointment.user == @room.user || appointment.status == 1 || appointment.status == 3 }.each do |appointment| %>
               <%= render "requestcard", appointment: appointment %>
             <% end %>
             </div>

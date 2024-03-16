@@ -5,7 +5,7 @@ class Appointment < ApplicationRecord
   belongs_to :user
   validates :ownership, inclusion: { in: [true, false] }
   validates :presence, inclusion: { in: [true, false] }
-  validate :unique_room_user_combination
+  validate :unique_room_user_combination, on: :create
 
   private
 
