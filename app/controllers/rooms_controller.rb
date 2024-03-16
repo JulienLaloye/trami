@@ -16,7 +16,7 @@ class RoomsController < ApplicationController
         lat: room.latitude,
         lng: room.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
-        marker_html: render_to_string(partial: "marker",locals: {flat: flat}),
+        marker_html: render_to_string(partial: "marker",locals: {room: room}),
       }
     end
   end
