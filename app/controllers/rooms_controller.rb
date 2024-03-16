@@ -19,14 +19,14 @@ class RoomsController < ApplicationController
       @rooms = rooms.select do |room|
         room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
       end
-    end
       @markers = rooms.geocoded.map do |room|
-      {
-        lat: room.latitude,
-        lng: room.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
-        marker_html: render_to_string(partial: "marker",locals: {room: room}),
-      }
+        {
+          lat: room.latitude,
+          lng: room.longitude,
+          info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
+          marker_html: render_to_string(partial: "marker",locals: {room: room}),
+        }
+      end
     end
   end
 
