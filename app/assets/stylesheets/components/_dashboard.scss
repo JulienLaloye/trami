@@ -32,9 +32,13 @@ ul {
   box-shadow: 2px 2px 2px;
 }
 
+.add-room {
+  background-color: #b5782e;
+}
+
 #swiper-slide-room {
-  height: 200px;
-  width: 200px;
+  height: 180px;
+  width: 180px;
   border-radius: 10px;
   flex: 0 0 auto;
   display: flex;
@@ -48,8 +52,4 @@ ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-.icon {
-  color: black;
 }

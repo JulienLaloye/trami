@@ -1,7 +1,6 @@
-<div class="swiper roomcardSwiper" data-controller="roomcard-swiper">
-        <div class="swiper-wrapper">
+<div class="swiper swiper-1 roomcardSwiper" data-controller="roomcard-swiper">
+        <div class="swiper-wrapper swiper-wrapper-1">
           <% @rooms.each do |room| %>
-            <div class="swiper-slide ">
               <div class="card text-center w-90 mb-5">
                 <div class="row d-flex">
                   <%= link_to room_path(room), class: "text-decoration-none" do %>

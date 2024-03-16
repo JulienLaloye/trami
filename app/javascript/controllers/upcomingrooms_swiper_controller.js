@@ -5,10 +5,10 @@ export default class extends Controller {
   connect() {
     console.log("Hello, Stimulus!");
     var swiper = new Swiper(".upcomingroomsSwiper", {
-      slidesPerView: 5,
+      slidesPerView: 4,
       spaceBetween: 40,
-      centeredSlides: true,
-      grabCursor: true,
+      centeredSlides: false,
+      grabCursor: false,
       loop: false,
 
       pagination: {
