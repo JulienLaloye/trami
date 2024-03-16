@@ -1,3 +1,5 @@
+@import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
 .room-card {
   display: flex;
   padding: 25px;
@@ -31,7 +33,7 @@
 }
 
 .swiper {
-  height: 250px;
+  height: 450px;
   margin-top: 40px;
 }
 
