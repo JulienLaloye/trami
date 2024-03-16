@@ -1,22 +1,18 @@
 <div class="swiper roomcardSwiper" data-controller="roomcard-swiper">
         <div class="swiper-wrapper">
           <% @rooms.each do |room| %>
-            <div class="swiper-slide">
+            <div class="swiper-slide ">
               <div class="card text-center w-90 mb-5">
-                <div class="row d-flex justify-content">
+                <div class="row d-flex">
                   <%= link_to room_path(room), class: "text-decoration-none" do %>
-                    <div class="card-header">
-                      <%= room.title %>
-                    </div>
-                    <div class="card-body">
-                      <h6 class="font"> Description : <%= room.description.capitalize %></h6>
-                      <p class="font"> <i class="fa-solid fa-location-dot"></i> <%= room.address %></p>
-                      <p class="font"> Mood : <%= room.activity.mood.name.capitalize %></p>
-                      <div class="room-footer d-flex flex-container justify-content-between">
-                        <p class="font"> Age : <%= room.min_age %> to <%= room.max_age %></p>
-                        <p class="font"> Date : <%= room.date.strftime('%d %b. %y') %></p>
-                        <p class="font">Gender : <%= room.gender.capitalize %></p>
-                        <p class="font">People : <%= room.participants %>-<%= room.max_part %></p>
+                    <div class="card-body room-slide-card d-flex " style="background-color: <%= room.activity.mood.color%>">
+                      <div><h3> <%= room.title %></h3></div>
+                      <h6 ><%= room.description.capitalize %></h6>
+                      <h6><%= room.activity.mood.name.capitalize %></h6>
+                      <div class="room-info-banner d-flex flex-container justify-content-around">
+                        <div>Age:<%= room.min_age %> - <%= room.max_age %></div>
+                        <br>
+                        <div> 🗓️ <%= room.date.strftime('%d %b. %y') %></div>
                       </div>
                     <% end %>
                   </div>
@@ -24,9 +20,10 @@
               </div>
             </div>
           <% end %>
-
         </div>
             <div class="swiper-button-prev"></div>
             <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
       </div>
+      <%# Map code  %>
+
+      
