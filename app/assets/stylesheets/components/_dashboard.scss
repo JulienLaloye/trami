@@ -1,20 +1,8 @@
-html {
-  scroll-behavior: smooth;
-}
-
 .dashboard {
   border-style: solid;
   border-width: 1px;
   border-color: $border-brown;
-}
-
-
-ul {
-  list-style-type: none;
-  display: flex;
-  justify-content: space-between;
-  margin: 0 0;
-  padding: 0 0;
+  height: 85vh;
 }
 
 .event-room, .add-room {
@@ -23,12 +11,13 @@ ul {
 
 .my-room {
   height: 75px;
+  width: 175px;
   color: black;
   border-radius: 10px;
   flex-direction: column;
   justify-content: center;
   display: flex;
-  padding: 10px;
+  padding: 20px 20px;
   box-shadow: 2px 2px 2px;
 }
 
@@ -45,11 +34,11 @@ ul {
   align-items: center;
   padding-left: 10px;
   box-shadow: 5px 5px 5px;
-  margin: 0px 10px;;
+  margin: 0px 10px;
 }
 
 #wrapper-room {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  height: 220px;
+  margin-top: 20px;
 }
