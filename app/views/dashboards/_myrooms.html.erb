@@ -1,4 +1,4 @@
-<div class="swiper myroomsSwiper" data-controller="myrooms">
+<div class="swiper myroomsSwiper" id="myroomsswiper" data-controller="myrooms">
   <div class="swiper-wrapper" id="wrapper-room-2" style="transform: none;">
 
     <% @my_rooms.each do |myroom| %>
@@ -17,8 +17,8 @@
     <% end %>
 
     <% if !@my_rooms.present? %>
-      <div>
-        <h2 class="review-height my-2 d-flex align-items-center"># My rooms</h2>
+      <div class="d-flex flex-column">
+        <h2 class="my-2 review-height d-flex align-items-center"># My rooms</h2>
         <p>You have no rooms created yet.</p>
         <button class="start-button my-3">
           <%= link_to "Create a room", new_room_path, class: "button-content" %>
