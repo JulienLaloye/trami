@@ -1,31 +1,28 @@
 class RoomsController < ApplicationController
   def index
     if current_user
-      @m = []
+      m = []
       mood_array_params = [params[:Dreamy], params[:Energetic], params[:Relax], params[:Neutral], params[:Social], params[:Competitive], params[:Adventurous], params[:Chillin], params[:Creative], params[:Intellectual], params[:Exploratory], params[:Mindful]]
-      mood_array_params.select do | mood |
-        @m << mood
-        @raw_parameters = {
-          mood: { name: @m.compact }
+      mood_array_params.select do |mood|
+        m << mood
+        @mood_parameters = {
+          mood: { name: m.compact }
         }
       end
-      @rooms = Room.where(address: params[:address])
-      @rooms = @rooms.joins(activity: :mood).where(@raw_parameters)
+      room_filter_date
+      @rooms = Room.joins(activity: :mood).where(@mood_parameters)
+      @rooms = @rooms.where(address: params[:address])
     else
-      dates = params[:date].split(" to ", 2)
-      date_from = DateTime.parse(dates[0])
-      date_to = DateTime.parse(dates[1])
-      rooms = Room.where(address: params[:address])
-      @rooms = rooms.select do |room|
-        room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
-      end
+      room_filter_date
+      @rooms = Room.where(address: params[:address])
     end
+    # SELECT "rooms".* FROM "rooms" INNER JOIN "activities" ON "activities"."id" = "rooms"."activity_id" INNER JOIN "moods" "mood" ON "mood"."id" = "activities"."mood_id" WHERE "mood"."name" IN ($1, $2, $3) AND "rooms"."address" = $4
     @markers = @rooms.geocoded.map do |room|
       {
         lat: room.latitude,
         lng: room.longitude,
         info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
-        marker_html: render_to_string(partial: "marker",locals: {room: room}),
+        marker_html: render_to_string(partial: "marker",locals: {room: room})
       }
     end
   end
@@ -88,5 +85,19 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:title, :description, :gender, :date, :max_part, :min_part, :address, :language, :min_age, :max_age, :latitutde, :longitude)
+  end
+
+  def room_filter_date
+    if params[:date].present?
+      dates = params[:date].split(" to ", 2)
+      date_from = DateTime.parse(dates[0])
+      date_to = DateTime.parse(dates[1])
+      @rooms = Room.all.select do |room|
+        room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
+      end
+    else
+      params[:date] = ''
+      @rooms = Room.where(date: params[:date])
+    end
   end
 end

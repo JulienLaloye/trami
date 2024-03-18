@@ -62,10 +62,10 @@
 
 .explore-btn {
   color: #937c62;
-  font-size: 18px;
+  font-size: 19px;
   padding: 11px;
   margin-top: 45px;
-  width: 410px;
+  width: 409px;
   border: 2px solid #937c62;
   border-radius: 10px;
   background-color: transparent;
@@ -98,6 +98,21 @@
   color: $text-brown;
 }
 
-.show-page-more {
+.disabled-round-btn {
+  position: relative;
+  overflow: hidden;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1.5rem;
+  border: 1.5px solid #dedede;
+  background: rgba(244, 244, 244, 0.5);
+  background-size: 400%;
+  color: gray;
+}
 
+.sign-gray {
+  position: relative;
+  z-index: 1;
+  color: #dbdbdb;
+  text-decoration: none;
 }
