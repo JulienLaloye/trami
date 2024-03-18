@@ -17,7 +17,7 @@
     <div class="search-bar mt-2">
       <%= form_with url: rooms_path, method: :get do |f| %>
         <%= f.text_field :address, placeholder: "location", class: "location main-font" %>
-        <%= f.text_field :date, data: { controller: "flatpickr" }, placeholder: "from - to", class: "date main-font"%>
+        <%= f.text_field :date, data: { controller: "flatpickr" }, placeholder: "from - to", class: "date date-1 main-font"%>
         <%= f.submit "search", class: "search-btn main-font" %>
       <% end %>
     </div>

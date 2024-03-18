@@ -3,7 +3,7 @@
     <h1 class="ques-welcome text-black-gray">Hi&nbsp Friend,</h1>
     <div class="div-transparent">
     <%= form_with url: rooms_path, method: :get do |f| %>
-      <div id="carouselExampleCaptions" class="carousel carousel-1 slide">
+      <div data-controller="last-slide" id="carouselExampleCaptions" class="carousel carousel-1 slide">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active d-none" aria-current="true" aria-label="Slide 1"></button>
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="d-none" aria-label="Slide 2"></button>
@@ -60,28 +60,32 @@
             </div>
           </div>
           <div class="carousel-item">
-            <div class="ques-location carousel-content carousel-content-1">
-              <div class="mt-4 text-center d-flex flex-column align-items-center">
+            <div class="ques-location d-flex flex-column align-items-end carousel-content carousel-content-1">
+              <div class="mt-3 mb-5 text-center d-flex justify-content-center align-items-center">
                 <div class="question-2">
-                  <h1 class="main-font weight-300 font-30 text-black-gray">Where's your current location?</h1>
+                  <h1 class="main-font weight-300 mb-0 mx-5 font-28 text-black-gray">Where's your current location?</h1>
                 </div>
-                <div class="location-bar">
+                <div class="location-bar d-flex justify-content-center align-items-center">
                   <%= f.select :address, Room.all.pluck(:address).uniq, value: params[:address], class: "city-location main-font" %>
                 </div>
               </div>
+              <div class="d-flex mt-5 justify-content-center align-items-center">
+                <h1 class="main-font mb-0 mx-5 weight-300 font-28 text-black-gray">When do you want to go out?</h1>
+                <div class="date-input d-flex justify-content-center align-items-center"><%= f.text_field :date, data: { controller: "flatpickr" }, placeholder: "from - to", class: "date date-location main-font"%></div>
+              </div>
             </div>
           </div>
-          <div class="carousel-item">
+          <div id="last" data-action="click->last-slide#fired" class="carousel-item last-slide">
             <div class="ques-status carousel-content carousel-content-1">
               <div class="mt-2 d-flex flex-column align-items-center">
                 <h5 class="main-font weight-300 font-18 text-black-gray mt-2">Last step...</h5>
                 <div class="question-3 text-center">
                   <h1 class="main-font weight-300 font-30 text-black-gray">Please select who you are?</h1>
                 </div>
-                <div class="ques-3-choice d-flex justify-content-around">
+                <div data-controller="questionaires-lotr questionaires-ll" class="ques-3-choice d-flex justify-content-around">
                   <div class="status-container d-flex flex-column align-items-center">
                     <h1 class="mb-3 ques-3-icon">⛺️</h1>
-                    <div data-controller="questionaires-lotr" data-questionaires-lotr-status-value="I'm a local" data-action="click->questionaires-lotr#status" data-questionaires-lotr-status-param="local" class="ques-3-ans">
+                    <div data-questionaires-ll-target="boo" data-questionaires-lotr-target="ques" id="3" data-questionaires-ll-status-param="I'm a local" data-action="click->questionaires-lotr#status click->questionaires-ll#fire" data-questionaires-lotr-status-param="local" class="ques-3-ans">
                       <h5 class="mb-0"><%= f.label :status, "I'm a local", class: "mx-3 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                     </div>
                   </div>
@@ -90,7 +94,7 @@
                   </div>
                   <div class="status-container d-flex flex-column align-items-center">
                     <h1 class="mb-3 ques-3-icon">🚀</h1>
-                    <div data-controller="questionaires-lotr" data-questionaires-lotr-status-value="I'm a traveller" data-action="click->questionaires-lotr#status" data-questionaires-lotr-status-param="traveller" class="ques-3-ans">
+                    <div data-questionaires-ll-target="boo" data-questionaires-lotr-target="ques" id="1" data-questionaires-ll-status-param="I'm a traveller" data-action="click->questionaires-lotr#status click->questionaires-ll#fire" data-questionaires-lotr-status-param="traveller" class="ques-3-ans">
                       <h5 class="mb-0"><%= f.label :staus, "I'm a traveller", class: "mx-1 main-font weight-300 font-18 text-black-gray mb-0" %></h5>
                     </div>
                   </div>
@@ -102,8 +106,8 @@
             </div>
           </div>
         </div>
-        <button class="carousel-control-next round-button-next ques-next-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="b1 trami-font button-content" aria-hidden="true">→</span>
+        <button data-last-slide-target="button" class="carousel-control-next round-button-next ques-next-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span data-last-slide-target="sign" class="b1 trami-font button-content" aria-hidden="true">→</span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
