@@ -9,7 +9,7 @@
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" class="d-none" aria-label="Slide 4"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" class="d-none" aria-label="Slide 5"></button>
       </div>
-      <div class="carousel-inner">
+      <div data-controller="last-slide" class="carousel-inner">
         <div class="carousel-item carousel-item-1 active">
           <div class="carousel-content">
             <div class="d-flex flex-column align-items-center">
@@ -48,14 +48,14 @@
             <h1 class="main-font weight-300 font-30 text-black-gray">What's your personality?</h1>
             <div class="personality-wrap mt-5">
               <div class="personality-container">
-                <% Avatar.all.each do |a| %>
+                <% Avatar.first(12).each do |a| %>
                   <div class="personality-grid personality-card d-flex">
-                    <div><%= image_tag("#{a.picture}", alt: "#{a.picture}", class: "personality-img") %></div>
-                    <div class="d-flex flex-column align-items-start">
-                      <div><%= a.personality %></div>
-                      <div><%= a.description %></div>
+                    <div class="personality-img"><%= image_tag("#{a.picture}", alt: "#{a.picture}", class: "personality-img") %></div>
+                    <div class="personality-desc d-flex flex-column align-items-start">
+                      <div class="font-22 mb-1 weight-400 text-black-gray"><%= a.personality %></div>
+                      <div class="weight-400 text-black-gray"><%= a.description %></div>
                     </div>
-                    <div data-controller="personality" data-personality-target="personalityCard" data-action="click->personality#click" data-personality-personality-param="<%= a.personality %>"><%= f.radio_button :avatar, a.personality, class: "personality-btn" %></div>
+                    <div class="radio-btn" data-controller="personality" data-personality-target="personalityCard" data-action="click->personality#click" data-personality-personality-param="<%= a.personality %>"><%= f.radio_button :avatar, a.personality, class: "personality-btn" %></div>
                   </div>
                 <% end %>
               </div>
@@ -100,24 +100,25 @@
             </div>
           </div>
         </div>
-        <div class="carousel-item carousel-item-1">
-          <div class="carousel-content d-flex flex-column align-items-center">
-              <h5 class="main-font weight-300 font-18 text-black-gray mt-2">Last step...</h5>
+        <div data-action="click->last-slide#fired" class="carousel-item carousel-item-1">
+          <div class="carousel-content d-flex pt-4 flex-column align-items-center">
+              <h5 class="main-font weight-300 mt-5 font-22 text-black-gray mt-2">Last step...</h5>
               <div class="text-center">
-                <h1 class="main-font weight-300 font-30 text-black-gray">Are you sure to complete the profile?</h1>
+                <h1 class="main-font mt-5 mb-5 weight-300 font-30 text-black-gray">Are you sure to complete the profile?</h1>
               </div>
-              <h5 class="main-font weight-300 font-16 text-black-gray">You cannot edit your details later once you complete</h5>
-            <div class="form-actions">
-              <%= f.button :submit, "Sign up", class: "signup-page-btn text-center" %>
+              <h5 class="main-font mb-5 mt-4 weight-400 font-18 text-black-gray">You cannot edit your details later once you complete</h5>
+            <div class="form-actions d-flex justify-content-around">
+              <%= f.button :submit, "Yes, I'm in!", class: "signup-page-btn text-center" %>
+              <%= link_to "No, take me back", root_path, class: "homepage-btn text-center" %>
             </div>
           </div>
         </div>
-        <button class="carousel-control-prev round-button-prev prev-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <button data-last-slide-target="prev" class="carousel-control-prev round-button-prev prev-btn d-none" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
           <span class="b1 trami-font button-content" aria-hidden="true">←</span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next round-button-next next-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-          <span class="b1 trami-font button-content" aria-hidden="true">→</span>
+        <button data-action="click->last-slide#next" data-last-slide-target="button" class="carousel-control-next round-button-next next-btn" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+          <span data-last-slide-target="sign" class="b1 trami-font button-content" aria-hidden="true">→</span>
           <span class="visually-hidden">Next</span>
         </button>
       </div>
