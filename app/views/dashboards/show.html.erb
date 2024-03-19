@@ -2,7 +2,7 @@
   background-size: 2em 2em;">
   <div class="dashboard container">
     <%# Upcoming-Rooms-Swiper %>
-    <div class="row upcoming-rooms my-3 mb-0">
+    <div class="row upcoming-rooms mt-4 mb-0 px-4">
       <div class="col-12">
         <div class="d-flex justify-content-between align-items-center">
           <h1>My Dashboard</h1>
@@ -20,7 +20,7 @@
       </div>
     </div>
     <%# Reviews & My-Rooms %>
-    <div class="row my-reviews-and-rooms d-flex justify-content-between mb-5">
+    <div class="row my-reviews-and-rooms d-flex justify-content-between mb-5 px-4">
 
       <div class="col-6 reviews">
         <div>
@@ -35,9 +35,7 @@
           <div class="d-flex justify-content-start">
             <div class="d-flex align-items-center px-0 my-2">
               <h2 class="mb-0 me-4 weight-300"># My rooms</h2>
-              <button class="round-button">
-                <%= link_to "+", new_room_path, class:"button-content" %>
-              </button>
+              <%= link_to "+", new_room_path, class: "round-button button-content weight-300" %>
             </div>
           </div>
         <% end %>

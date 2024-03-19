@@ -6,7 +6,7 @@ export default class extends Controller {
     console.log("Hello, Stimulus!");
     var swiper = new Swiper(".upcomingroomsSwiper", {
       slidesPerView: 4,
-      spaceBetween: 10,
+      spaceBetween: 40,
       centeredSlides: false,
       grabCursor: false,
       loop: false,
