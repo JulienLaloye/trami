@@ -1,29 +1,17 @@
 class RoomsController < ApplicationController
   def index
     if current_user
-      m = []
-      mood_array_params = [params[:Dreamy], params[:Energetic], params[:Relax], params[:Neutral], params[:Social], params[:Competitive], params[:Adventurous], params[:Chillin], params[:Creative], params[:Intellectual], params[:Exploratory], params[:Mindful]]
-      mood_array_params.select do |mood|
-        m << mood
-        @mood_parameters = {
-          mood: { name: m.compact }
-        }
-      end
-      room_filter_date
-      @rooms = Room.joins(activity: :mood).where(@mood_parameters)
+      possible_moods = ["relax", "dreamy", "energetic", "neutral", "social", "competitive", "adventurous", "chillin", "creative", "intellectual", "exploratory", "mindful"]
+
+      selected_mood_names = params.keys.map(&:downcase).select { |key| possible_moods.include?(key) }
+      Rails.logger.debug "Selected mood names: #{selected_mood_names.inspect}"
+
+      @rooms = Room.joins(activity: :mood).where(moods: { name: selected_mood_names })
       @rooms = @rooms.where(address: params[:address])
+      date_params
     else
-      room_filter_date
       @rooms = Room.where(address: params[:address])
-    end
-    # SELECT "rooms".* FROM "rooms" INNER JOIN "activities" ON "activities"."id" = "rooms"."activity_id" INNER JOIN "moods" "mood" ON "mood"."id" = "activities"."mood_id" WHERE "mood"."name" IN ($1, $2, $3) AND "rooms"."address" = $4
-    @markers = @rooms.geocoded.map do |room|
-      {
-        lat: room.latitude,
-        lng: room.longitude,
-        info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
-        marker_html: render_to_string(partial: "marker",locals: {room: room})
-      }
+      date_params
     end
   end
 
@@ -87,13 +75,13 @@ class RoomsController < ApplicationController
     params.require(:room).permit(:title, :description, :gender, :date, :max_part, :min_part, :address, :language, :min_age, :max_age, :latitutde, :longitude)
   end
 
-  def room_filter_date
+  def date_params
     if params[:date].present?
       dates = params[:date].split(" to ", 2)
-      date_from = DateTime.parse(dates[0])
-      date_to = DateTime.parse(dates[1])
-      @rooms = Room.all.select do |room|
-        room.date.strftime("%a, %d %b %Y") >= date_from.strftime("%a, %d %b %Y") && room.date.strftime("%a, %d %b %Y") <= date_to.strftime("%a, %d %b %Y")
+      @date_from = DateTime.parse(dates[0])
+      @date_to = DateTime.parse(dates[1])
+      @rooms = @rooms.select do |room|
+      room.date >= @date_from && room.date <= @date_to
       end
     else
       params[:date] = ''

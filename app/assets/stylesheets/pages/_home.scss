@@ -230,6 +230,9 @@ input::placeholder {
 .grayscale { filter: grayscale(100%); }
 .contrast { filter: contrast(160%); }
 .brightness { filter: brightness(0.1); }
+.brightness-1 {
+  filter: brightness(90%) saturate(340%);
+}
 
 .block-instruction {
   width: 210px;
@@ -263,4 +266,14 @@ input::placeholder {
 
 .about {
   cursor: pointer;
+
+  &:hover {
+    border: 1px solid $text-black-gray;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    width: 360px;
+    padding-bottom: 5px;
+    transition: 0.3s;
+  }
 }
