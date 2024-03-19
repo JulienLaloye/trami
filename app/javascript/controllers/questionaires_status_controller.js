@@ -9,7 +9,7 @@ export default class extends Controller {
 
   removeMood(event) {
     const mood = event.currentTarget.innerText
-    if (event.currentTarget.toggleAttribute("mood-card-select") === false) {
+    if (event.currentTarget.toggleAttribute("brightness-1") === false) {
       event.currentTarget.innerHTML = `<label class="main-font text-black-gray" for="mood">${mood}</label>`
     }
     console.log(this.element)

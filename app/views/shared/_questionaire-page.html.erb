@@ -11,7 +11,7 @@
         </div>
         <div class="carousel-inner carousel-inner-1">
           <div class="carousel-item active">
-            <div class="ques-mood carousel-content carousel-content-1">
+            <div class="mt-2 carousel-content carousel-content-1">
               <div class="question-1 text-center">
                 <h1 class="main-font weight-300 font-30 text-black-gray">What's your mood?</h1>
               </div>
@@ -36,7 +36,7 @@
                     <%= f.label :mood, Mood.all[5].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
                 </div>
-                <div class="mood-card-2 d-flex">
+                <div class="mood-card-2 mt-4 d-flex">
                   <div id="Adventurous" data-questionaires-target="moodElement" data-action="click->questionaires#mood click->questionaires-status#removeMood"class="pt-2 mood-card-adventurous mood-card d-flex justify-content-center flex-column align-items-center">
                     <%= f.label :mood, Mood.all[6].name.capitalize, value: params[:mood], class: "main-font text-black-gray" %>
                   </div>
@@ -60,7 +60,7 @@
             </div>
           </div>
           <div class="carousel-item">
-            <div class="ques-location d-flex flex-column align-items-end carousel-content carousel-content-1">
+            <div class="ques-location mt-3 d-flex flex-column align-items-end carousel-content carousel-content-1">
               <div class="mt-3 mb-5 text-center d-flex justify-content-center align-items-center">
                 <div class="question-2">
                   <h1 class="main-font weight-300 mb-0 mx-5 font-28 text-black-gray">Where's your current location?</h1>
