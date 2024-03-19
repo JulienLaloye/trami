@@ -10,6 +10,7 @@ export default class extends Controller {
       centeredSlides: true,
       grabCursor: true,
       loop: true,
+      effect: "coverflow",
 
       pagination: {
         el: ".swiper-pagination",
