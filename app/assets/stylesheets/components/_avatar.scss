@@ -93,3 +93,17 @@
   transition: 0.35s;
   box-shadow: 0px 0px 8px rgba(114, 99, 86, .4);
 }
+
+.creator-pin {
+  border: solid 1px;
+  border-color: $bg-light-gray;
+  background-color: $bg-beige-gray;
+  border-radius: 5px;
+  margin: 5px;
+  padding-right: 5px;
+  padding-left: 5px;
+  transition: 0.35s;
+  box-shadow: 0px 0px 10px rgba(114, 99, 86, .4);
+}
+
+
