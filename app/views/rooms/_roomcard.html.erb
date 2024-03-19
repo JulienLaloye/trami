@@ -1,9 +1,10 @@
-<div class="swiper swiper-1 roomcardSwiper" id="roomcard-swiper-css" data-controller="roomcard-swiper">
-        <div class="swiper-wrapper swiper-wrapper-1">
+<div  class="swiper roomcardSwiper" data-controller="roomcard-swiper">
+        <div class="swiper-wrapper"  style="transform: none;">
           <% @rooms.each do |room| %>
+           <div class="swiper-slide">
               <div class="card text-center w-90 mb-5">
+                <div class="row d-flex justify-content">
                 <%= link_to room_path(room), class: "text-decoration-none" do %>
-                <div class="row d-flex">
                     <div class="card-body room-slide-card d-flex " style="background-color: <%= room.activity.mood.color%>">
                       <div class= "card-header col" ><%= room.title %></div>
                       <br>

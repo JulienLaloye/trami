@@ -11,6 +11,6 @@ export default class extends Controller {
   click(event) {
     console.log(event.params.personality)
     this.element.insertAdjacentHTML("beforeend", `<input type="hidden" name="personality" id="personality" value="${event.params.personality}" />`)
-    console.log(event.currentTarget)
+    console.log(this.element)
   }
 }

@@ -65,7 +65,7 @@ input[type=text] {
   font-weight: 300;
 }
 
-.date {
+.date-1 {
   width: 250px;
   height: 40px;
   border-color: $border-brown;
@@ -259,4 +259,8 @@ input::placeholder {
 
 .swiper-pagination {
   --swiper-theme-color: #726356;
+}
+
+.about {
+  cursor: pointer;
 }
