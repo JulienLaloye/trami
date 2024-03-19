@@ -35,4 +35,9 @@
       <%= image_tag("#{user.gender}.png", alt: user.avatar.personality, class: "gender-avatar")%>
     </div>
   </div>
+  <% if user == @room.user %>
+    <div class="button-container">
+      <div class="creator-pin">Creator</div>
+    </div>
+  <% end %>
 </div>

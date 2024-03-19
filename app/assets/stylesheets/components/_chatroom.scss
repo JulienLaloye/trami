@@ -8,7 +8,6 @@
   flex-grow: 1;
 
   h1 {
-    border-bottom: 1px solid $gray-200;
     margin-bottom: 0;
     padding: 1rem;
   }
@@ -22,7 +21,9 @@
     display: flex; /* Display messages in a flex container */
     flex-direction: row; /* Messages will be displayed in rows */
     flex-wrap: wrap; /* Wrap messages to the next row if necessary */
-    justify-content: flex-start; /* Align messages to the start of the container */
+    justify-content: flex-start;
+    box-shadow: 0px 0px 10px rgba(114, 99, 86, .4);
+     /* Align messages to the start of the container */
   }
 
   .my-message,
@@ -46,7 +47,6 @@
   }
 
   #new_message {
-    border-top: 1px solid $gray-200;
     padding: 1rem;
 
     .form-group {
