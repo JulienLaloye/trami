@@ -1,10 +1,10 @@
-<div class="swiper upcomingroomsSwiper" data-controller="upcomingrooms-swiper">
+<div class="swiper upcomingroomsSwiper" id="dashboard-swiper" data-controller="upcomingrooms-swiper">
   <div class="swiper-wrapper" id="wrapper-room" style="transform: none;">
 
     <% @rooms.each do |room| %>
       <div class="swiper-slide" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>">
         <%= link_to room_path(room), class: "text-decoration-none" do %>
-          <li class="event-room" >
+          <li class="event-room">
             <h4 class="mb-0"> <%= room.title %> </h4>
             <br>
             <%= room.date.strftime("%b %d, %Y") %>
@@ -22,13 +22,13 @@
     <% if !@rooms.present? %>
       <h2 class="my-3"># My rooms</h2>
       <p>You have no upcoming rooms yet.</p>
-      <button class="start-button my-3">
-        <%= link_to "Explore", rooms_path, class: "button-content" %>
-      </button>
+
+      <%= link_to "Explore", rooms_path, class: "start-button button-content weight-300 my-3" %>
+
     <% end %>
 
   </div>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
-  <div class="swiper-pagination"></div>
+
 </div>
