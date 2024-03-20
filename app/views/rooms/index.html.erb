@@ -9,7 +9,7 @@
       <%= render 'roomcard' %>
   </div>
   <br><br>
-   <div class= "map d-flex">
+  <div class= "map d-flex">
   <div class="col-12">
     <%# Map display code %>
   <br><h1>Search yor place here.....</h1><br>
@@ -17,6 +17,6 @@
     data-controller="map"
     data-map-markers-value="<%= @markers.to_json %>"
     data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
- </div>
+</div>
 </div>
 </div>

@@ -1,7 +1,7 @@
 <div class="login-page div-blue-gradient d-flex">
   <div class="trami-img-bg"></div>
   <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :create }) do |f| %>
-    <div id="carouselExampleCaptions" class="carousel signup-carousel slide">
+    <div id="carouselExampleCaptions" class="mt-0 pt-0 carousel signup-carousel slide">
       <div class="carousel-indicators">
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active d-none" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="d-none" aria-label="Slide 2"></button>
@@ -9,7 +9,7 @@
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" class="d-none" aria-label="Slide 4"></button>
         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" class="d-none" aria-label="Slide 5"></button>
       </div>
-      <div data-controller="last-slide" class="carousel-inner">
+      <div data-controller="last-slide" class="carousel-inner inner-signup">
         <div class="carousel-item carousel-item-1 active">
           <div class="carousel-content">
             <div class="d-flex flex-column align-items-center">
