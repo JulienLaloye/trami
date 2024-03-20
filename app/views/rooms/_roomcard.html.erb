@@ -1,18 +1,20 @@
 <div  class="swiper roomcardSwiper" data-controller="roomcard-swiper">
-  <div class="swiper-wrapper"  style="transform: none;">
-    <% @rooms.each do |room| %>
-      <div class="swiper-slide">
-        <div class="card text-center w-90 mb-5">
-          <div class="d-flex justify-content-center">
-            <%= link_to room_path(room), class: "text-decoration-none" do %>
-              <div class="card-body room-slide-card d-flex " style="background-color: <%= room.activity.mood.color%>">
-                <div class= "card-header col" ><%= room.title %></div>
-                <br>
-                <div class= "card-description col"><%=room.description.capitalize %> </div>
-                <div class= "card-activity col"><%= room.activity.mood.name.capitalize %></div>
-                  <div class ="card-timeline col" > 🗓️  <%= room.date.strftime('%d %b. %y') %></div>
-                <div class=" card-footer room-info-banner d-flex flex-container justify-content-around">
-                  <div class ="col" >Age: <%= room.min_age %> - <%= room.max_age %></div>
+        <div class="swiper-wrapper"  style="transform: none;">
+          <% @rooms.each do |room| %>
+          <%= link_to room_path(room), class: "text-decoration-none" do %>
+           <div class="swiper-slide">
+              <div class="card text-center w-90 mb-6">
+                <div class="row col-12 d-flex justify-content">
+                    <div class="card-body room-slide-card d-flex " style="background-color: <%= room.activity.mood.color%>">
+                      <div class= "card-header col" ><h3><%= room.title %></h3></div>
+                      <br>
+                      <div class= "card-description"><h3><%=room.description.capitalize %></h3></div>
+                      <div class=" row room-info-banner">
+                        <div class ="col-6" > Age: <%= room.min_age %> - <%= room.max_age %></div>
+                        <div class ="col-6" > 🗓️ <%= room.date.strftime('%d %b %y') %></div>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
               <% end %>
             </div>
