@@ -7,11 +7,35 @@ class RoomsController < ApplicationController
       Rails.logger.debug "Selected mood names: #{@selected_mood_names.inspect}"
 
       @rooms = Room.joins(activity: :mood).where(moods: { name: @selected_mood_names })
-      @rooms = @rooms.where(address: params[:address])
-      date_params
+      if params[:date].present?
+        dates = params[:date].split(" to ", 2)
+        @date_from = DateTime.parse(dates[0])
+        @date_to = DateTime.parse(dates[1])
+        @rooms = @rooms.where("date > ? AND date < ?", @date_from, @date_to)
+      else
+        params[:date] = ''
+        @rooms = @rooms.where(date: params[:date])
+      end
     else
-      @rooms = Room.where(address: params[:address])
-      date_params
+      if params[:date].present?
+        dates = params[:date].split(" to ", 2)
+        @date_from = DateTime.parse(dates[0])
+        @date_to = DateTime.parse(dates[1])
+        @rooms = Room.where("date > ? AND date < ?", @date_from, @date_to)
+      else
+        params[:date] = ''
+        @rooms = Room.where(date: params[:date])
+      end
+    end
+    @rooms = @rooms.where(address: params[:address])
+
+    @markers = @rooms.geocoded.map do |room|
+      {
+        lat: room.latitude,
+        lng: room.longitude,
+        info_window_html: render_to_string(partial: "info_window", locals: {room: room}),
+        marker_html: render_to_string(partial: "marker",locals: {room: room}),
+      }
     end
   end
 
@@ -73,19 +97,5 @@ class RoomsController < ApplicationController
 
   def room_params
     params.require(:room).permit(:title, :description, :gender, :date, :max_part, :min_part, :address, :language, :min_age, :max_age, :latitutde, :longitude)
-  end
-
-  def date_params
-    if params[:date].present?
-      dates = params[:date].split(" to ", 2)
-      @date_from = DateTime.parse(dates[0])
-      @date_to = DateTime.parse(dates[1])
-      @rooms = @rooms.select do |room|
-      room.date >= @date_from && room.date <= @date_to
-      end
-    else
-      params[:date] = ''
-      @rooms = Room.where(date: params[:date])
-    end
   end
 end
