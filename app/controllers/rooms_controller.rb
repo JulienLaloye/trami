@@ -3,10 +3,10 @@ class RoomsController < ApplicationController
     if current_user
       possible_moods = ["relax", "dreamy", "energetic", "neutral", "social", "competitive", "adventurous", "chillin", "creative", "intellectual", "exploratory", "mindful"]
 
-      selected_mood_names = params.keys.map(&:downcase).select { |key| possible_moods.include?(key) }
-      Rails.logger.debug "Selected mood names: #{selected_mood_names.inspect}"
+      @selected_mood_names = params.keys.map(&:downcase).select { |key| possible_moods.include?(key) }
+      Rails.logger.debug "Selected mood names: #{@selected_mood_names.inspect}"
 
-      @rooms = Room.joins(activity: :mood).where(moods: { name: selected_mood_names })
+      @rooms = Room.joins(activity: :mood).where(moods: { name: @selected_mood_names })
       @rooms = @rooms.where(address: params[:address])
       date_params
     else

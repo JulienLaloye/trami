@@ -12,12 +12,11 @@ export default class extends Controller {
   displayColor(event) {
     const moodName = event.currentTarget;
     const moodColor = moodName.dataset.color;
-    moodName.style.backgroundColor = moodColor;
+    moodName.style.backgroundImage = `radial-gradient(circle, ${moodColor} 45%, transparent, transparent)`;
   }
-
   // Method to handle mouseout event
   resetColor(event) {
     const moodName = event.currentTarget;
-    moodName.style.backgroundColor = "";
+    moodName.style.backgroundImage = "";
   }
 }

@@ -1,32 +1,39 @@
 .login-box {
-  width: 75%;
-  margin-top: 20px;
-  padding-top: 70px;
+  width: 70%;
+  margin-top: 10px;
+  padding-top: 50px;
   border: transparent;
   border-radius: 20px;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 1);
   box-shadow: 0px 0px 20px rgba(114, 99, 86, .35);
 }
 
 .trami-img-bg {
+  position: absolute;
   width: 50%;
   background-image: url("trami-black-img.png");
   background-size: 830px 830px;
   background-repeat: no-repeat;
-  height: 100vh;
+  height: 85vh;
   background-position-x: 160%;
-  background-position-y: 200%;
+  background-position-y: 50%;
+}
+
+.login-page {
+  background: white;
+  background: linear-gradient(317deg, #FFCF96 0%, white 65%);
 }
 
 .div-orange-gradient {
   padding-top: 50px;
-  background: white;
-  background: linear-gradient(317deg, #FFCF96 0%, white 70%);
-  height: 100vh;
+
+  height: 85vh;
   padding-bottom: 60px;
 }
 
 .div-orange {
+  position: relative;
+  left: 50%;
   width: 50%;
 }
 
@@ -38,7 +45,7 @@
   padding-top: 8px;
   padding-bottom: 8px;
   background-color: $button-dark-brown;
-  width: 350px;
+  width: 320px;
   border: transparent;
   border-radius: 10px;
   color: white;
