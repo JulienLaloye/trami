@@ -12,7 +12,7 @@
         <div class="d-flex justify-content-start">
           <div class="d-flex align-items-center px-0">
             <h2 class="mb-0 me-4 weight-300"># My upcoming rooms</h2>
-            <%= link_to "+", root_path, class: "round-button button-content weight-300" %>
+            <%= link_to "+", rooms_path, class: "round-button button-content weight-300" %>
           </div>
         </div>
 
@@ -20,16 +20,8 @@
       </div>
     </div>
     <%# Reviews & My-Rooms %>
-    <div class="row my-reviews-and-rooms d-flex justify-content-between mb-5 px-4">
-
-      <div class="col-6 reviews">
-        <div>
-          <h2 class="my-2 review-height d-flex align-items-center"># My reviews</h2>
-          <p>You have no reviews yet.</p>
-        </div>
-      </div>
-
-      <div class="col-6 my-rooms">
+    <div class="row my-reviews-and-rooms mb-5 px-4">
+      <div class="col-12 my-rooms">
 
         <% if @my_rooms.present? %>
           <div class="d-flex justify-content-start">
