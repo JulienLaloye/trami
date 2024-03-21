@@ -97,7 +97,69 @@ activities = [
   { mood: 'mindful', category: 'mindful activities', activity: 'Mindful breathing workshop' }
 ]
 
+
 puts "Seeding activities "
+
+demo_day = Activity.new(
+  title: "Coding event",
+  mood: Mood.find_by(name: "intellectual"),
+  category: "networking",
+  interests: ["coding", "startups", "computers"]
+)
+demo_day.save!
+
+wine_tasting = Activity.new(
+  title: "Wine tasting",
+  mood: Mood.find_by(name: "social"),
+  category: "discovery",
+  interests: ["wine", "alcohol", "bottles"]
+)
+
+wine_tasting.save!
+
+clubbing = Activity.new(
+  title: "Clubbing",
+  mood: Mood.find_by(name: "energetic"),
+  category: "night-out",
+  interests: ["music", "noise", "bass"]
+)
+
+clubbing.save!
+
+diner = Activity.new(
+  title: "Diner out",
+  mood: Mood.find_by(name: "social"),
+  category: "food",
+  interests: ["food", "discussion"]
+)
+
+diner.save!
+
+bowling = Activity.new(
+  title: "Bowling",
+  mood: Mood.find_by(name: "competitive"),
+  category: "sport",
+  interests: ["balls", "sport"]
+)
+bowling.save!
+
+museum = Activity.new(
+  title: "Museum",
+  mood: Mood.find_by(name: "intellectual"),
+  category: "culture",
+  interests: ["paintings", "history"]
+)
+museum.save!
+
+group_study = Activity.new(
+  title: "Group study",
+  mood: Mood.find_by(name: "intellectual"),
+  category: "studying",
+  interests: ["studying"]
+)
+
+group_study.save!
+
 activities.each do |a|
   activity = Activity.new(
     title: a[:activity],
@@ -226,7 +288,7 @@ jerry = User.new(
 
 jerry.save!
 
-200.times do
+10.times do
   username = Faker::Name.first_name
   c += 1
   username = "#{username}#{c}" if usernames.include?(username)
@@ -287,6 +349,142 @@ titles = [
   { activity: 'Mindful breathing workshop', titles: ['Breath of Serenity Seminar', 'Mindful Respiratory Retreat', 'Conscious Breathing Workshop', 'Zen Breath Awareness Session', 'Mindful Breathing Mastery Class'] },
 ]
 
+le_wagon = Room.new(
+  title: "Le Wagon Demo Day",
+  description: "Part time batch demo-day without Ivan",
+  gender: "no preference",
+  date: "23/03/2024",
+  min_part: 4,
+  max_part: 34,
+  address: "Rudi-Dutschke-Straße 26, 10969 Berlin",
+  language: "en",
+  activity: demo_day,
+  user: julien,
+  finished: false, #how to do it constantly in the code?
+  min_age: 18,
+  max_age: 99,
+  participants: 1
+)
+
+le_wagon.save!
+
+Appointment.create!(user: thu, room: le_wagon, ownership: false, status: 1)
+Appointment.create!(user: jerry, room: le_wagon, ownership: false, status: 1)
+
+amazing_german_tasting = Room.new(
+  title: "Amazing German Wine Tasting",
+  description: "Have a nice glass with me! With an amazing wine selection! Amazing!",
+  gender: "women",
+  date: "23/03/2024",
+  min_part: 2,
+  max_part: 5,
+  address: "Taubenstraße 20, 10117 Berlin",
+  language: "ger",
+  activity: wine_tasting,
+  user: thu,
+  finished: false,
+  min_age: 20,
+  max_age: 35,
+  participants: 1
+)
+
+amazing_german_tasting.save!
+
+bowling_competition = Room.new(
+  title: "Bowling Competition",
+  description: "Competition of bowling, everyone is welcome, the level is high, we are ready, you can win cash",
+  gender: "no preference",
+  date: "23/03/2024",
+  min_part: 5,
+  max_part: 10,
+  address: "Taubenstraße 20, 10117 Berlin",
+  language: "en",
+  activity: bowling,
+  user: jerry,
+  finished: false,
+  min_age: 25,
+  max_age: 60,
+  participants: 1
+)
+
+bowling_competition.save!
+
+berghain_queuying = Room.new(
+  title: "Berghain queuyng",
+  description: "Let s all go at once at the doors, they have to let us in",
+  gender: "no preference",
+  date: "23/03/2024",
+  min_part: 5,
+  max_part: 20,
+  address: "Am Wriezener bhf, 10243 Berlin",
+  language: "en",
+  activity: clubbing,
+  user: bhawana,
+  finished: false,
+  min_age: 25,
+  max_age: 60,
+  participants: 1
+)
+
+berghain_queuying.save!
+
+mac_do = Room.new(
+  title: "Mac Donalds restaurant",
+  description: "Let s have a dinner in this fine restaurant of good meet and social-care.",
+  gender: "women",
+  date: "23/03/2024",
+  min_part: 3,
+  max_part: 14,
+  address: "Friedrichstraße 141-142, 10117 Berlin",
+  language: "en",
+  activity: diner,
+  user: User.all.sample,
+  finished: false,
+  min_age: 25,
+  max_age: 60,
+  participants: 1
+)
+
+mac_do.save!
+
+studying_together = Room.new(
+  title: "Study session together!!!",
+  description: "Hey girlssss!! Would love to study with other people! Gen Z goes first, XOXO",
+  gender: "women",
+  date: "23/03/2024",
+  min_part: 3,
+  max_part: 9,
+  address: "Dudenstraße 18-20, 10965 Berlin",
+  language: "en",
+  activity: group_study,
+  user: User.all.sample,
+  finished: false,
+  min_age: 18,
+  max_age: 24,
+  participants: 1
+)
+
+studying_together.save!
+
+museum_visit = Room.new(
+  title: "BODE MUSEUM: SATURDAY 14HR",
+  description: "I would like to invite you to visit the museum with me, best regards, SEBASTIAN.",
+  gender: "men",
+  date: "23/03/2024",
+  min_part: 2,
+  max_part: 4,
+  address: "Am Kupfergraben, 10178 Berlin",
+  language: "en",
+  activity: museum,
+  user: User.all.sample,
+  finished: false,
+  min_age: 60,
+  max_age: 70,
+  participants: 1
+)
+
+museum_visit.save!
+
 Activity.all.each do |activity|
   rand(1..5).times do
     activity_title = activity.title
@@ -325,6 +523,7 @@ end
 puts "Rooms seeded"
 #seed the appointments
 puts "_______________________"
+
 Room.all.each do |room|
   creator = room.user
   participants = 0

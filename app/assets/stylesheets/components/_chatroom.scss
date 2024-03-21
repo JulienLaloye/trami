@@ -6,51 +6,47 @@
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+}
 
-  h1 {
+.chatroom h1 {
+  margin-bottom: 0;
+  padding: 1rem;
+}
+
+.chatroom .messages {
+  height: calc(100% - 2rem);
+  overflow: scroll;
+  padding: 2rem;
+  background-color: $input-light-gray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column; /* Changed to column to stack messages vertically */
+  box-shadow: 0px 0px 10px rgba(114, 99, 86, .4);
+}
+
+.chatroom .my-message,
+.chatroom .other-message {
+  width: 40%; /* Changed width to max-width */
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 2px;
+}
+
+.chatroom .my-message {
+  background-color: #DCF8C6;
+  align-self: flex-end; /* Aligns your messages to the right */
+}
+
+.chatroom .other-message {
+  background-color: #EAEAEA;
+  align-self: flex-start; /* Aligns others' messages to the left */
+}
+#new_message {
+  padding: 1rem;
+  height: 50px;
+  .form-group {
     margin-bottom: 0;
-    padding: 1rem;
-  }
-
-  .messages {
-    height: calc(100% - 2rem);
-    overflow: scroll;
-    padding: 1rem;
-    background-color: $input-light-gray;
-    border-radius: 10px;
-    display: flex; /* Display messages in a flex container */
-    flex-direction: row; /* Messages will be displayed in rows */
-    flex-wrap: wrap; /* Wrap messages to the next row if necessary */
-    justify-content: flex-start;
-    box-shadow: 0px 0px 10px rgba(114, 99, 86, .4);
-     /* Align messages to the start of the container */
-  }
-
-  .my-message,
-  .other-message {
-    width: 50%; /* Each message takes up 50% of the container */
-    box-sizing: border-box; /* Include padding and border in the width */
-    padding: 10px;
-    margin: 5px; /* Adjust margin as needed */
-    border-radius: 10px;
-    box-shadow: 2px 2px 2px;
-  }
-
-  .my-message {
-    background-color: #DCF8C6; /* Example background color for your messages */
-    align-self: flex-end; /* Align your messages to the end of the container */
-  }
-
-  .other-message {
-    background-color: #EAEAEA; /* Example background color for other person's messages */
-    align-self: flex-start; /* Align other person's messages to the start of the container */
-  }
-
-  #new_message {
-    padding: 1rem;
-
-    .form-group {
-      margin-bottom: 0;
-    }
   }
 }
