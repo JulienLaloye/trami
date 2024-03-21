@@ -1,8 +1,8 @@
 class RoomsController < ApplicationController
   def index
-    if current_user
-      possible_moods = ["relax", "dreamy", "energetic", "neutral", "social", "competitive", "adventurous", "chillin", "creative", "intellectual", "exploratory", "mindful"]
-
+    possible_moods = ["relax", "dreamy", "energetic", "neutral", "social", "competitive", "adventurous", "chillin", "creative", "intellectual", "exploratory", "mindful"]
+    cap = possible_moods.each(&:capitalize)
+    if params[cap].present?
       @selected_mood_names = params.keys.map(&:downcase).select { |key| possible_moods.include?(key) }
       Rails.logger.debug "Selected mood names: #{@selected_mood_names.inspect}"
 

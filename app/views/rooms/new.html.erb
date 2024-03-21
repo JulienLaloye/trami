@@ -1,47 +1,49 @@
 <div class="main-container-form">
-  <h1 class="fadein-1 d-flex justify-content-center mb-5"> Create a new room! </h1>
-  <div class="fadein-2">
-    <h3 class="d-flex justify-content-center mb-5"> How do you feel for this event?</h3>
-    <div class ="container" data-controller="toggle-new">
-      <div class="d-flex flex-column align-items-center text-center px-5 mx-5">
-        <div class="d-flex">
-          <% Mood.all.first(6).each do |mood| %>
-            <div data-controller="mood-color" data-toggle-new-target="reset" data-action="click->toggle-new#fire mouseover->mood-color#displayColor mouseout->mood-color#resetColor" data-mood-target="moodName" class="mood-button d-flex justify-content-center align-items-center mx-1" data-color="<%= mood.color %>"> <%= mood.name.capitalize %> </div>
+  <div class="new-form-container">
+    <h1 class="fadein-1 d-flex justify-content-center text-black-gray font-60 pb-3 mb-5"> Create a new room! </h1>
+    <div class="fadein-2">
+      <h3 class="d-flex justify-content-center main-font weight-300 text-black-gray font-22 mb-3"> How do you feel for this event?</h3>
+      <div class ="container" data-controller="toggle-new">
+        <div class="d-flex flex-column align-items-center text-center px-5 mx-5">
+          <div class="d-flex">
+            <% Mood.all.first(6).each do |mood| %>
+              <div data-controller="mood-color" data-toggle-new-target="reset" data-action="click->toggle-new#fire mouseover->mood-color#displayColor mouseout->mood-color#resetColor" data-mood-target="moodName" class="mood-button d-flex justify-content-center align-items-center mx-1" data-color="<%= mood.color %>"> <%= mood.name.capitalize %> </div>
+            <% end %>
+          </div>
+          <div class="d-flex">
+            <% Mood.all.last(6).each do |mood| %>
+              <div data-controller="mood-color" data-toggle-new-target="reset" data-action="click->toggle-new#fire mouseover->mood-color#displayColor mouseout->mood-color#resetColor" data-mood-target="moodName" class="mood-button d-flex justify-content-center align-items-center mx-1" data-color="<%= mood.color %>"> <%= mood.name.capitalize %> </div>
+            <% end %>
+          </div>
+        </div>
+        <div data-toggle-new-target="togglableElement" class="d-none mt-5 px-5">
+          <%= simple_form_for @room do |f| %>
+          <%= f.error_notification %>
+
+          <%= f.input :title, required: true %>
+          <%= f.input :description, required: true %>
+
+          <%= f.input :gender, collection: Room::GENDER_OPTIONS, prompt: "Select Gender", required: true %>
+
+          <%= f.input :date, as: :date, required: true,
+                      input_html: { min: Date.today.to_s } %>
+          <br>
+          <br>
+          <%= f.input :min_part, required: true, input_html: { min: 2 } %>
+          <%= f.input :max_part, required: true, input_html: { min: 2 } %>
+
+          <%= f.input :language, required: true %>
+
+          <%= f.input :min_age, required: true, input_html: { min: 18, max: 99 } %>
+          <%= f.input :max_age, required: true, input_html: { min: 18, max: 99 } %>
+
+          <%= f.input :activity_id, collection: Activity.all, label_method: :title, value_method: :id, prompt: "Select Activity", required: true %>
+          <br>
+          <button class="start-button">
+            <%= f.button :submit, "Create Room", class:"button-content" %>
+          </button>
           <% end %>
         </div>
-        <div class="d-flex">
-          <% Mood.all.last(6).each do |mood| %>
-            <div data-controller="mood-color" data-toggle-new-target="reset" data-action="click->toggle-new#fire mouseover->mood-color#displayColor mouseout->mood-color#resetColor" data-mood-target="moodName" class="mood-button d-flex justify-content-center align-items-center mx-1" data-color="<%= mood.color %>"> <%= mood.name.capitalize %> </div>
-          <% end %>
-        </div>
-      </div>
-      <div data-toggle-new-target="togglableElement" class="d-none mt-5 px-5">
-        <%= simple_form_for @room do |f| %>
-        <%= f.error_notification %>
-
-        <%= f.input :title, required: true %>
-        <%= f.input :description, required: true %>
-
-        <%= f.input :gender, collection: Room::GENDER_OPTIONS, prompt: "Select Gender", required: true %>
-
-        <%= f.input :date, as: :date, required: true,
-                    input_html: { min: Date.today.to_s } %>
-        <br>
-        <br>
-        <%= f.input :min_part, required: true, input_html: { min: 2 } %>
-        <%= f.input :max_part, required: true, input_html: { min: 2 } %>
-
-        <%= f.input :language, required: true %>
-
-        <%= f.input :min_age, required: true, input_html: { min: 18, max: 99 } %>
-        <%= f.input :max_age, required: true, input_html: { min: 18, max: 99 } %>
-
-        <%= f.input :activity_id, collection: Activity.all, label_method: :title, value_method: :id, prompt: "Select Activity", required: true %>
-        <br>
-        <button class="start-button">
-          <%= f.button :submit, "Create Room", class:"button-content" %>
-        </button>
-        <% end %>
       </div>
     </div>
   </div>

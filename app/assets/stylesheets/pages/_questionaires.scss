@@ -249,8 +249,8 @@
 }
 
 .elementToFadeInAndOut {
-  -webkit-animation: fadeinout 4s linear forwards;
-  animation: fadeinout 4s linear forwards;
+  -webkit-animation: fadeinout 3.3s linear forwards;
+  animation: fadeinout 3.3s linear forwards;
 }
 
 @-webkit-keyframes fadeinout {
@@ -264,7 +264,7 @@
 }
 
 .fadein-3 {
-  animation-delay: 4s;
+  animation-delay: 3.3s;
   opacity: 0;
   animation-name: fadeIn;
   animation-duration: 1s;
