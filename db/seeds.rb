@@ -159,6 +159,73 @@ puts Faker::Date.between(from: '1945-01-01', to: 20.years.ago)
 usernames = []
 c = 0
 #seed the users:
+julien = User.new(
+  username: "julien_lewagon",
+  email: "julien@julien.julien",
+  nationality: "french",
+  address: "Paris",
+  password: "1234567",
+  description: "I'm a loyal companion, his unwavering support and genuine kindness making me a trusted confidant to all who know me!",
+  gender: "male",
+  birthdate: "19/02/1996",
+  ranking: Ranking.all.sample,
+  mood: Mood.all.sample,
+  avatar: Avatar.all.sample,
+  status: "traveller"
+)
+
+julien.save!
+
+thu = User.new(
+  username: "thu_lewagon",
+  email: "thu@thu.thu",
+  nationality: "german",
+  address: "Berlin",
+  password: "1234567",
+  description: "I am a charming conversationalist, with a quick wit and a penchant for making everyone feel at ease!!",
+  gender: "female",
+  birthdate: "10/04/1993",
+  ranking: Ranking.all.sample,
+  mood: Mood.all.sample,
+  avatar: Avatar.all.sample,
+  status: "local"
+)
+
+thu.save!
+
+bhawana = User.new(
+  username: "bhawana_lewagon",
+  email: "bhawana@bhawana.bhawana",
+  nationality: "indian",
+  address: "Berlin",
+  password: "1234567",
+  description: "I'm an empathetic listener, always ready to offer a comforting shoulder and wise advice to my friends",
+  gender: "male",
+  birthdate: "21/09/1994",
+  ranking: Ranking.all.sample,
+  mood: Mood.all.sample,
+  avatar: Avatar.all.sample,
+  status: "local"
+)
+bhawana.save!
+
+jerry = User.new(
+  username: "jerry_lewagon",
+  email: "jerry@jerry.jerry",
+  nationality: "thai",
+  address: "Berlin",
+  password: "1234567",
+  description: "I'm always ready to bring joy to any gathering with my infectious laughter and positive energy!",
+  gender: "female",
+  birthdate: "10/12/1998",
+  ranking: Ranking.all.sample,
+  mood: Mood.all.sample,
+  avatar: Avatar.all.sample,
+  status: "traveller"
+)
+
+jerry.save!
+
 200.times do
   username = Faker::Name.first_name
   c += 1
