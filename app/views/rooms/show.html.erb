@@ -21,7 +21,7 @@
     <% if current_user &&  @currentuser_rooms.include?(@room)%>
       <% if @room.appointments.find_by(user: current_user).status == 1%>
         <div class="row" data-controller="show-page-button">
-          <p>This room has <strong style="font-size: 20px"><%= @room.participants - 1 %></strong> other <button class="round-button" data-action="click->show-page-button#toggleVisibility" data-show-page-button-target="toggleButton" style="height: auto; width: auto; background-color: rgb(62, 62, 62);">participants</button></p>
+          <p>This room has <strong style="font-size: 20px"><%= @room.participants - 1 %></strong> other <button class="round-button" data-action="click->show-page-button#toggleVisibility" data-show-page-button-target="toggleButton" style="height: auto; width: auto; background-color: rgb(62, 62, 62); margin: 2px;">participants</button></p>
           <div class="d-none d-flex" data-show-page-button-target="allParticipants">
             <div data-controller="upcomingrooms-swiper">
               <% @room.appointments.reject{ |appointment| appointment.user == current_user || appointment.status != 1 }.each do |appointment| %>
@@ -40,14 +40,16 @@
           <h3 class="text-center"> You're participation is still <strong>pending</strong>... Wait a bit ....</h3>
       <% end %>
       <% elsif current_user && @room.participants < @room.max_part %>
+      <div style="text-align: center;">
         <%= form_with url: appointments_path, method: :post do |f| %>
             <%= f.hidden_field :status, value: 0 %>
             <%= f.hidden_field :user_id, value: current_user.id %>
             <%= f.hidden_field :room_id, value: @room.id %>
             <%= f.hidden_field :presence, value: false%>
             <%= f.hidden_field :ownership, value: false %>
-            <%= f.submit "Click here to join!", class: "search-btn main-font" %>
+            <%= f.submit "Join this amazing event!", class: "explore-btn" %>
         <% end %>
+        </div>
       <% elsif  @room.participants >= @room.max_part %>
         <h3 class="text-center" style="background-color = orange;"> This room is <strong>full</strong>!! Sorry ...</h3>
       <% else %>

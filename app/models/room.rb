@@ -8,10 +8,10 @@ class Room < ApplicationRecord
   geocoded_by :address
 
   GENDER_OPTIONS = ["men", "women", "no preference"]
-  validates :title, :description, :gender, :date, :max_part, :min_part, :language, presence: true
+  validates :description, :gender, :date, :max_part, :min_part, :language, presence: true
   # validates :description, length: { in: (50...400) }
   validates :min_age, numericality: { greater_than_or_equal_to: 18, message: "must be at least 18" }
-  validates :max_age, numericality: { less_than: 99, message: "must be bellow 99" }
+  # validates :max_age, numericality: { less_than: 99, message: "must be bellow 99" }
   # max age must be > min age
   validates_comparison_of :max_age, greater_than: :min_age
   validates :gender, inclusion: { in: GENDER_OPTIONS }
