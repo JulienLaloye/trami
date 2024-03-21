@@ -6,10 +6,9 @@ export default class extends Controller {
   connect() {
     console.log("roomcard connected")
     var swiper = new Swiper(".roomcardSwiper", {
-      slidesPerView: 3,
-      spaceBetween: 40,
+      slidesPerView: 2,
       centeredSlides: false,
-      loop: true,
+      loop: false,
 
       navigation: {
         nextEl: ".swiper-button-next",

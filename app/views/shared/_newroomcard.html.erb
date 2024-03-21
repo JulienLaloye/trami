@@ -1,0 +1,23 @@
+<div class="swiper roomcardSwiper d-flex justify-content-center" data-controller="roomcard-swiper">
+  <div class="swiper-wrapper">
+    <% @rooms.each do |room| %>
+      <div class="swiper-slid room-slide">
+        <%= link_to room_path(room), class: "text-decoration-none" do %>
+          <div class="d-flex justify-content-center">
+            <div class="card-body room-slide-card d-flex" style="background-color: <%= room.activity.mood.color%>">
+              <div class= "card-header col"><h3><%= room.title %></h3></div>
+              <br>
+              <div class= "card-description"><h3><%=room.description.capitalize %></h3></div>
+              <div class="row room-info-banner">
+                <div class ="col-6" > Age: <%= room.min_age %> - <%= room.max_age %></div>
+                <div class ="col-6" > 🗓️ <%= room.date.strftime('%d %b %y') %></div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div>
