@@ -485,7 +485,7 @@ museum_visit = Room.new(
 
 museum_visit.save!
 
-Activity.all.each do |activity|
+Activity.all.reject { |activity| ["Coding event","Group study","Wine tasting", "Clubbing", "Diner out", "Bowling", "Museum" ].include?(activity.title)}.each do |activity|
   rand(1..5).times do
     activity_title = activity.title
     title_array = []
