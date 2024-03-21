@@ -9,7 +9,7 @@ export default class extends Controller {
   }
 
   mood(event) {
-    const c  = event.currentTarget.classList.toggle("mood-card-select")
+    const c  = event.currentTarget.classList.toggle("brightness-1")
     console.log(c)
     //this.moodElementTargets.forEach((mood) => {
     //})

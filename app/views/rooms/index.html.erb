@@ -1,22 +1,27 @@
-<div class="container" style=" background-image: linear-gradient(rgba(0, 0, 0, .1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, .1) .1em, transparent .1em);
-  background-size: 2em 2em;" >
-
-  <%# All Room card swiper display %>
-  <div>
-    <h1>Avalibe Rooms for you.........</h1>
+<div id="index-main">
+  <div clas="d-flex">
+    <%= link_to "←", root_path, class: "mt-2 r-back-btn" %>
+    <%= link_to "+", new_room_path, class: "mt-2 r-new-btn" %>
+    <div class="left pt-2 d-flex flex-column align-items-start">
+      <div class="room-search-bar">
+        <%= form_with url: rooms_path, method: :get do |f| %>
+          <%= f.text_field :address, placeholder: "location", class: "rr-location main-font" %>
+          <%= f.text_field :date, data: { controller: "flatpickr" }, placeholder: "from - to", class: "date r-date-1 main-font"%>
+          <%= f.submit "search", class: "r-search-btn main-font" %>
+        <% end %>
+      </div>
+      <h1 class="px-5 main-font weight-300 font-28 mb-3 mx-4 mt-2 text-black-gray">Activities avaliable through your search</h1>
+      <div class="half-bottom">
+        <div class="all-rooms-container">
+          <div class="all-rooms d-flex flex-column align-items-start">
+            <%= render 'roomcard' %>
+          </div>`
+        </div>
+      </div>
+    </div>
+    <div class="d-flex justify-content-end rooms-map">
+      <div style="width: 100%; height: 84vh;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>"
+      data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+    </div>
   </div>
-  <div class="row" >
-      <%= render 'roomcard' %>
-  </div>
-  <br><br>
-   <div class= "map d-flex">
-  <div class="col-12">
-    <%# Map display code %>
-  <br><h1>Search yor place here.....</h1><br>
-  <div style="width: 100%; height: 600px; z-index: 100"
-    data-controller="map"
-    data-map-markers-value="<%= @markers.to_json %>"
-    data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
- </div>
-</div>
 </div>

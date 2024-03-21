@@ -9,6 +9,7 @@
   --gradFourYPos: 80%;
   background-color: floralwhite;
   background-image: radial-gradient(at var(--gradOneXPos) var(--gradOneYPos), $mood-trami-gradient 0, transparent 50%), radial-gradient(at var(--gradTwoXPos) var(--gradTwoYPos), $mood-adventurous 0, transparent 50%), radial-gradient(at var(--gradThreeXPos) var(--gradThreeYPos), $mood-creative 0, transparent 50%), radial-gradient(at var(--gradFourXPos) var(--gradFourYPos), $mood-trami-gradient 0, transparent 50%);
+  height: 85vh;
 }
 
 .mood-card {
@@ -19,6 +20,7 @@
   &:hover {
     transform: scale(1.3);
     transition: 0.3s;
+    filter: brightness(90%) saturate(350%);
   }
 }
 
@@ -50,7 +52,7 @@
   background-image: radial-gradient(circle, $mood-adventurous 45%, transparent, transparent);
 }
 
-.mood-card-chllin {
+.mood-card-chillin {
   background-image: radial-gradient(circle, $mood-chllin 45%, transparent, transparent);
 }
 
@@ -93,8 +95,10 @@
 }
 
 .ques-welcome {
+  position: absolute;
   font-family: $headers-font;
-  font-size: 65px;
+  font-size: 160px;
+  top: 300px
 }
 
 .question-1 {
@@ -119,11 +123,11 @@
 
 .trami-bg {
   background-image: url("trami-black-img.png");
-  background-size: 830px 830px;
+  background-size: 800px 800px;
   background-repeat: no-repeat;
   background-position-x: -20%;
   background-position-y: bottom;
-  height: 100vh;
+  height: 83vh;
 }
 
 .location-bar, .date-location {
@@ -212,16 +216,58 @@
 
 .ques-next-btn {
   position: absolute;
-  top: 200px;
+  top: 220px;
   right: 50px;
-}
-
-.ques-mood {
-  padding-top: 30px;
 }
 
 .ques-location {
   position: absolute;
   right: 190px;
   top: 80px;
+}
+
+.wavy {
+  animation-name: wavy;
+  animation-duration: 1.3s;
+  animation-timing-function: ease;
+  animation-iteration-count: infinite;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+@keyframes wavy {
+  0% {
+    top: 0px;
+  }
+  50% {
+    top: -15px;
+  }
+  100% {
+    top: 0px;
+  }
+}
+
+.elementToFadeInAndOut {
+  -webkit-animation: fadeinout 3.3s linear forwards;
+  animation: fadeinout 3.3s linear forwards;
+}
+
+@-webkit-keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+  0%,100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.fadein-3 {
+  animation-delay: 3.3s;
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
 }

@@ -16,7 +16,7 @@ Geocoder.configure(
   # always_raise: [],
 
   # Calculation options
-  # units: :mi,                 # :km for kilometers or :mi for miles
+  units: :km,                   # :km for kilometers or :mi for miles
   # distances: :linear          # :spherical or :linear
 
   # Cache configuration
@@ -24,10 +24,4 @@ Geocoder.configure(
   #   expiration: 2.days,
   #   prefix: 'geocoder:'
   # }
-
-  Geocoder.configure(
-  # [...]
-  units: :km, # Defaults to miles (:mi)
-  # [...]
-)
 )

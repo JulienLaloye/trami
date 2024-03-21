@@ -6,33 +6,19 @@
     <% message_class = "other-message" %>
 <% end %>
 
-<div class="container chatroom">
+<div class="container chatroom" data-controller="chatroom-subscription"
+  data-chatroom-subscription-chatroom-id-value="<%= @room.id %>">
   <h1>Chatroom</h1>
     <div>
     </div>
-    <div class="messages">
+    <div class="messages" data-chatroom-subscription-target="messages">
       <% @chatroom.messages.each do |message| %>
-        <% if message.user == current_user %>
-          <% background_color = "#b2f0ff" %>
-          <% message_class = "my-message" %>
-          <% username = "You" %>
-        <% else %>
-          <% background_color = "#f4ffa1" %>
-          <% message_class = "other-message" %>
-          <% username = message.user.username %>
-        <% end %>
-        <div class= <%= message_class %> id="message-<%= message.id %>" style="background-color: <%= background_color%>">
-          <small>
-            <strong><%= username %></strong>
-            <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
-          </small>
-          <p><%= message.content %></p>
-        </div>
+          <%= render "messages/message", message: message %>
       <% end %>
       </div>
   <%= simple_form_for [@room, @message],
-    html: {class: "d-flex"} do |f|
-  %>
+  html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex" } do |f|
+%>
   <%= f.input :content,
     label: false,
     placeholder: "Message ##{@room.title}",

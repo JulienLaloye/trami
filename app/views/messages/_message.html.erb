@@ -1,0 +1,16 @@
+<% if message.user == current_user %>
+  <% background_color = "#b2f0ff" %>
+  <% message_class = "my-message" %>
+  <% username = "You" %>
+<% else %>
+  <% background_color = "#f4ffa1" %>
+  <% message_class = "other-message" %>
+  <% username = message.user.username %>
+<% end %>
+<div class= <%= message_class %> id="message-<%= message.id %>" style="background-color: <%= background_color%>">
+  <small>
+    <strong><%= username %></strong>
+    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  </small>
+  <p><%= message.content %></p>
+</div>
