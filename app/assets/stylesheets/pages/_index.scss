@@ -13,9 +13,9 @@
                               $trami-purple,
                               transparent),
               radial-gradient(250px circle at 650px 550px,
-                              $trami-orange,
+                              $trami-orange 0%,
                               transparent);
-  background-color: #fff7f2;
+  background-color: #fffaf8;
   height: 84.5vh;
   position: relative;
 }
