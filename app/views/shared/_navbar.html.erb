@@ -2,12 +2,9 @@
     <div class="d-flex align-items-center trami-div">
       <h1 class="font-48"><%= link_to "Trami", root_path, class: "trami-font font-logo" %></h1>
     </div>
-    <div class="navbar-nav nav-style d-flex justify-content-between" style = "width:60%" >
+    <div class="navbar-nav nav-style d-flex justify-content-end" style = "width:100%" >
       <% if user_signed_in? %>
-        <div class ="navbar-login-text d-flex align-items-center">
-            <p class="main-font weight-300 mb-0">Welcome back <%= current_user.username %>!</p>
-        </div>
-        <div class="nav-item d-flex align-items-center" id="log-out">
+        <div class="nav-item d-flex" id="log-out">
           <div class="d-flex align-items-center">
               <%= link_to "Dashboard",dashboard_path, class: "dashboard-btn px-3 weight-300" %>
           </div>

@@ -50,7 +50,9 @@
 
 .navbar-login-text {
   color: $text-blue;
-
+  position: absolute;
+  right: 700px;
+  top: 25px;
   animation:navbar-login-text 0.5s 1;
     -webkit-animation:navbar-login-text 0.5s 1;
     animation-fill-mode: forwards;
