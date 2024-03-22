@@ -10,7 +10,6 @@
 }
 
 .avatar-shared {
-  width: 40px;
   border-radius: 50%;
 }
 .avatar-large {
@@ -47,6 +46,7 @@
 .avatar-text {
   grid-area: 1 / 1 / 2 / 2;
   text-align: center;
+  justify-content: center;
 }
 .avatar-gender {
   grid-area: 1 / 2 / 2 / 3;
