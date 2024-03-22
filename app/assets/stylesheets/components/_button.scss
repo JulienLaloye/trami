@@ -43,9 +43,6 @@
   text-decoration: none;
 }
 
-.join-button {
-  
-}
 .start-button::before, .round-button::before{
   content: "";
   position: absolute;
@@ -129,4 +126,13 @@
   z-index: 1;
   color: #dbdbdb;
   text-decoration: none;
+}
+
+.explore-nav-btn {
+  color: rgb(0, 177, 127);
+  text-decoration: none;
+
+  &:hover {
+    color: #b5782e;
+  }
 }

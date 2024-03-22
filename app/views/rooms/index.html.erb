@@ -1,6 +1,6 @@
 <div id="index-main">
   <div clas="d-flex">
-    <%= link_to "←", root_path, class: "mt-2 r-back-btn" %>
+    <%= link_to "←", 'javascript:history.back()', class: "mt-2 r-back-btn" %>
     <%= link_to "+", new_room_path, class: "mt-2 r-new-btn" %>
     <div class="left pt-2 d-flex flex-column align-items-start">
       <div class="room-search-bar">
@@ -10,7 +10,13 @@
           <%= f.submit "search", class: "r-search-btn main-font" %>
         <% end %>
       </div>
-      <h1 class="px-5 main-font weight-300 font-28 mb-3 mx-4 mt-2 text-black-gray">Activities avaliable through your search</h1>
+      <% if @address_params && @rooms.present? %>
+        <h1 class="px-5 main-font weight-300 font-28 mb-3 mx-4 mt-2 text-black-gray">Activities avaliable through your search</h1>
+      <% elsif @rooms.present? == false %>
+        <h1 class="px-5 main-font weight-300 font-28 mb-3 mx-4 mt-2 text-black-gray">Activities avaliable through your search</h1>
+      <% else %>
+        <h1 class="px-5 main-font weight-300 font-28 mb-3 mx-4 mt-2 text-black-gray">All activities avaliable in Trami featured cities</h1>
+      <% end %>
       <div class="half-bottom">
         <div class="all-rooms-container">
           <div class="all-rooms d-flex flex-column align-items-start">
@@ -20,7 +26,7 @@
       </div>
     </div>
     <div class="d-flex justify-content-end rooms-map">
-      <div style="width: 100%; height: 84vh;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>"
+      <div style="width: 100%; height: 84.5vh;" data-controller="map" data-map-markers-value="<%= @markers.to_json %>"
       data-map-api-key-value="<%= ENV['MAPBOX_API_KEY'] %>"></div>
     </div>
   </div>

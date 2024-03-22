@@ -16,24 +16,25 @@
                               $trami-orange,
                               transparent);
   background-color: #fff7f2;
-  height: 84vh;
+  height: 84.5vh;
+  position: relative;
 }
 
 .left {
   width: 65%;
-  height: 84vh;
+  height: 84.5vh;
 }
 
 .all-rooms-container {
   padding-top: 15px;
   border-radius: 15px;
-  height: 1000px;
+  height: 600px;
 }
 
 .half-bottom {
-  width: 100vw;
+  width: 100%;
   padding-left: 50px;
-  height: 555px;
+  height: 560px;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, 0.1) .1em, transparent .1em);
   background-size: 2em 2em;
 }
@@ -41,7 +42,7 @@
 .rooms-map {
   width: 35%;
   position: absolute;
-  top: 0;
+  top: -73px;
   right: 0;
   margin-top: 73px;
 }
@@ -204,7 +205,7 @@
 .r-back-btn {
   position: absolute;
   text-decoration: none;
-  top: 93px;
+  top: 20px;
   left: 100px;
   background-color: transparent;
   border: 1px solid $text-brown;
@@ -227,7 +228,7 @@
 .r-new-btn {
   position: absolute;
   text-decoration: none;
-  top: 93px;
+  top: 20px;
   left: 170px;
   background-color: transparent;
   border: 1px solid $text-brown;

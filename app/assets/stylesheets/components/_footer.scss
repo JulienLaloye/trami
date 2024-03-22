@@ -1,24 +1,4 @@
-.footer-logo-container {
-  display: flex;
-  justify-content: end;
-  width: 126px;
-}
-
-.footer-logo-container .footer-logo-img {
-  height: auto;
-}
-
-.footer {
-  background: transparent;
-}
-
-.footer .container-f {
-  border-top: solid 0.5px black;
-}
-
- .footer-container {
-  padding-top: 5px;
-  background-color: transparent;
+#footer-container {
   z-index: 9999;
   margin: 0 40px;
- }
+}

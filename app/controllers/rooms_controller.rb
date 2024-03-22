@@ -2,32 +2,37 @@ class RoomsController < ApplicationController
   def index
     possible_moods = ["relax", "dreamy", "energetic", "neutral", "social", "competitive", "adventurous", "chillin", "creative", "intellectual", "exploratory", "mindful"]
     cap = possible_moods.each(&:capitalize)
-    if params[cap].present?
-      @selected_mood_names = params.keys.map(&:downcase).select { |key| possible_moods.include?(key) }
-      Rails.logger.debug "Selected mood names: #{@selected_mood_names.inspect}"
+    @address_params = params[:address].present?
+    if @address_params
+      if params[cap].present?
+        @selected_mood_names = params.keys.map(&:downcase).select { |key| possible_moods.include?(key) }
+        Rails.logger.debug "Selected mood names: #{@selected_mood_names.inspect}"
 
-      @rooms = Room.joins(activity: :mood).where(moods: { name: @selected_mood_names })
-      if params[:date].present?
-        dates = params[:date].split(" to ", 2)
-        @date_from = DateTime.parse(dates[0])
-        @date_to = DateTime.parse(dates[1])
-        @rooms = @rooms.where("date > ? AND date < ?", @date_from, @date_to)
+        @rooms = Room.joins(activity: :mood).where(moods: { name: @selected_mood_names })
+        if params[:date].present?
+          dates = params[:date].split(" to ", 2)
+          @date_from = DateTime.parse(dates[0])
+          @date_to = DateTime.parse(dates[1])
+          @rooms = @rooms.where("date > ? AND date < ?", @date_from, @date_to)
+        else
+          params[:date] = ''
+          @rooms = @rooms.where(date: params[:date])
+        end
       else
-        params[:date] = ''
-        @rooms = @rooms.where(date: params[:date])
+        if params[:date].present?
+          dates = params[:date].split(" to ", 2)
+          @date_from = DateTime.parse(dates[0])
+          @date_to = DateTime.parse(dates[1])
+          @rooms = Room.where("date > ? AND date < ?", @date_from, @date_to)
+        else
+          params[:date] = ''
+          @rooms = Room.where(date: params[:date])
+        end
       end
+      @rooms = @rooms.where(address: params[:address])
     else
-      if params[:date].present?
-        dates = params[:date].split(" to ", 2)
-        @date_from = DateTime.parse(dates[0])
-        @date_to = DateTime.parse(dates[1])
-        @rooms = Room.where("date > ? AND date < ?", @date_from, @date_to)
-      else
-        params[:date] = ''
-        @rooms = Room.where(date: params[:date])
-      end
+      @rooms = Room.all
     end
-    @rooms = @rooms.where(address: params[:address])
 
     @markers = @rooms.geocoded.map do |room|
       {

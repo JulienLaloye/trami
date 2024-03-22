@@ -10,6 +10,7 @@ export default class extends Controller {
 
   mood(event) {
     const c  = event.currentTarget.classList.toggle("brightness-1")
+    event.currentTarget.classList.toggle("zoom")
     console.log(c)
     //this.moodElementTargets.forEach((mood) => {
     //})

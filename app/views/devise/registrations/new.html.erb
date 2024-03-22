@@ -92,7 +92,7 @@
           <div class="carousel-content d-flex flex-column align-items-center">
             <div class="div-ques-signup-1 d-flex justify-content-between align-items-center mt-5">
               <h4 class="main-font weight-300 text-black-gray">Where's your current location?</h4>
-              <%= f.select :address, Room.all.pluck(:address).uniq, value: params[:address] %>
+              <%= f.select :address, Room.all.pluck(:address).uniq.first(5), value: params[:address] %>
             </div>
             <div class="div-ques-signup-1 d-flex flex-column align-items-start mt-5">
               <h4 class="main-font weight-300 text-black-gray mb-4">Tell me a bit about yourself</h4>
