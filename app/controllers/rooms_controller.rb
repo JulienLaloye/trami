@@ -29,7 +29,8 @@ class RoomsController < ApplicationController
           @rooms = Room.where(date: params[:date])
         end
       end
-      @rooms = @rooms.where(address: params[:address])
+      address = params[:address]
+      @rooms = @rooms.where("address LIKE ?", "%#{address}%")
     else
       @rooms = Room.all
     end
