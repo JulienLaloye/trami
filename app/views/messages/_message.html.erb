@@ -7,7 +7,7 @@
   <% message_class = "other-message" %>
   <% username = message.user.username %>
 <% end %>
-<div class= <%= message_class %> id="message-<%= message.id %>" style="background-color: <%= background_color%>">
+<div class= <%= message_class %> id="message-<%= message.id %>" style="background-color: <%= background_color%>" >
   <small>
     <strong><%= username %></strong>
     <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
