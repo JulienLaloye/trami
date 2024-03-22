@@ -10,7 +10,9 @@
           </div>
           <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "link-secondary smooth nav-link" %>
         </div>
+      </div>
       <% else %>
+      <div class="navbar-nav nav-style d-flex justify-content-between" style = "width:65%">
         <div class ="navbar-header-text d-flex align-items-center">
             <p class="main-font weight-300">Sign up with us and ready to board ✈️</p>
         </div>
@@ -22,6 +24,7 @@
             <%= link_to "Login", new_user_session_path, class: "login-btn weight-300" %>
           </div>
         </div>
+      </div>
       <% end %>
     </div>
 </div>
