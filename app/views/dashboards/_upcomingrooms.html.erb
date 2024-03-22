@@ -1,34 +1,39 @@
-<div class="swiper upcomingroomsSwiper" id="dashboard-swiper" data-controller="upcomingrooms-swiper">
-  <div class="swiper-wrapper" id="wrapper-room" style="transform: none;">
+  <div style="overflow: hidden;">
+    <div class="swiper upcomingroomsSwiper" id="dashboard-swiper" data-controller="upcomingrooms-swiper" style="overflow: visible; left: -56px; width: 1230px; margin-left: 45px;">
+      <div class="swiper-wrapper" id="wrapper-room" style="transform: none; padding-left: 42px;">
 
-    <% @rooms.each do |room| %>
-      <div class="swiper-slide" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>">
-        <%= link_to room_path(room), class: "text-decoration-none" do %>
-          <li class="event-room">
-            <h4 class="mb-0"> <%= room.title %> </h4>
-            <br>
-            <%= room.date.strftime("%b %d, %Y") %>
-            <br>
-            <% if room.appointments.find_by(user: current_user).status == 0 || room.appointments.find_by(user: current_user).status == 2 %>
-              <p class="mb-0"> Status: Pending </p>
-            <% else %>
-              <p class="mb-0"> Status: Confirmed </p>
-            <% end %>
-          </li>
+        <% @rooms.each do |room| %>
+          <div class="swiper-slide d-flex align-items-center">
+            <div class="px-4 d-flex align-items-start" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>; width: 275px; padding-top: 30px;">
+              <%= link_to room_path(room), class: "text-decoration-none" do %>
+                <li class="event-room">
+                  <div class="d-flex align-items-start" style="padding-right: 15px;">
+                    <h4 class="text-black-gray main-font weight-400 font-20"> <%= room.title %> </h4>
+                  </div>
+                  <br>
+                  <p class="text-black-gray mb-1"><%= room.date.strftime("%b %d, %Y") %></p>
+                  <% if room.appointments.find_by(user: current_user).status == 0 || room.appointments.find_by(user: current_user).status == 2 %>
+                    <p class="mb-0 text-black-gray"> Status: Pending </p>
+                  <% else %>
+                    <p class="mb-0 text-black-gray"> Status: Confirmed </p>
+                  <% end %>
+                </li>
+              <% end %>
+            </div>
+          </div>
         <% end %>
+
+        <% if !@rooms.present? %>
+          <h2 class="my-3 font-38 text-black-gray"><strong># My rooms</strong></h2>
+          <p class="text-black-gray">You have no upcoming rooms yet.</p>
+
+          <%= link_to "Explore", rooms_path, class: "start-button button-content weight-300 my-3" %>
+
+        <% end %>
+
       </div>
-    <% end %>
+      <div class="swiper-button-prev" style=""></div>
+      <div class="swiper-button-next" style="postion: absolute; right: -78px;"></div>
 
-    <% if !@rooms.present? %>
-      <h2 class="my-3"># My rooms</h2>
-      <p>You have no upcoming rooms yet.</p>
-
-      <%= link_to "Explore", rooms_path, class: "start-button button-content weight-300 my-3" %>
-
-    <% end %>
-
+    </div>
   </div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-
-</div>
