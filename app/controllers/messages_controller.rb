@@ -8,7 +8,10 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @room,
-        render_to_string(partial: "message", locals: { message: @message })
+        {
+          message: render_to_string(partial: "message", locals: { message: @message }),
+          user_id: @message.user.id, username: @message.user.username
+        }.to_json
       )
       head :ok
     else

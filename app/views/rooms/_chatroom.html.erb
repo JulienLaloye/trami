@@ -1,13 +1,13 @@
 <% if @room.user == current_user %>
-    <% background_color = "#b2f0ff" %>
     <% message_class = "my-message" %>
   <% else %>
-    <% background_color = "#f4ffa1" %>
     <% message_class = "other-message" %>
 <% end %>
 
-<div class="container chatroom" data-controller="chatroom-subscription"
-  data-chatroom-subscription-chatroom-id-value="<%= @room.id %>">
+<div class="container chatroom"
+     data-controller="chatroom-subscription"
+     data-chatroom-subscription-chatroom-id-value="<%= @room.id %>"
+     data-chatroom-subscription-user-id-value="<%= current_user.id %>">
   <h1>Chatroom</h1>
     <div>
     </div>
