@@ -288,7 +288,7 @@ jerry = User.new(
 
 jerry.save!
 
-10.times do
+200.times do
   username = Faker::Name.first_name
   c += 1
   username = "#{username}#{c}" if usernames.include?(username)
@@ -367,6 +367,9 @@ le_wagon = Room.new(
 )
 
 le_wagon.save!
+Chatroom.create!(
+  room: le_wagon
+)
 
 Appointment.create!(user: thu, room: le_wagon, ownership: false, status: 1)
 Appointment.create!(user: jerry, room: le_wagon, ownership: false, status: 1)
@@ -389,6 +392,9 @@ amazing_german_tasting = Room.new(
 )
 
 amazing_german_tasting.save!
+Chatroom.create!(
+  room: amazing_german_tasting
+)
 
 bowling_competition = Room.new(
   title: "Bowling Competition",
@@ -408,6 +414,9 @@ bowling_competition = Room.new(
 )
 
 bowling_competition.save!
+Chatroom.create!(
+  room: bowling_competition
+)
 
 berghain_queuying = Room.new(
   title: "Berghain queuyng",
@@ -427,6 +436,9 @@ berghain_queuying = Room.new(
 )
 
 berghain_queuying.save!
+Chatroom.create!(
+  room: berghain_queuying
+)
 
 mac_do = Room.new(
   title: "Mac Donalds restaurant",
@@ -446,6 +458,9 @@ mac_do = Room.new(
 )
 
 mac_do.save!
+Chatroom.create!(
+  room: mac_do
+)
 
 studying_together = Room.new(
   title: "Study session together!!!",
@@ -465,6 +480,9 @@ studying_together = Room.new(
 )
 
 studying_together.save!
+Chatroom.create!(
+  room: studying_together
+)
 
 museum_visit = Room.new(
   title: "BODE MUSEUM: SATURDAY 14HR",
@@ -484,6 +502,9 @@ museum_visit = Room.new(
 )
 
 museum_visit.save!
+Chatroom.create!(
+  room: museum_visit
+)
 
 Activity.all.reject { |activity| ["Coding event","Group study","Wine tasting", "Clubbing", "Diner out", "Bowling", "Museum" ].include?(activity.title)}.each do |activity|
   rand(1..5).times do
