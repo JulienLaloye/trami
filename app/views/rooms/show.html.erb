@@ -3,7 +3,7 @@
   <div class="room-show-container d-flex flex-column" style="background-color: white;">
     <div class ="row">
       <div class = "col-8">
-        <h3> <%= @room.title %></h3>
+        <h3 class="r-title"> <%= @room.title %></h3>
         <p> <%= @room.description.capitalize %></p>
         <p>&#128204; <%= @room.address %></p>
         <% if current_user == @room.user %>

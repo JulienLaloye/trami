@@ -1,6 +1,6 @@
-<div class="row justify-content-between w-100 align-items-center" style="background-color: <%= @room.activity.mood.color%>;">
+<div class="row justify-content-between w-100 align-items-center" style="border-top: grey solid; padding: 5px;border-bottom: grey solid; padding: 5px;">
             <%= image_tag("#{@room.gender}.png", alt: @room.gender, class: "image-show")%>
-            <div class= "col ">Age: <%= @room.min_age %> - <%= @room.max_age %></div>
+            <div class= "col d-flex align-items-center">Age <div class="r-age-box mb-0 text-black-gray"><%= @room.min_age %> - <%= @room.max_age %></div></div>
             <div class= "col">&#128100; <strong><%= @room.min_part %> to <%= @room.max_part %> </strong>participants</div>
             <div class= "col">&#129304; <strong><%= @room.participants %></strong> tramiers in the room</div>
             <div class= "col"> Created <strong><%= @creation_date %> <%= @unit %></strong> ago </div>

@@ -1,23 +1,6 @@
-<div class="avatar-container d-flex flex-column">
-  <div class="row d-flex justify-content-center align-items-center">
-    <div class="col">
-      <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class: "avatar-shared w-100")%>
-    </div>
-    <div class="col">
-      <div class="row d-flex justify-content-left">
-        <div class="col p-0">
-          <h3><%= user.username %></h3>
-        </div>
-        <div class="col p-0">
-          <%= image_tag("#{user.gender}.png", alt: user.avatar.personality, class: "gender-avatar")%>
-        </div>
-      </div>
-      <div class="row">
-        <p class="mb-0 p-0" style="font-size: 12px"> <%= user.ranking.name %></p>
-      </div>
-      <div class="row">
-        <p class="mb-0 p-0" style="font-size: 12px"><%= (Date.today - user.birthdate).to_i / 365 %> years old</p>
-      </div>
-    </div>
-  </div>
+
+<div class="card d-flex column justify-content-between align-items-center p-2" style="background: transparent; border: transparent;">
+  <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class:"rounded-circle mb-3", style:"width: 100px")%>
+  <h5 class="mb-2"><strong><%= user.username %></strong></h5>
+  <p class="mb-2 text-muted text-align-center"><strong><%= (Date.today - user.birthdate).to_i / 365 %></strong> years old <span class="badge bg-secondary" style="background-color: rgba(206, 187, 165, .35)"><%= user.ranking.name %></span></p>
 </div>
