@@ -2,31 +2,38 @@
   background-size: 2em 2em;">
   <div class="dashboard container">
     <%# Upcoming-Rooms-Swiper %>
-    <div class="row upcoming-rooms mt-4 mb-0 px-4">
+    <div class="row upcoming-rooms mt-4 mb-0">
       <div class="col-12">
-        <div class="d-flex justify-content-between align-items-center">
-          <h1>My Dashboard</h1>
-          <%= render "shared/useravatar", user: @user %>
-        </div>
-
-        <div class="d-flex justify-content-start">
-          <div class="d-flex align-items-center px-0">
-            <h2 class="mb-0 me-4 weight-300"># My upcoming rooms</h2>
-            <%= link_to "+", rooms_path, class: "round-button button-content weight-300" %>
+        <div class="">
+          <div class="d-flex justify-content-between">
+            <h1 class="text-black-gray mx-5 mt-4 pt-3 font-48"><strong>My Dashboard</strong></h1>
+            <div class="card d-flex pt-4 flex-row justify-content-between mx-1" style="background: transparent; border: transparent; width: 300px; height: 150px;">
+              <%= image_tag(current_user.avatar.picture, alt: current_user.avatar.personality, class:"rounded-circle mb-3", style:"width: 100px; margin-top: 10px;")%>
+              <div class="px-4 d-flex flex-column">
+                <h5 class="font-40 text-black-gray" style="height: 40px;"><strong><%= current_user.username %></strong></h5>
+                <p class="px-1 text-muted text-align-center text-black-gray"><strong><%= (Date.today - current_user.birthdate).to_i / 365 %></strong> years old <span class="badge bg-secondary weight-500 mt-2" style="background-color: rgba(206, 187, 165, .35); border-radius: 5px;"><%= current_user.ranking.name %></span></p>
+              </div>
+            </div>
           </div>
         </div>
 
-        <%= render 'upcomingrooms' %>
+        <div class="d-flex justify-content-start">
+          <div class="d-flex align-items-center px-0 mb-3">
+            <h2 class="mb-0 mx-5 me-4 font-38 text-black-gray"><strong># My upcoming rooms</strong></h2>
+            <%= link_to "+", rooms_path, class: "round-button-prev weight-300" %>
+          </div>
+        </div>
+        <div><%= render 'upcomingrooms' %></div>
       </div>
     </div>
     <%# Reviews & My-Rooms %>
-    <div class="row my-reviews-and-rooms mb-5 px-4">
+    <div class="row my-reviews-and-rooms mb-5 px-5">
       <div class="col-12 my-rooms">
 
         <% if @my_rooms.present? %>
           <div class="d-flex justify-content-start">
             <div class="d-flex align-items-center px-0 my-2">
-              <h2 class="mb-0 me-4 weight-300"># My rooms</h2>
+              <h2 class="mb-0 me-4 weight-300 font-38 text-black-gray"><strong># My rooms</strong></h2>
               <%= link_to "+", new_room_path, class: "round-button button-content weight-300" %>
             </div>
           </div>

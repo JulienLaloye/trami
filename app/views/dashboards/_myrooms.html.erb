@@ -18,10 +18,11 @@
 
     <% if !@my_rooms.present? %>
       <div class="d-flex flex-column">
-        <h2 class="my-2 review-height d-flex align-items-center"># My rooms</h2>
-        <p>You have no rooms created yet.</p>
-
-        <%= link_to "Create a room", new_room_path, class: "start-button button-content weight-300 my-3" %>
+        <h2 class="mb-2 review-height d-flex align-items-center font-38 text-black-gray"><strong># My rooms</strong></h2>
+        <div class="mx-2 mt-1">
+          <p class="text-black-gray">You have no rooms created yet.</p>
+          <%= link_to "Create a room", new_room_path, class: "start-button button-content weight-300 my-4", style: "width: 200px;" %>
+        </div>
 
       </div>
     <% end %>
