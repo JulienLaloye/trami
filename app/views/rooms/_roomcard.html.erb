@@ -1,4 +1,4 @@
-<% if @rooms.present? %>
+<% if @rooms.present? && @address_params %>
   <div class="r-main d-flex justify-content-center">
     <div class="r-wrap pt-3">
       <% @rooms.each do |room| %>
@@ -31,6 +31,39 @@
       <% end %>
     </div>
   </div>
-<% else %>
+<% elsif @rooms.present? == false %>
   <div class="r-wrap d-flex px-5 pt-4 justify-content-start"><h5 class="main-font mb-0 weight-300">Sorry, there's no rooms available on your search.</h5></div>
+<% else %>
+  <div class="r-main d-flex justify-content-center">
+    <div class="r-wrap pt-3">
+      <% @rooms.each do |room| %>
+        <%= link_to room_path(room), class: "text-decoration-none" do %>
+          <div class="d-flex justify-content-center">
+            <div class="r-card d-flex flex-column">
+              <div class="<%= room.activity.mood.name %>-img img-saturate">
+                <div class="r-title-box d-flex flex-column justify-content-center align-items-center">
+                  <h5 class="r-title text-center"><%= room.title %></h5>
+                  <div class="r-hover d-flex flex-column align-items-center">
+                  </div>
+                </div>
+              </div>
+              <div class="r-detail px-3 d-flex justify-content-around">
+                <div class="d-flex align-items-center">
+                  <div class=""><%= image_tag("#{room.gender}.png", alt: room.gender, class: "r-gender-img")%></div>
+                </div>
+                <div class="d-flex align-items-center">
+                  <p class="r-age mb-0 px-2 text-black-gray">Age</p>
+                  <p class="r-age-box mb-0 text-black-gray"><%= room.min_age %> - <%= room.max_age %></p>
+                </div>
+                <div class="d-flex align-items-center">
+                  <div class=""><%= image_tag("calendar.png", alt: "calendar", class: "r-calendar grayscale contrast brightness")%></div>
+                  <p class="r-date-time mb-0 px-1 text-black-gray"><%= room.date.strftime('%d %b %y')%></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

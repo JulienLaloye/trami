@@ -18,7 +18,7 @@
   border: transparent;
 
   &:hover {
-    transform: scale(1.3);
+    transform: scale(1.2);
     transition: 0.3s;
     filter: brightness(90%) saturate(350%);
   }
@@ -88,10 +88,6 @@
 .b1 {
   padding-top: 5px;
   font-size: 30px;
-}
-
-.questionaire-container {
-  padding-top: 20px;
 }
 
 .ques-welcome {
@@ -270,4 +266,9 @@
   animation-duration: 1s;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
+}
+
+.zoom {
+  transform: scale(1.2);
+  transition: 0.3s;
 }
