@@ -222,7 +222,7 @@ usernames = []
 c = 0
 #seed the users:
 julien = User.new(
-  username: "julien_lewagon",
+  username: "julien_lw",
   email: "julien@julien.julien",
   nationality: "french",
   address: "Paris",
@@ -239,7 +239,7 @@ julien = User.new(
 julien.save!
 
 thu = User.new(
-  username: "thu_lewagon",
+  username: "thu_lw",
   email: "thu@thu.thu",
   nationality: "german",
   address: "Berlin",
@@ -256,7 +256,7 @@ thu = User.new(
 thu.save!
 
 bhawana = User.new(
-  username: "bhawana_lewagon",
+  username: "bhawana_lw",
   email: "bhawana@bhawana.bhawana",
   nationality: "indian",
   address: "Berlin",
@@ -272,7 +272,7 @@ bhawana = User.new(
 bhawana.save!
 
 jerry = User.new(
-  username: "jerry_lewagon",
+  username: "jerry_lw",
   email: "jerry@jerry.jerry",
   nationality: "thai",
   address: "Berlin",
@@ -419,8 +419,8 @@ Chatroom.create!(
 )
 
 berghain_queuying = Room.new(
-  title: "Berghain queuyng",
-  description: "Let s all go at once at the doors, they have to let us in",
+  title: "Berghain queuing",
+  description: "Let's all go at once at the doors, they have to let us in!",
   gender: "no preference",
   date: "23/03/2024",
   min_part: 5,
@@ -441,12 +441,12 @@ Chatroom.create!(
 )
 
 mac_do = Room.new(
-  title: "Mac Donalds restaurant",
+  title: "Dinner Night!!",
   description: "Let s have a dinner in this fine restaurant of good meet and social-care.",
   gender: "women",
   date: "23/03/2024",
   min_part: 3,
-  max_part: 14,
+  max_part: 7,
   address: "Friedrichstraße 141-142, 10117 Berlin",
   language: "en",
   activity: diner,
@@ -485,7 +485,7 @@ Chatroom.create!(
 )
 
 museum_visit = Room.new(
-  title: "BODE MUSEUM: SATURDAY 14HR",
+  title: "BODE MUSEUM: SATURDAY 14HR".capitalize,
   description: "I would like to invite you to visit the museum with me, best regards, SEBASTIAN.",
   gender: "men",
   date: "23/03/2024",

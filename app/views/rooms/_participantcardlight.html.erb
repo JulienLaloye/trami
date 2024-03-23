@@ -1,7 +1,7 @@
 <div class="avatar-decline-accept">
   <div class="small-avatar-container">
     <!-- Modal Trigger Button -->
-    <button class="avatar-image" style="border: none; background: none; padding: 0; margin: 0;" data-toggle="popover" title="Popover title" data-content= <%= user.description %> >
+    <button type="button" class="avatar-image" style="border: none; background: none; padding: 0; margin: 0;" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title= <%= user.description %> >
       <!-- Ensure the image_tag helper generates the correct image source -->
       <!-- Replace `user.avatar.picture` with the actual image source -->
       <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class: "avatar w-100", style: "border:#{user.mood.color}  5px solid;")%>
