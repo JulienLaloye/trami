@@ -1,6 +1,6 @@
 
 <div class="card d-flex column justify-content-between align-items-center p-2" style="background: transparent; border: transparent;">
   <%= image_tag(user.avatar.picture, alt: user.avatar.personality, class:"rounded-circle mb-3", style:"width: 100px")%>
-  <h5 class="mb-2"><strong><%= user.username %></strong></h5>
+  <h5 class="mb-2 font-30" ><strong><%= user.username %></strong></h5>
   <p class="mb-2 text-muted text-align-center"><strong><%= (Date.today - user.birthdate).to_i / 365 %></strong> years old <span class="badge bg-secondary" style="background-color: rgba(206, 187, 165, .35)"><%= user.ranking.name %></span></p>
 </div>
