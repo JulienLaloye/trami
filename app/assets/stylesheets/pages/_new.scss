@@ -61,9 +61,7 @@
 }
 
 .back-search-btn {
-  position: absolute;
   text-decoration: none;
-  top: 98.5px;
   left: 40px;
   background-color: transparent;
   border: 1px solid $text-brown;
@@ -74,7 +72,7 @@
   align-items: center;
   text-decoration: none;
   color: $text-brown;
-  
+
   &:hover {
     background-color: rgba(216, 197, 174, .7);
     transition: 0.3s;
