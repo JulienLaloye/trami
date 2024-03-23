@@ -257,7 +257,7 @@ thu.save!
 
 bhawana = User.new(
   username: "bhawana_lw",
-  email: "bhawana@bhawana.bhawana",
+  email: "bs@bs.com",
   nationality: "indian",
   address: "Berlin",
   password: "1234567",
@@ -363,7 +363,7 @@ le_wagon = Room.new(
   finished: false, #how to do it constantly in the code?
   min_age: 18,
   max_age: 99,
-  participants: 1
+  participants: 3
 )
 
 le_wagon.save!
@@ -377,14 +377,14 @@ Appointment.create!(user: jerry, room: le_wagon, ownership: false, status: 1)
 amazing_german_tasting = Room.new(
   title: "Amazing German Wine Tasting",
   description: "Have a nice glass with me! With an amazing wine selection! Amazing!",
-  gender: "women",
-  date: "23/03/2024",
+  gender: "no preference",
+  date: "24/03/2024",
   min_part: 2,
   max_part: 5,
   address: "Taubenstraße 20, 10117 Berlin",
   language: "ger",
   activity: wine_tasting,
-  user: thu,
+  user: julien,
   finished: false,
   min_age: 20,
   max_age: 35,
@@ -400,7 +400,7 @@ bowling_competition = Room.new(
   title: "Bowling Competition",
   description: "Competition of bowling, everyone is welcome, the level is high, we are ready, you can win cash",
   gender: "no preference",
-  date: "23/03/2024",
+  date: "25/03/2024",
   min_part: 5,
   max_part: 10,
   address: "Taubenstraße 20, 10117 Berlin",
