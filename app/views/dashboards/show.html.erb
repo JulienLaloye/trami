@@ -6,8 +6,8 @@
       <div class="col-12">
         <div class="">
           <div class="d-flex justify-content-between">
-            <h1 class="text-black-gray mx-5 mt-4 pt-3 font-48"><strong>My Dashboard</strong></h1>
-            <div class="card d-flex pt-4 flex-row justify-content-between mx-1" style="background: transparent; border: transparent; width: 300px; height: 150px;">
+            <h1 class="text-black-gray mx-5 mt-4 pt-2 font-50"><strong>My Dashboard</strong></h1>
+            <div class="card d-flex flex-row justify-content-between" style="background: transparent; border: transparent; width: 300px; height: 130px; position: absolute; right: 150px; top: 135px; margin-right: 50px;">
               <%= image_tag(current_user.avatar.picture, alt: current_user.avatar.personality, class:"rounded-circle mb-3", style:"width: 100px; margin-top: 10px;")%>
               <div class="px-4 d-flex flex-column">
                 <h5 class="font-40 text-black-gray" style="height: 40px;"><strong><%= current_user.username %></strong></h5>
@@ -17,8 +17,8 @@
           </div>
         </div>
 
-        <div class="d-flex justify-content-start">
-          <div class="d-flex align-items-center px-0 mb-3">
+        <div class="d-flex mt-4 justify-content-start">
+          <div class="d-flex align-items-center px-0">
             <h2 class="mb-0 mx-5 me-4 font-38 text-black-gray"><strong># My upcoming rooms</strong></h2>
             <%= link_to "+", rooms_path, class: "round-button-prev weight-300" %>
           </div>
@@ -33,14 +33,14 @@
         <% if @my_rooms.present? %>
           <div class="d-flex justify-content-start">
             <div class="d-flex align-items-center px-0 my-2">
-              <h2 class="mb-0 me-4 weight-300 font-38 text-black-gray"><strong># My rooms</strong></h2>
+              <h2 class="mb-0 me-4 font-38 text-black-gray"><strong># My rooms</strong></h2>
               <%= link_to "+", new_room_path, class: "round-button button-content weight-300" %>
             </div>
           </div>
         <% end %>
 
-        <%= render 'myrooms' %>
       </div>
+        <%= render 'myrooms' %>
 
     </div>
 
