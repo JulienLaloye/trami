@@ -24,10 +24,12 @@
         <% end %>
 
         <% if !@rooms.present? %>
-          <h2 class="my-3 font-38 text-black-gray"><strong># My rooms</strong></h2>
-          <p class="text-black-gray">You have no upcoming rooms yet.</p>
-
-          <%= link_to "Explore", rooms_path, class: "start-button button-content weight-300 my-3" %>
+          <div class="d-flex mx-4 mt-5 flex-column">
+            <h2 class="mb-4 review-height d-flex align-items-center font-38 text-black-gray"><strong># My upcoming rooms</strong></h2>
+            <div class="mx-2 mt-1">
+              <p class="text-black-gray mainfont">You have no upcoming rooms yet.</p>
+              <%= link_to "Explore", rooms_path, class: "start-button button-content weight-300 my-4", style: "width: 200px;" %>
+            </div>
 
         <% end %>
 
