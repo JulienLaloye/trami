@@ -13,7 +13,7 @@ class RoomsController < ApplicationController
           dates = params[:date].split(" to ", 2)
           @date_from = DateTime.parse(dates[0])
           @date_to = DateTime.parse(dates[1])
-          @rooms = @rooms.where("date > ? AND date < ?", @date_from, @date_to)
+          @rooms = @rooms.where("date >= ? AND date <= ?", @date_from, @date_to)
         else
           params[:date] = ''
           @rooms = @rooms.where(date: params[:date])
@@ -23,7 +23,7 @@ class RoomsController < ApplicationController
           dates = params[:date].split(" to ", 2)
           @date_from = DateTime.parse(dates[0])
           @date_to = DateTime.parse(dates[1])
-          @rooms = Room.where("date > ? AND date < ?", @date_from, @date_to)
+          @rooms = Room.where("date >= ? AND date <= ?", @date_from, @date_to)
         else
           params[:date] = ''
           @rooms = Room.where(date: params[:date])
