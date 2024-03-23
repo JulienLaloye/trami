@@ -26,7 +26,6 @@
 }
 
 .all-rooms-container {
-  padding-top: 15px;
   margin-bottom: 100px;
   border-radius: 15px;
   height: 380px;
@@ -115,7 +114,7 @@
   overflow-y: scroll;
   overflow-x: hidden;
   padding-left: 20px;
-  height: 480px;
+  height: 500px;
   width: 900px;
 }
 
@@ -149,7 +148,6 @@
   border-radius: 20px;
   margin-right: 30px;
   margin-bottom: 20px;
-  margin-top: 10px;
   box-shadow: 0px 0px 10px rgba(183, 155, 130, 0.8);
 
   &:hover {
