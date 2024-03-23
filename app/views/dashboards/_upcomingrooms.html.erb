@@ -4,7 +4,7 @@
 
         <% @rooms.each do |room| %>
           <div class="swiper-slide d-flex justify-content-center align-items-center">
-            <div class="px-4 d-flex align-items-start" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>; width: 275px; padding-top: 25px; height: 165px;">
+            <div class="px-4 d-flex align-items-start" id="swiper-slide-room" style="background-color: <%= room.activity.mood.color%>; width: 275px; padding-top: 20px; height: 165px;">
               <%= link_to room_path(room), class: "text-decoration-none" do %>
                 <li class="event-room">
                   <div class="d-flex align-items-start" style="padding-right: 15px;">

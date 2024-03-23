@@ -13,3 +13,11 @@
 @import "components/index";
 @import "pages/index";
 @import "pages/show";
+
+.page-container {
+  display: grid;
+  position: absolute;
+  min-width: 100vw;
+  min-height: 100vh;
+  grid-template-rows: auto 1fr auto;
+ }

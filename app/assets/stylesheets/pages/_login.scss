@@ -10,6 +10,7 @@
 
 .trami-img-bg {
   position: absolute;
+  top: 70px;
   width: 50%;
   background-image: url("trami-black-img.png");
   background-size: 830px 830px;
@@ -20,6 +21,7 @@
 }
 
 .login-page {
+  height: 84vh;
   background: white;
   background: linear-gradient(317deg, #FFCF96 0%, white 65%);
 }
