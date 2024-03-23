@@ -36,27 +36,27 @@
               </div>
             </div>
           </div>
-          <%= render "chatroom", room: @room, chatroom: @chatroom, messages: @messages %>
-      <% elsif @room.appointments.find_by(user: current_user).status == 0 %>
-            <h3 class="text-center" style="padding-top:60px;"> You're participation is still <strong>pending</strong>... Wait a bit ....</h3>
+        </div>
+        <%= render "chatroom", room: @room, chatroom: @chatroom, messages: @messages %>
+    <% elsif @room.appointments.find_by(user: current_user).status == 0 %>
+          <h3 class="text-center" style="padding-top:60px;"> You're participation is still <strong>pending</strong>... Wait a bit ....</h3>
+      <% end %>
+      <% elsif current_user && @room.participants < @room.max_part %>
+      <div style="text-align: center;">
+        <%= form_with url: appointments_path, method: :post do |f| %>
+            <%= f.hidden_field :status, value: 0 %>
+            <%= f.hidden_field :user_id, value: current_user.id %>
+            <%= f.hidden_field :room_id, value: @room.id %>
+            <%= f.hidden_field :presence, value: false%>
+            <%= f.hidden_field :ownership, value: false %>
+            <%= f.submit "Join this amazing event!", class: "explore-btn" %>
         <% end %>
-        <% elsif current_user && @room.participants < @room.max_part %>
-        <div style="text-align: center;">
-          <%= form_with url: appointments_path, method: :post do |f| %>
-              <%= f.hidden_field :status, value: 0 %>
-              <%= f.hidden_field :user_id, value: current_user.id %>
-              <%= f.hidden_field :room_id, value: @room.id %>
-              <%= f.hidden_field :presence, value: false%>
-              <%= f.hidden_field :ownership, value: false %>
-              <%= f.submit "Join this amazing event!", class: "explore-btn" %>
-          <% end %>
-          </div>
-        <% elsif  @room.participants >= @room.max_part %>
-          <h3 class="text-center" style="background-color = orange;"> This room is <strong>full</strong>!! Sorry ...</h3>
-        <% else %>
-        <h3 class="text-center" style="padding-top: 60px ;"> You have to <strong>Sign Up or Login</strong> to access more details!! </h3>
-      <% end  %>
-      </div>
+        </div>
+      <% elsif  @room.participants >= @room.max_part %>
+        <h3 class="text-center" style="background-color = orange;"> This room is <strong>full</strong>!! Sorry ...</h3>
+      <% else %>
+      <h3 class="text-center" style="padding-top: 60px ;"> You have to <strong>Sign Up or Login</strong> to access more details!! </h3>
+    <% end  %>
     </div>
   </div>
 </div>
