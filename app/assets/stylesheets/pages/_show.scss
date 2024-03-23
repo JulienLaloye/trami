@@ -10,7 +10,6 @@
   padding: 25px;
   border-radius: 10px;
   width: 75%;
-  height: 100vh;
   box-shadow: 10px 5px 5px;
 }
 
@@ -28,4 +27,11 @@
   margin: 10px;
   border-radius: 10px;
   border-style: solid;
+}
+
+
+.footer-container {
+  bottom: 0;
+  position: fixed;
+  width: 100vw;
 }
