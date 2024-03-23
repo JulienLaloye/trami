@@ -428,7 +428,7 @@ berghain_queuying = Room.new(
   address: "Am Wriezener bhf, 10243 Berlin",
   language: "en",
   activity: clubbing,
-  user: bhawana,
+  user: thu,
   finished: false,
   min_age: 25,
   max_age: 60,
@@ -515,7 +515,7 @@ Activity.all.reject { |activity| ["Coding event","Group study","Wine tasting", "
     end
     title = title_array.sample
     min = rand(2..5)
-    user = User.all.sample
+    user = User.all.reject { |user| user.username == "bhawana_lw" }.sample
     date = Faker::Date.between(from: 1.years.ago, to: 1.years.since)
     min_age = rand(18..50)
     room = Room.new(
