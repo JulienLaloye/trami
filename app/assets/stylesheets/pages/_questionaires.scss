@@ -7,9 +7,9 @@
   --gradThreeYPos: 80%;
   --gradFourXPos: 80%;
   --gradFourYPos: 80%;
+  height: 93vh;
   background-color: floralwhite;
   background-image: radial-gradient(at var(--gradOneXPos) var(--gradOneYPos), $mood-trami-gradient 0, transparent 50%), radial-gradient(at var(--gradTwoXPos) var(--gradTwoYPos), $mood-adventurous 0, transparent 50%), radial-gradient(at var(--gradThreeXPos) var(--gradThreeYPos), $mood-creative 0, transparent 50%), radial-gradient(at var(--gradFourXPos) var(--gradFourYPos), $mood-trami-gradient 0, transparent 50%);
-  height: 85vh;
 }
 
 .mood-card {
@@ -77,7 +77,7 @@
 }
 
 .div-transparent {
-  margin-top: 10px;
+  margin-top: 70px;
 }
 
 .carousel-1 {
@@ -123,7 +123,6 @@
   background-repeat: no-repeat;
   background-position-x: -20%;
   background-position-y: bottom;
-  height: 83vh;
 }
 
 .location-bar, .date-location {

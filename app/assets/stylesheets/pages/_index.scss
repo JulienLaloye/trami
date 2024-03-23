@@ -26,6 +26,7 @@
 }
 
 .all-rooms-container {
+  padding-top: 15px;
   margin-bottom: 100px;
   border-radius: 15px;
   height: 380px;
@@ -34,7 +35,7 @@
 .half-bottom {
   width: 100%;
   padding-left: 50px;
-  height: 560px;
+  height: 80vh;
   background-image: linear-gradient(rgba(0, 0, 0, 0.1) .1em, transparent .1em), linear-gradient(90deg, rgba(0, 0, 0, 0.1) .1em, transparent .1em);
   background-size: 2em 2em;
 }
