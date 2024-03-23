@@ -4,8 +4,8 @@
     <div class="room-show-container d-flex flex-column" style="background-color: white;">
       <div class ="row">
         <div class = "col-8">
-          <h3 class="main-font weight-500 font-22"> <%= @room.title %></h3>
-          <p> <%= @room.description.capitalize %></p>
+          <h3 class="main-font weight-500 font-22" style="border-bottom: grey solid; padding: 5px;"> <%= @room.title %> <div class="badge bg-success" style="background-color: #9BC88B;"><%= @room.date.strftime('%d %B %y') %></div></h3>
+          <p style="margin-top: 15px"> <%= @room.description.capitalize %></p>
           <p>&#128204; <%= @room.address %></p>
           <% if current_user == @room.user %>
             <button  class="round-button"  style="height: auto; width: auto; background-color: rgb(62, 62, 62);" > change the address </button>
