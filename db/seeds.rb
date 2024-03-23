@@ -255,21 +255,6 @@ thu = User.new(
 
 thu.save!
 
-bhawana = User.new(
-  username: "bhawana_lw",
-  email: "bs@bs.com",
-  nationality: "indian",
-  address: "Berlin",
-  password: "1234567",
-  description: "I'm an empathetic listener, always ready to offer a comforting shoulder and wise advice to my friends",
-  gender: "male",
-  birthdate: "21/09/1994",
-  ranking: Ranking.all.sample,
-  mood: Mood.all.sample,
-  avatar: Avatar.all.sample,
-  status: "local"
-)
-bhawana.save!
 
 jerry = User.new(
   username: "jerry_lw",
@@ -690,5 +675,21 @@ random_rooms.each do |room|
     presence: false
   )
 end
+
+bhawana = User.new(
+  username: "bhawana_lw",
+  email: "bs@bs.com",
+  nationality: "indian",
+  address: "Berlin",
+  password: "1234567",
+  description: "I'm an empathetic listener, always ready to offer a comforting shoulder and wise advice to my friends",
+  gender: "male",
+  birthdate: "21/09/1994",
+  ranking: Ranking.all.sample,
+  mood: Mood.all.sample,
+  avatar: Avatar.all.sample,
+  status: "local"
+)
+bhawana.save!
 
 puts "Everything is working!"
