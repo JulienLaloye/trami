@@ -5,7 +5,7 @@
       <div class="swiper-slide" id="swiper-slide-myroom" style="background-color: <%= myroom.activity.mood.color%>">
         <%= link_to room_path(myroom), class: "text-decoration-none" do %>
           <li class="my-room px-2" >
-            <h4 class="mb-4 text-black-gray main-font weight-400 font-20"> <%= myroom.title %> </h4>
+            <h4 class="mb-3 text-black-gray main-font weight-400 font-18"> <%= myroom.title %> </h4>
             <p class="text-black-gray mb-0 main-font"><%= myroom.date.strftime("%b %d, %Y") %></p>
             <div class="participation mt-3 d-flex align-items-center">
               <p class="mb-0 maon-font text-black-gray">Participants: <%= myroom.participants %> </p>
